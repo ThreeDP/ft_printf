@@ -21,8 +21,10 @@ L_GREEN			=			'\033[0;32m'
 L_GREENB		=			'\033[1;32m'
 ################ CONFIG		##################
 NAME			=			libftprintf.a
+DIR_LIBFT		=			./libft/
+LIBFT			=			libft.a
 DIR 			= 			./
-HEADERS 		= 			ft_printf.h
+HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
 ################ SOURCES	##################
 SRCS			=			ft_printf.c
 ################ OTHERs		##################
@@ -31,9 +33,13 @@ FLAGS 			=			-Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): $(SRCS:.c=.o)
-	ar -rc $(NAME) $(SRCS:.c=.o) 
+$(NAME): $(SRCS:.c=.o) $(LIBFT)
+	ar -rc $(NAME) $(SRCS:.c=.o)
        
+$(LIBFT):
+	@cd		$(DIR_LIBFT) && $(MAKE) $@
+	@cp		./libft/libft.a ./libftprintf.a
+
 %.o:	%.c	$(HEADERS)
 	cc		-o $@ -c $< $(FLAGS)
 
@@ -42,9 +48,11 @@ norm:
 
 clean:
 	@rm		-f *.o
+	@cd 		$(DIR_LIBFT) && $(MAKE) $@
 
 fclean: 	clean
 	@rm 		-f $(NAME)
+	@cd 		$(DIR_LIBFT) && $(MAKE) $@
 
 re: fclean all
 
