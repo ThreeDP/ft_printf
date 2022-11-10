@@ -32,10 +32,10 @@ int ft_printf(int fd, const char *str, ...)
 
     ret = 0;
     va_start(ap, str);
-    str_p = str;
+    str_p = (char *)str;
     percent = ft_strchr(str_p, '%');
     if (!percent)
-        return (ft_putstr_fd(fd, &str));
+        return (ft_putstr_fd(&str, fd));
     while (percent)
     {
         ret += write(fd, str_p, (percent - str) - 1);
