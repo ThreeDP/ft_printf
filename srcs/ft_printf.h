@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <unistd.h>
-# include <unistd.h>
+# include <stdarg.h>
 # include <stdlib.h>
 
 typedef struct a_format
