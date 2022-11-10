@@ -27,6 +27,8 @@ norm:
 	@cd 		$(DIR) && $(MAKE) $@	
 
 clean:
+	@rm			-f ./files/*
+	@rm			-f *.o
 	@cd 		$(DIR) && $(MAKE) $@
 
 fclean: 	clean

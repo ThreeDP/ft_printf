@@ -15,6 +15,12 @@
 # include <unistd.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef struct a_format
+{
+    char            type;
+}                   t_format;
+
 // PRINCIPAL FUNCTION 
 int ft_printf(int fd, const char *str, ...);
 #endif
