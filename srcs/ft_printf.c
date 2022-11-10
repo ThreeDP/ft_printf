@@ -35,7 +35,7 @@ int ft_printf(int fd, const char *str, ...)
     str_p = (char *)str;
     percent = ft_strchr(str_p, '%');
     if (!percent)
-        return (ft_putstr_fd(&str, fd));
+        return (ft_putstr_fd(&str_p, fd));
     while (percent)
     {
         ret += write(fd, str_p, (percent - str) - 1);
