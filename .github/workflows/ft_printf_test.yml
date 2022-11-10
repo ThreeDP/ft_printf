@@ -1,0 +1,12 @@
+name: test functions
+on: [push]
+jobs:
+  test-functions:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: minunit
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test Functions
+      run: make
