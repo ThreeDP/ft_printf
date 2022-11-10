@@ -16,9 +16,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip setuptools
         python -m pip install norminette
-    - name: Runs norminette
+    - name: Runs norminette printf
       run: |
         norminette
+    - name: Runs norminette libft
       run: |
         cd libft
         norminette
