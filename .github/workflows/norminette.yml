@@ -18,8 +18,8 @@ jobs:
         python -m pip install norminette
     - name: Runs norminette printf
       run: |
-        norminette
+        norminette .
     - name: Runs norminette libft
       run: |
         cd libft
-        norminette
+        norminette .
