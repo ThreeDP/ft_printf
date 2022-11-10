@@ -15,7 +15,7 @@
 
 int ft_istype(char c)
 {
-    if (c == 'c' || c == 's' || c == 'p' || c = '%' || c == 'X')
+    if (c == 'c' || c == 's' || c == 'p' || c == '%' || c == 'X')
         return (1);
     else if ( c == 'd' || c == 'i' || c == 'u' || c == 'x')
         return (1);
@@ -28,7 +28,6 @@ int ft_printf(int fd, const char *str, ...)
     int     ret;
     char    *percent;
     char    *str_p;
-    char    type;
     int     pc;
 
     ret = 0;
@@ -36,22 +35,22 @@ int ft_printf(int fd, const char *str, ...)
     str_p = str;
     percent = ft_strchr(str_p, '%');
     if (!percent)
-        return (ft_putstr_fd(str, fd));
+        return (ft_putstr_fd(fd, &str));
     while (percent)
     {
         ret += write(fd, str_p, (percent - str) - 1);
-        str_p += (percent - str) + 1;
+        str_p += (percent - str_p) + 1;
         if (ft_istype(*str_p))
         {
             if (*str_p == 'c')
             {
-                pc = va_arg(ap, char);
+                pc = va_arg(ap, int);
                 ft_putchar_fd(fd, pc);
                 str_p++;
                 ret++;
             }
         }
-        ret = percent = ft_strchr(str_p, '%');
+        percent = ft_strchr(str_p, '%');
     }
     va_end(ap);
     return (ret);
