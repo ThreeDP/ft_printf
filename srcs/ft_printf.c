@@ -38,7 +38,7 @@ int ft_printf(int fd, const char *str, ...)
         return (ft_putstr_fd(str_p, fd));
     while (percent)
     {
-        ret += write(fd, str_p, (percent - str) - 1);
+        ret += write(fd, str_p, (percent - str_p) - 1);
         str_p += (percent - str_p) + 1;
         if (ft_istype(*str_p))
         {
