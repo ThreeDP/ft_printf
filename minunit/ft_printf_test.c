@@ -11,7 +11,7 @@ MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
     int     expected_bytes = 1;
     char    *result_str;
     int     bytes;
-    int     fd = open(file, O_CREAT | O_WRONLY);
+    int     fd = open(file, O_CREAT | S_IRUSR | S_IWUSR | O_WRONLY | O_APPEND);
     if (!fd)
         return ;
     
@@ -35,7 +35,7 @@ MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
     int     expected_bytes = 153;
     char    *result_str;
     int     bytes;
-    int     fd = open(file, O_CREAT | O_WRONLY);
+    int     fd = open(file, O_CREAT | S_IRUSR | S_IWUSR | O_WRONLY | O_APPEND);
     if (!fd)
         return ;
     
@@ -61,7 +61,7 @@ MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_
     int     expected_bytes = 45;
     char    *result_str;
     int     bytes;
-    int     fd = open(file, O_CREAT | O_WRONLY);
+    int     fd = open(file, O_CREAT | S_IRUSR | S_IWUSR | O_WRONLY | O_APPEND);
     if (!fd)
         return ;
     
