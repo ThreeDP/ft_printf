@@ -28,7 +28,7 @@ int ft_printf(int fd, const char *str, ...)
     int     ret;
     char    *percent;
     char    *str_p;
-    int     pc;
+    char     pc;
 
     ret = 0;
     va_start(ap, str);
@@ -44,7 +44,7 @@ int ft_printf(int fd, const char *str, ...)
         {
             if (*str_p == 'c')
             {
-                pc = (int) va_arg(ap, char);
+                pc = va_arg(ap, char);
                 ft_putchar_fd(fd, pc);
                 str_p++;
                 ret++;
