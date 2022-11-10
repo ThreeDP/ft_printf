@@ -73,8 +73,8 @@ MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_
     close(fd);
 
     //ASSERT
-    mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
 }
 
 MU_TEST_SUITE(test_suite)
