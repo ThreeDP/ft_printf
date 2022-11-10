@@ -44,7 +44,7 @@ int ft_printf(int fd, const char *str, ...)
         {
             if (*str_p == 'c')
             {
-                pc = va_arg(ap, int);
+                pc = (int) va_arg(ap, char);
                 ft_putchar_fd(fd, pc);
                 str_p++;
                 ret++;
