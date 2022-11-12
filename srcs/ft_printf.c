@@ -6,12 +6,13 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/07 16:36:53 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/11 21:01:16 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "./libft/libft.h"
+#include <stdio.h>
 
 int ft_istype(char c)
 {
@@ -28,7 +29,7 @@ int ft_printf(int fd, const char *str, ...)
     int     ret;
     char    *percent;
     char    *str_p;
-    char     pc;
+    int     pc;
 
     ret = 0;
     va_start(ap, str);
@@ -38,14 +39,14 @@ int ft_printf(int fd, const char *str, ...)
         return (ft_putstr_fd(str_p, fd));
     while (percent)
     {
-        ret += write(fd, str_p, (percent - str_p) - 1);
+        ret += write(fd, str_p, (percent - str_p));
         str_p += (percent - str_p) + 1;
         if (ft_istype(*str_p))
         {
             if (*str_p == 'c')
             {
-                pc = va_arg(ap, char);
-                ft_putchar_fd(fd, pc);
+                pc = va_arg(ap, int);
+                ft_putchar_fd(pc, fd);
                 str_p++;
                 ret++;
             }
