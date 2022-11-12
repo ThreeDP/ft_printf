@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/12 20:20:36 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/12 20:34:18 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ t_typechar  *formatchar(char c)
     return (format);
 }
 
-int printchar(char c, t_list ** lst)
+int printchar(int fd, char c, t_list **lst)
 {
     int bsr;
     
-    lst->arg = formatchar(c);
-    bsr = ft_putchar_fd(((t_typechar *)lst->arg)->value, fd);
-    cached_str++;
+    (*lst)->arg = formatchar(c);
+    bsr = ft_putchar_fd(((t_typechar *)(*lst)->arg)->value, fd);
     return (bsr);
 }
 
