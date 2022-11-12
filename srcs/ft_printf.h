@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/07 16:51:51 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/12 19:39:53 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-typedef struct a_format
+typedef struct
 {
-    char            type;
-}                   t_format;
+    char            value;
+}   t_typechar;
+
+typedef struct
+{
+    char            *value;
+}   t_typestring;
 
 // PRINCIPAL FUNCTION 
-int ft_printf(int fd, const char *str, ...);
+int                 ft_printf(int fd, const char *str, ...);
+// UTILS
+t_typechar          *formatchar(char c);
+t_typestring        *formatstring(char *str);
 #endif

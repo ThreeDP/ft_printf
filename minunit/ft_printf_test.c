@@ -21,11 +21,11 @@ MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
     close(fd);
+    remove(file);
 
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
-    remove(file);
 }
 
 MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
@@ -46,11 +46,11 @@ MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
     close(fd);
+    remove(file);
 
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
-    remove(file);
 }
 
 MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_correct_position)
@@ -73,18 +73,75 @@ MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
     close(fd);
+    remove(file);
 
     //ASSERT
     mu_assert_string_eq(expected_result, result_str);
     mu_assert_int_eq(expected_bytes, bytes);
-    remove(file);
 }
+
+MU_TEST_SUITE(passing_a_text_with_one_strings_print_the_text_and_the_string_in_the_correct_position)
+{
+    //ARRANGE
+    char    *file = "./files/you-cannot-pass";
+    char    first_string[]   = "You Cannot Pass!";
+    char    *expected_result = "You Cannot Pass! I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.";
+    int     expected_bytes = 153;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.", first_string);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+
+/*
+MU_TEST_SUITE(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in_the_correct_position)
+{
+    //ARRANGE
+    char    *file = "./files/you-cannot-pass";
+    char    first_string[]   = "You Cannot Pass!";
+    char    second_string[]  = "Flame of Udun!";
+    char    *expected_result = "You Cannot Pass! I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.";
+    int     expected_bytes = 153;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, %s Go back to the shadow.", first_string, second_string);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+*/
 
 MU_TEST_SUITE(test_suite)
 {	
     MU_RUN_TEST(passing_a_char_D_print_in_the_terminal);
     MU_RUN_TEST(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal);
     MU_RUN_TEST(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_correct_position);
+    MU_RUN_TEST(passing_a_text_with_one_strings_print_the_text_and_the_string_in_the_correct_position);
+    //MU_RUN_TEST(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in_the_correct_position);
 }
 
 int main() {

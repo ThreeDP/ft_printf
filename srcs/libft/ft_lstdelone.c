@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:05:51 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/10/08 18:52:19 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/12 17:19:13 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	del(lst -> content);
+	del(lst -> arg);
 	free(lst);
 }

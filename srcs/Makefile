@@ -6,7 +6,7 @@
 #    By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/11/07 18:30:05 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/11/12 17:35:56 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFT			=			libft.a
 DIR 			= 			./
 HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
 ################ SOURCES	##################
-SRCS			=			ft_printf.c
+SRCS			=			ft_printf.c		ft_printf_utils.c	
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
 ################ RULES		##################
@@ -41,7 +41,7 @@ $(LIBFT):
 	@cp		./libft/libft.a ./libftprintf.a
 
 %.o:	%.c	$(HEADERS)
-	cc		-o $@ -c $< $(FLAGS)
+	cc		-o $@ -c $<  -I ./ $(FLAGS)
 
 norm:
 	@norminette

@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:55:51 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/10/08 18:57:00 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/12 19:44:33 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	ptr = NULL;
 	while (lst)
 	{
-		new_node = ft_lstnew(f(lst -> content));
+		new_node = ft_lstnew('p', f(lst -> arg));
 		if (!new_node)
 			return (ft_lstclear(&ptr, del), ptr);
 		ft_lstadd_back(&ptr, new_node);

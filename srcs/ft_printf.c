@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/11 21:01:16 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/12 20:17:00 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,47 @@ int ft_istype(char c)
 
 int ft_printf(int fd, const char *str, ...)
 {
-    va_list ap;
-    int     ret;
+    va_list args_str;
+    t_list  *lst_args;
+    int     num_bytes;
+    int     bsr;
     char    *percent;
-    char    *str_p;
-    int     pc;
-
-    ret = 0;
-    va_start(ap, str);
-    str_p = (char *)str;
-    percent = ft_strchr(str_p, '%');
+    char    *cached_str;
+    
+    num_bytes = 0;
+    
+    cached_str = (char *)str;
+    lst_args = ft_lstnew('\0', NULL);
+    va_start(args_str, str);
+    percent = ft_strchr(cached_str, '%');
     if (!percent)
-        return (ft_putstr_fd(str_p, fd));
+        return (ft_putstr_fd(cached_str, fd));
+    printf("\n%s\n", str);
     while (percent)
     {
-        ret += write(fd, str_p, (percent - str_p));
-        str_p += (percent - str_p) + 1;
-        if (ft_istype(*str_p))
+        num_bytes += write(fd, cached_str, (percent - cached_str));
+        cached_str += (percent - cached_str) + 1;
+        lst_args->type = *cached_str;
+        if (lst_args->type == 'c')
         {
-            if (*str_p == 'c')
-            {
-                pc = va_arg(ap, int);
-                ft_putchar_fd(pc, fd);
-                str_p++;
-                ret++;
-            }
+            lst_args->arg = formatchar(va_arg(args_str, int));
+            bsr = ft_putchar_fd(((t_typechar *)lst_args->arg)->value, fd);
+            cached_str++;
+            num_bytes += bsr;
         }
-        percent = ft_strchr(str_p, '%');
+        else if (lst_args->type == 's')
+        {
+            lst_args->arg = formatstring(va_arg(args_str, char *));
+            bsr = ft_putstr_fd(((t_typestring *)lst_args->arg)->value, fd);
+            cached_str++;
+            num_bytes += bsr;
+            printf("\n%p\n", cached_str);
+        }
+        percent = ft_strchr(cached_str, '%');
     }
-    va_end(ap);
-    return (ret);
+    num_bytes += ft_putstr_fd(cached_str, fd);
+    //ft_lstclear(&lst_args, free);
+    va_end(args_str);
+    return (num_bytes);
 }
+
