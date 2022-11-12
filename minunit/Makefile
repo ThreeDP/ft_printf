@@ -36,3 +36,7 @@ fclean: 	clean
 	@cd 		$(DIR) && $(MAKE) $@
 
 re: fclean all
+
+c:
+	@rm			-f ./files/*
+

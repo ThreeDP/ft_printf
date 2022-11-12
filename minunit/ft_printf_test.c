@@ -11,7 +11,7 @@ MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
     int     expected_bytes = 1;
     char    *result_str;
     int     bytes;
-    int     fd = open(file, O_CREAT | S_IRUSR | S_IWUSR | O_WRONLY | O_APPEND);
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
     if (!fd)
         return ;
     
@@ -25,6 +25,7 @@ MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    remove(file);
 }
 
 MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
@@ -35,7 +36,7 @@ MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
     int     expected_bytes = 153;
     char    *result_str;
     int     bytes;
-    int     fd = open(file, O_CREAT | S_IRUSR | S_IWUSR | O_WRONLY | O_APPEND);
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
     if (!fd)
         return ;
     
@@ -49,6 +50,7 @@ MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    remove(file);
 }
 
 MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_correct_position)
@@ -61,7 +63,7 @@ MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_
     int     expected_bytes = 45;
     char    *result_str;
     int     bytes;
-    int     fd = open(file, O_CREAT | S_IRUSR | S_IWUSR | O_WRONLY | O_APPEND);
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
     if (!fd)
         return ;
     
@@ -75,6 +77,7 @@ MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_
     //ASSERT
     mu_assert_string_eq(expected_result, result_str);
     mu_assert_int_eq(expected_bytes, bytes);
+    remove(file);
 }
 
 MU_TEST_SUITE(test_suite)
