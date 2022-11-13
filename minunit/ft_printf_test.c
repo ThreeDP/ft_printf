@@ -344,6 +344,85 @@ MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
     mu_assert_int_eq(expected_bytes, bytes);
 }
 
+MU_TEST_SUITE(passing_a_int_with_value_10_shold_be_A_in_hex)
+{
+    //ARRANGE
+    char    *file = "./files/10-in-hex-uppercase";
+    int     number = 10;
+    char    *expected_result = "A";
+    int     expected_bytes = 1;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%X", number);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+
+MU_TEST_SUITE(passing_a_int_with_value_minus_42_shold_be_FFFFFFD6_in_hex)
+{
+    //ARRANGE
+    char    *file = "./files/minus-42-hex-uppercase";
+    int     number = -42;
+    char    *expected_result = "FFFFFFD6";
+    int     expected_bytes = 8;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%X", number);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+
+MU_TEST_SUITE(passing_two_int_with_value_minus_42_and_42_shold_be_ffffffd6_or_2a)
+{
+    //ARRANGE
+    char    *file = "./files/minus-42-hex-lowercase";
+    int     number1 = -42;
+    int     number2 = 42;
+    char    *expected_result = "ffffffd6 or 2a";
+    int     expected_bytes = 14;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%x or %x", number1, number2);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+
 MU_TEST_SUITE(test_suite)
 {	
     MU_RUN_TEST(passing_a_char_D_print_in_the_terminal);
@@ -359,6 +438,9 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_one_decimal_with_value_minus_42_shold_be_minus_42);
     MU_RUN_TEST(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_print_the_text_with_the_flags_in_the_correct_position);
     MU_RUN_TEST(passing_a_unsigned_int_with_value_minus_42_shold_be_42);
+    MU_RUN_TEST(passing_a_int_with_value_10_shold_be_A_in_hex);
+    MU_RUN_TEST(passing_a_int_with_value_minus_42_shold_be_FFFFFFD6_in_hex);
+    MU_RUN_TEST(passing_two_int_with_value_minus_42_and_42_shold_be_ffffffd6_or_2a);
 }
 
 int main() {

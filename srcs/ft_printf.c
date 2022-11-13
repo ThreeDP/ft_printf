@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/13 15:09:14 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:23:42 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ int ft_printf(int fd, const char *str, ...)
             num_bytes += printinteger(fd, va_arg(args_str, int), &lst_args);
         else if (lst_args->type == 'u')
             num_bytes += printuinteger(fd, va_arg(args_str, int), &lst_args);
+        else if (lst_args->type == 'x' || lst_args->type == 'X')
+            num_bytes += printhex(fd, va_arg(args_str, unsigned int), &lst_args);
+        else if (lst_args->type == '%')
+            num_bytes += printchar(fd, '%', &lst_args);
         cached_str++;
         percent = ft_strchr(cached_str, '%');
     }

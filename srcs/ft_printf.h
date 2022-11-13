@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/13 15:04:48 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:07:57 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
+
+# define U_BHEX "0123456789ABCDEF"
+# define L_BHEX "0123456789abcdef"
 
 typedef struct
 {
@@ -33,15 +36,22 @@ typedef struct
     unsigned int    value;
 }   t_typeint;
 
+typedef struct
+{
+    unsigned int    value;
+}   t_typehex;
+
 // PRINCIPAL FUNCTION 
 int                 ft_printf(int fd, const char *str, ...);
 // FORMAT FUNCTIONS
 t_typechar          *formatchar(char c);
 t_typestring        *formatstring(char *str);
 t_typeint           *formatint(int integer);
+t_typehex           *formathex(unsigned int num);
 // PRINT FUNCTIONS
 int                 printchar(int fd, char c, t_list **lst);
 int                 printstring(int fd, char *str, t_list **lst);
 int                 printinteger(int fd, int integer, t_list **lst);
 int                 printuinteger(int fd, int uinteger, t_list **lst);
+int                 printhex(int fd, unsigned int num, t_list **lst);
 #endif

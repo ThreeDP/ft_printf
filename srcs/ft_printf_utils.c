@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/13 15:09:42 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:21:10 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,31 @@ int printuinteger(int fd, int uinteger, t_list **lst)
     bsr = 0;
     (*lst)->arg = formatint(uinteger);
     ft_putnbr_fd(((t_typeint *)(*lst)->arg)->value, fd, &bsr);
+    ft_lstadd_back(lst, ft_lstnew('\0', NULL));
+    return (bsr);
+}
+
+t_typehex  *formathex(unsigned int num)
+{
+    t_typehex  *format;
+    
+    format = malloc(sizeof(t_typehex));
+    if (!format)
+        return (NULL);
+    format->value = num;
+    return (format);
+}
+
+int printhex(int fd, unsigned int num, t_list **lst)
+{
+    int bsr;
+
+    bsr = 0;
+    (*lst)->arg = formathex(num);
+    if ((*lst)->type == 'x')
+        ft_putnbrhex_fd(((t_typehex *)(*lst)->arg)->value, fd, &bsr, L_BHEX);
+    else if ((*lst)->type == 'X')
+        ft_putnbrhex_fd(((t_typehex *)(*lst)->arg)->value, fd, &bsr, U_BHEX);
     ft_lstadd_back(lst, ft_lstnew('\0', NULL));
     return (bsr);
 }
