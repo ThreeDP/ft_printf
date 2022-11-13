@@ -33,7 +33,7 @@ char	*get_strdup(const char *s, size_t size)
 	ptr = (char *) malloc(size * sizeof(char) + 1);
 	if (!ptr)
 		return (NULL);
-	ft_strlcpy(ptr, s, size + 1);
+	get_strlcpy(ptr, s, size + 1);
 	return (ptr);
 }
 
