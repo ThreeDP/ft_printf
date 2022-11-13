@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/13 14:03:57 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:17:56 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int ft_printf(int fd, const char *str, ...)
             num_bytes += printchar(fd, va_arg(args_str, int), &lst_args);
         else if (lst_args->type == 's')
             num_bytes += printstring(fd, va_arg(args_str, char *), &lst_args);
-        else if (lst_args->type == 'i')
+        else if (lst_args->type == 'i' || lst_args->type == 'd')
             num_bytes += printinteger(fd, va_arg(args_str, int), &lst_args);
         cached_str++;
         percent = ft_strchr(cached_str, '%');
