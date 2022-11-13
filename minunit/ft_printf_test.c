@@ -318,6 +318,32 @@ MU_TEST_SUITE(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_prin
     mu_assert_int_eq(expected_bytes, bytes);
 }
 
+MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
+{
+    //ARRANGE
+    char    *file = "./files/minus-42-unsigned_int";
+    int     number = -42;
+    char    *expected_result = "42";
+    int     expected_bytes = 2;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%u", number);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+
 MU_TEST_SUITE(test_suite)
 {	
     MU_RUN_TEST(passing_a_char_D_print_in_the_terminal);
@@ -332,6 +358,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_one_int_with_value_minus_42_shold_be_minus_42);
     MU_RUN_TEST(passing_a_one_decimal_with_value_minus_42_shold_be_minus_42);
     MU_RUN_TEST(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_print_the_text_with_the_flags_in_the_correct_position);
+    MU_RUN_TEST(passing_a_unsigned_int_with_value_minus_42_shold_be_42);
 }
 
 int main() {

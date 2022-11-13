@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/13 14:12:09 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/13 15:09:42 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,21 @@ int printstring(int fd, char *str, t_list **lst)
 
 t_typeint   *formatint(int integer)
 {
-    t_typeint   *format;
+    t_typeint       *format;
 
     format = malloc(sizeof(t_typeint));
     if (!format)
         return NULL;
-    format->value = integer;
+    if (integer < 0)
+    {
+        format->signal = '-';
+        format->value = integer * -1;
+    }
+    else
+    {
+        format->signal = '+';
+        format->value = integer * 1;
+    }
     return (format);
 }
 
@@ -75,6 +84,19 @@ int printinteger(int fd, int integer, t_list **lst)
 
     bsr = 0;
     (*lst)->arg = formatint(integer);
+    if (((t_typeint *)(*lst)->arg)->signal == '-')
+        bsr += ft_putchar_fd('-', fd);
+    ft_putnbr_fd(((t_typeint *)(*lst)->arg)->value, fd, &bsr);
+    ft_lstadd_back(lst, ft_lstnew('\0', NULL));
+    return (bsr);
+}
+
+int printuinteger(int fd, int uinteger, t_list **lst)
+{
+    int bsr;
+
+    bsr = 0;
+    (*lst)->arg = formatint(uinteger);
     ft_putnbr_fd(((t_typeint *)(*lst)->arg)->value, fd, &bsr);
     ft_lstadd_back(lst, ft_lstnew('\0', NULL));
     return (bsr);
