@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 07:38:11 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/12 17:22:48 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:13:06 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
-int			ft_putchar_fd(char c, int fd);
-int			ft_putstr_fd(char *s, int fd);
-void		ft_putendl_fd(char *s, int fd);
-void		ft_putnbr_fd(int nb, int fd);
+int			ft_putchar_fd(char c, int fd); // minilib
+int			ft_putstr_fd(char *s, int fd); // minilib
+void		ft_putendl_fd(char *s, int fd); 
+void		ft_putnbr_fd(int nb, int fd, int *ret); // minilib
 
 // Bonus	==========================================================
 t_list		*ft_lstnew(char type, void *arg);
