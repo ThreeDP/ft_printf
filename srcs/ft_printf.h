@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/12 20:35:40 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/13 11:39:03 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ int                 ft_printf(int fd, const char *str, ...);
 t_typechar          *formatchar(char c);
 int                 printchar(int fd, char c, t_list **lst);
 t_typestring        *formatstring(char *str);
+int                 printstring(int fd, char *str, t_list **lst);
 #endif

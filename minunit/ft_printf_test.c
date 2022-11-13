@@ -106,7 +106,6 @@ MU_TEST_SUITE(passing_a_text_with_one_strings_print_the_text_and_the_string_in_t
     mu_assert_int_eq(expected_bytes, bytes);
 }
 
-/*
 MU_TEST_SUITE(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in_the_correct_position)
 {
     //ARRANGE
@@ -133,7 +132,6 @@ MU_TEST_SUITE(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in
     mu_assert_string_eq(expected_result, result_str);
     mu_assert_int_eq(expected_bytes, bytes);
 }
-*/
 
 MU_TEST_SUITE(test_suite)
 {	
@@ -141,7 +139,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal);
     MU_RUN_TEST(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_correct_position);
     MU_RUN_TEST(passing_a_text_with_one_strings_print_the_text_and_the_string_in_the_correct_position);
-    //MU_RUN_TEST(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in_the_correct_position);
+    MU_RUN_TEST(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in_the_correct_position);
 }
 
 int main() {
