@@ -20,7 +20,7 @@ all:		$(SRCS_TEST:.c=.o)
        
 %.o:	%.c	$(HEADERS)
 	@cd		$(DIR) && $(MAKE)
-	gcc		-g $< $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	clang	-g $< $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@./a.out
 
 norm:

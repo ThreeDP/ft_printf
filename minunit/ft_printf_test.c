@@ -20,7 +20,6 @@ MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
-    close(fd);
     remove(file);
 
     //ASSERT
