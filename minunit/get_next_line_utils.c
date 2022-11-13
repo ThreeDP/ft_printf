@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*get_strchr(const char *str, int c)
 {
 	size_t	i;
 	char	cached_c;
@@ -26,7 +26,7 @@ char	*ft_strchr(const char *str, int c)
 	return (0);
 }
 
-char	*ft_strdup(const char *s, size_t size)
+char	*get_strdup(const char *s, size_t size)
 {
 	char	*ptr;
 
@@ -37,11 +37,11 @@ char	*ft_strdup(const char *s, size_t size)
 	return (ptr);
 }
 
-t_list	*ft_lstnew(char *content)
+t_getlist	*get_lstnew(char *content)
 {
-	t_list	*head;
+	t_getlist	*head;
 
-	head = malloc(sizeof(t_list));
+	head = malloc(sizeof(t_getlist));
 	if (!head)
 		return (NULL);
 	head -> content = content;
@@ -49,10 +49,10 @@ t_list	*ft_lstnew(char *content)
 	return (head);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	get_lstadd_back(t_getlist **lst, t_getlist *new)
 {
-	t_list	*tail;
-	t_list	*head;
+	t_getlist	*tail;
+	t_getlist	*head;
 
 	head = *lst;
 	if (!lst || !new)
@@ -68,10 +68,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		tail -> next = new;
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	get_lstclear(t_getlist **lst, void (*del)(void *))
 {
-	t_list	*head;
-	t_list	*next;
+	t_getlist	*head;
+	t_getlist	*next;
 
 	head = *lst;
 	next = *lst;

@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	get_strlen(const char *str)
 {
 	int	size;
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (size);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	get_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
 
@@ -41,10 +41,10 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 /*
 Copy the structure data to a single array
 and return the line.						*/
-static char	*create_line(t_list **lst, size_t line_size)
+static char	*create_line(t_getlist **lst, size_t line_size)
 {
 	char	*line;
-	t_list	*list;
+	t_getlist	*list;
 	size_t	i;
 	size_t	len_line;
 
@@ -73,7 +73,7 @@ static char	*create_line(t_list **lst, size_t line_size)
 Populate and create new nodes with characters from
 the file while not finding a \n character or the
 end of the file			*/
-static size_t	make_pieces(int fd, char *buffer, t_list **lst, size_t bsr)
+static size_t	make_pieces(int fd, char *buffer, t_getlist **lst, size_t bsr)
 {
 	size_t	line_size;
 	char	*c_pos;
@@ -104,8 +104,8 @@ static size_t	make_pieces(int fd, char *buffer, t_list **lst, size_t bsr)
 
 char	*get_next_line(int fd)
 {
-	t_list		*lst;
-	t_list		*ret;
+	t_getlist		*lst;
+	t_getlist		*ret;
 	char		*line;
 	size_t		bsr;
 	static char	buffer[BUFFER_SIZE];
