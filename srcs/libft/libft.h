@@ -57,9 +57,9 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 int			ft_putchar_fd(char c, int fd); // minilib
 int			ft_putstr_fd(char *s, int fd); // minilib
-void		ft_putendl_fd(char *s, int fd); 
+void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(unsigned int nb, int fd, int *ret); // minilib
-void		ft_putnbrhex_fd(unsigned int nb, int fd, int *ret, char *caset); // minilib
+void		ft_putnbrhex_fd(unsigned int nb, int fd, int *ret, char *caset);
 // Bonus	==========================================================
 t_list		*ft_lstnew(char type, void *arg);
 void		ft_lstadd_front(t_list **list, t_list *new);

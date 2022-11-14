@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/11/12 17:35:56 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/11/14 14:09:39 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFT			=			libft.a
 DIR 			= 			./
 HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
 ################ SOURCES	##################
-SRCS			=			ft_printf.c		ft_printf_utils.c	
+SRCS			=			ft_printf.c		ft_printf_utils.c	ft_printf_formats.c
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
 ################ RULES		##################
