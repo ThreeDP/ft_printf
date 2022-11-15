@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/15 10:58:35 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:40:31 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ int	ft_istype(char c)
 	else if (c == 'd' || c == 'i' || c == 'u' || c == 'x')
 		return (1);
 	return (0);
+}
+
+int	findflag(char *str)
+{
+	int i;
+	
+	i = 0;
+	while (!ft_istype(str[i]))
+		i++;
+	return (i);
 }
 
 int	ft_printf(int fd, const char *str, ...)
@@ -44,7 +54,8 @@ int	ft_printf(int fd, const char *str, ...)
 	{
 		num_bytes += write(fd, cached_str, (percent - cached_str));
 		cached_str += (percent - cached_str) + 1;
-		lst_args->type = *cached_str;
+		lst_args->flag_pos = findflag(cached_str);
+		lst_args->type = cached_str[lst_args->flag_pos];
 		if (lst_args->type == 'c')
 			bsr = printchar(fd, va_arg(args_str, int), &lst_args);
 		else if (lst_args->type == 's')
@@ -59,7 +70,7 @@ int	ft_printf(int fd, const char *str, ...)
 			bsr = printpointer(fd, va_arg(args_str, unsigned long), &lst_args);
 		else if (lst_args->type == '%')
 			bsr = printchar(fd, '%', &lst_args);
-		cached_str++;
+		cached_str+= lst_args->flag_pos + 1;
 		num_bytes += bsr;
 		ft_lstadd_back(&lst_args, ft_lstnew('\0', NULL));
 		lst_args = lst_args->next;

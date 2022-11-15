@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/15 09:49:03 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:37:55 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	printchar(int fd, char c, t_list **lst)
 {
 	int	bsr;
 
+    
 	(*lst)->arg = formatchar(c);
 	bsr = ft_putchar_fd(((t_typechar *)(*lst)->arg)->value, fd);
 	return (bsr);
