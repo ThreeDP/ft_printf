@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:21:12 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/13 19:20:54 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:24:02 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_putnbr_fd(unsigned int nb, int fd, int *ret)
 	*ret += ft_putchar_fd(c, fd);
 }
 
-void	ft_putnbrhex_fd(unsigned int nb, int fd, int *ret, char *caset)
+void	ft_putnbrhex_fd(ssize_t nb, int fd, int *ret, char *caset)
 {
 	if (nb >= 16)
 		ft_putnbrhex_fd(nb / 16, fd, ret, caset);

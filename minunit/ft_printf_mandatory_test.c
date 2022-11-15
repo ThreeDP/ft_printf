@@ -78,6 +78,31 @@ MU_TEST_SUITE(passing_a_text_with_one_char_print_the_text_and_the_char_in_the_co
     mu_assert_string_eq(expected_result, result_str);
 }
 
+MU_TEST_SUITE(passing_a_text_with_one_NULL_char_print_the_text_until_the_position_of_char)
+{
+    //ARRANGE
+    char    *file = "./files/null-char";
+    char    *expected_result = "The initials of the name Davy Paulino are ";
+    int     expected_bytes = 42;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "The initials of the name Davy Paulino are %c.P", NULL);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_int_eq(expected_bytes, bytes);
+    mu_assert_string_eq(expected_result, result_str);
+}
+
 MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_correct_position)
 {
     //ARRANGE
@@ -112,6 +137,32 @@ MU_TEST_SUITE(passing_a_text_with_one_strings_print_the_text_and_the_string_in_t
     char    first_string[]   = "You Cannot Pass!";
     char    *expected_result = "You Cannot Pass! I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.";
     int     expected_bytes = 153;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.", first_string);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_int_eq(expected_bytes, bytes);
+    mu_assert_string_eq(expected_result, result_str);
+}
+
+MU_TEST_SUITE(passing_a_text_with_one_string_NULL_print_the_text_and_the_NULL_in_the_correct_position)
+{
+    //ARRANGE
+    char    *file = "./files/NULL-str";
+    char    *first_string   = NULL;
+    char    *expected_result = "(null) I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.";
+    int     expected_bytes = 143;
     char    *result_str;
     int     bytes;
     int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
@@ -343,6 +394,31 @@ MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
     mu_assert_string_eq(expected_result, result_str);
 }
 
+MU_TEST_SUITE(passing_a_text_with_three_zeros_in_decimal_unsigned_int_and_int_print_the_text_with_the_zeros_in_the_correct_position)
+{
+    //ARRANGE
+    char    *file = "./files/the-ultimate-answer-int";
+    char    *expected_result = "0, 0 or 0";
+    int     expected_bytes = 9;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%u, %i or %d", NULL, NULL, NULL);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_int_eq(expected_bytes, bytes);
+    mu_assert_string_eq(expected_result, result_str);
+}
+
 MU_TEST_SUITE(passing_a_int_with_value_10_shold_be_A_in_hex)
 {
     //ARRANGE
@@ -422,13 +498,125 @@ MU_TEST_SUITE(passing_two_int_with_value_minus_42_and_42_shold_be_ffffffd6_or_2a
     mu_assert_string_eq(expected_result, result_str);
 }
 
+MU_TEST_SUITE(passing_NULL_from_hex_shold_be_ZERO)
+{
+    //ARRANGE
+    char    *file = "./files/NULL-hex";
+    char    *expected_result = "0 or 0";
+    int     expected_bytes = 6;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%x or %X", NULL, NULL);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_int_eq(expected_bytes, bytes);
+    mu_assert_string_eq(expected_result, result_str);
+}
+
+MU_TEST_SUITE(passing_a_address_print_the_value_of_the_address_in_hex)
+{
+    //ARRANGE
+    char    *file   = "./files/pointer-address";
+    ssize_t address = 68702702552;
+    char    *expected_result = "0xfff000bd8";
+    int     expected_bytes = 11;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%p", address);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+
+MU_TEST_SUITE(passing_a_address_null_print_the_word_nil)
+{
+    //ARRANGE
+    char    *file   = "./files/pointer-address-null";
+    ssize_t address = 0;
+    char    *expected_result = "(nil)";
+    int     expected_bytes = 5;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%p", address);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+
+MU_TEST_SUITE(passing_a_mix_of_flags)
+{
+    //ARRANGE
+    char    *file   = "./files/mix-flags";
+    char    letter  = 'D';
+    char    *string = "dapaulin";
+    int     intT    = 42;
+    int     intD    = 13;
+    int     intU    = -7;
+    int     hexL    = 42;
+    int     hexU    = 10;
+    ssize_t address = 68702702552;
+    char    *expected_result = "Ddapaulin421372aA0xfff000bd8%";
+    int     expected_bytes = 29;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%c%s%i%d%u%x%X%p%%", letter, string, intT, intD,  intU, hexL, hexU, address);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+}
+
 MU_TEST_SUITE(test_suite)
 {	
     MU_RUN_TEST(passing_a_char_D_print_in_the_terminal);
     MU_RUN_TEST(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal);
     MU_RUN_TEST(passing_a_text_with_one_char_print_the_text_and_the_char_in_the_correct_position);
+    MU_RUN_TEST(passing_a_text_with_one_NULL_char_print_the_text_until_the_position_of_char);
     MU_RUN_TEST(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_correct_position);
     MU_RUN_TEST(passing_a_text_with_one_strings_print_the_text_and_the_string_in_the_correct_position);
+    MU_RUN_TEST(passing_a_text_with_one_string_NULL_print_the_text_and_the_NULL_in_the_correct_position);
     MU_RUN_TEST(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in_the_correct_position);
     MU_RUN_TEST(passing_a_text_with_one_char_and_one_string_print_the_text_with_the_char_and_string_in_the_correct_position);
     MU_RUN_TEST(passing_a_text_with_one_int_value_print_the_text_with_the_int_in_the_correct_position);
@@ -437,9 +625,14 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_one_decimal_with_value_minus_42_shold_be_minus_42);
     MU_RUN_TEST(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_print_the_text_with_the_flags_in_the_correct_position);
     MU_RUN_TEST(passing_a_unsigned_int_with_value_minus_42_shold_be_42);
+    MU_RUN_TEST(passing_a_text_with_three_zeros_in_decimal_unsigned_int_and_int_print_the_text_with_the_zeros_in_the_correct_position);
     MU_RUN_TEST(passing_a_int_with_value_10_shold_be_A_in_hex);
     MU_RUN_TEST(passing_a_int_with_value_minus_42_shold_be_FFFFFFD6_in_hex);
     MU_RUN_TEST(passing_two_int_with_value_minus_42_and_42_shold_be_ffffffd6_or_2a);
+    MU_RUN_TEST(passing_a_address_print_the_value_of_the_address_in_hex);
+    MU_RUN_TEST(passing_a_address_null_print_the_word_nil);
+    MU_RUN_TEST(passing_NULL_from_hex_shold_be_ZERO);
+    MU_RUN_TEST(passing_a_mix_of_flags);
 }
 
 int main() {

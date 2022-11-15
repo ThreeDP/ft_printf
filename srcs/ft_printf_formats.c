@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:07:55 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/14 14:20:49 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 06:45:38 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ t_typestring	*formatstring(char *str)
 	format = malloc(sizeof(t_typechar));
 	if (!format)
 		return (NULL);
-	format->value = ft_strdup(str);
-	if (!format->value)
-		return (free(format), NULL);
+	format->value = str;
 	return (format);
 }
 
@@ -62,6 +60,17 @@ t_typehex	*formathex(unsigned int num)
 	t_typehex	*format;
 
 	format = malloc(sizeof(t_typehex));
+	if (!format)
+		return (NULL);
+	format->value = num;
+	return (format);
+}
+
+t_typepointer	*formatpointer(ssize_t num)
+{
+	t_typepointer	*format;
+
+	format = malloc(sizeof(t_typepointer));
 	if (!format)
 		return (NULL);
 	format->value = num;

@@ -1,4 +1,4 @@
-name: test functions
+name: mandatory tests
 on: [push]
 jobs:
   test-functions:
@@ -8,5 +8,5 @@ jobs:
         working-directory: minunit
     steps:
     - uses: actions/checkout@v3
-    - name: Test Functions
+    - name: mandatory Tests
       run: make

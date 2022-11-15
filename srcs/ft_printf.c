@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/14 14:19:02 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 06:46:36 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	ft_printf(int fd, const char *str, ...)
 {
 	va_list	args_str;
 	t_list	*lst_args;
+	t_list	*lst_free;
 	int		num_bytes;
+	int		bsr;
 	char	*percent;
 	char	*cached_str;
 
@@ -35,6 +37,7 @@ int	ft_printf(int fd, const char *str, ...)
 
 	cached_str = (char *)str;
 	lst_args = ft_lstnew('\0', NULL);
+	lst_free = lst_args;
 	va_start(args_str, str);
 	percent = ft_strchr(cached_str, '%');
 	while (percent)
@@ -43,22 +46,29 @@ int	ft_printf(int fd, const char *str, ...)
 		cached_str += (percent - cached_str) + 1;
 		lst_args->type = *cached_str;
 		if (lst_args->type == 'c')
-			num_bytes += printchar(fd, va_arg(args_str, int), &lst_args);
+			bsr = printchar(fd, va_arg(args_str, int), &lst_args);
 		else if (lst_args->type == 's')
-			num_bytes += printstring(fd, va_arg(args_str, char *), &lst_args);
+			bsr = printstring(fd, va_arg(args_str, char *), &lst_args);
 		else if (lst_args->type == 'i' || lst_args->type == 'd')
-			num_bytes += printinteger(fd, va_arg(args_str, int), &lst_args);
+			bsr = printinteger(fd, va_arg(args_str, int), &lst_args);
 		else if (lst_args->type == 'u')
-			num_bytes += printuinteger(fd, va_arg(args_str, int), &lst_args);
+			bsr = printuinteger(fd, va_arg(args_str, int), &lst_args);
 		else if (lst_args->type == 'x' || lst_args->type == 'X')
-			num_bytes += printhex(fd, va_arg(args_str, unsigned int), &lst_args);
+			bsr = printhex(fd, va_arg(args_str, int), &lst_args);
+		else if (lst_args->type == 'p')
+			bsr = printpointer(fd, va_arg(args_str, ssize_t), &lst_args);
 		else if (lst_args->type == '%')
-			num_bytes += printchar(fd, '%', &lst_args);
+			bsr = printchar(fd, '%', &lst_args);
 		cached_str++;
+		if (!bsr)
+			return (ft_lstclear(&lst_free, free), num_bytes);
+		num_bytes += bsr;
+		ft_lstadd_back(&lst_args, ft_lstnew('\0', NULL));
+		lst_args = lst_args->next;
 		percent = ft_strchr(cached_str, '%');
 	}
 	num_bytes += ft_putstr_fd(cached_str, fd);
-	ft_lstclear(&lst_args, free);
+	ft_lstclear(&lst_free, free);
 	va_end(args_str);
 	return (num_bytes);
 }
