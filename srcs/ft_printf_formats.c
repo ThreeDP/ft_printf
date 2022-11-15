@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:07:55 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/15 06:45:38 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:47:06 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_typechar	*formatchar(char c)
 {
 	t_typechar	*format;
 
-	format = malloc(sizeof(t_typechar));
+	format = (t_typechar *) malloc(sizeof(t_typechar));
 	if (!format)
 		return (NULL);
 	format->value = c;
@@ -28,7 +28,7 @@ t_typestring	*formatstring(char *str)
 {
 	t_typestring	*format;
 
-	format = malloc(sizeof(t_typechar));
+	format = (t_typestring *) malloc(sizeof(t_typestring));
 	if (!format)
 		return (NULL);
 	format->value = str;
@@ -39,7 +39,7 @@ t_typeint	*formatint(int integer)
 {
 	t_typeint	*format;
 
-	format = malloc(sizeof(t_typeint));
+	format = (t_typeint *) malloc(sizeof(t_typeint));
 	if (!format)
 		return (NULL);
 	if (integer < 0)
@@ -55,22 +55,37 @@ t_typeint	*formatint(int integer)
 	return (format);
 }
 
+t_typeint	*formatuint(int uinteger)
+{
+	t_typeint	*format;
+
+	format = (t_typeint *) malloc(sizeof(t_typeint));
+	if (!format)
+		return (NULL);
+	if (uinteger < 0)
+		format->signal = '-';
+	else
+		format->signal = '+';
+	format->value = uinteger * 1;
+	return (format);
+}
+
 t_typehex	*formathex(unsigned int num)
 {
 	t_typehex	*format;
 
-	format = malloc(sizeof(t_typehex));
+	format = (t_typehex *) malloc(sizeof(t_typehex));
 	if (!format)
 		return (NULL);
 	format->value = num;
 	return (format);
 }
 
-t_typepointer	*formatpointer(ssize_t num)
+t_typepointer	*formatpointer(unsigned long num)
 {
 	t_typepointer	*format;
 
-	format = malloc(sizeof(t_typepointer));
+	format = (t_typepointer *) malloc(sizeof(t_typepointer));
 	if (!format)
 		return (NULL);
 	format->value = num;

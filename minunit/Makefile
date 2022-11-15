@@ -23,6 +23,9 @@ all:		$(SRCS_TEST:.c=.o)
 	clang	-g $< $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@./a.out
 
+valgrind: all
+	valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full ./a.out
+
 norm:
 	@cd 		$(DIR) && $(MAKE) $@	
 

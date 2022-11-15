@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/15 06:46:36 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:58:35 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,10 @@ int	ft_printf(int fd, const char *str, ...)
 		else if (lst_args->type == 'x' || lst_args->type == 'X')
 			bsr = printhex(fd, va_arg(args_str, int), &lst_args);
 		else if (lst_args->type == 'p')
-			bsr = printpointer(fd, va_arg(args_str, ssize_t), &lst_args);
+			bsr = printpointer(fd, va_arg(args_str, unsigned long), &lst_args);
 		else if (lst_args->type == '%')
 			bsr = printchar(fd, '%', &lst_args);
 		cached_str++;
-		if (!bsr)
-			return (ft_lstclear(&lst_free, free), num_bytes);
 		num_bytes += bsr;
 		ft_lstadd_back(&lst_args, ft_lstnew('\0', NULL));
 		lst_args = lst_args->next;

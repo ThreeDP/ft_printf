@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/15 06:43:43 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:58:20 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_typehex
 
 typedef struct s_typepointer
 {
-	ssize_t	value;
+	unsigned long	value;
 }	t_typepointer;
 
 // PRINCIPAL FUNCTION 
@@ -52,13 +52,14 @@ int					ft_printf(int fd, const char *str, ...);
 t_typechar			*formatchar(char c);
 t_typestring		*formatstring(char *str);
 t_typeint			*formatint(int integer);
+t_typeint			*formatuint(int uinteger);
 t_typehex			*formathex(unsigned int num);
-t_typepointer		*formatpointer(ssize_t num);
+t_typepointer		*formatpointer(unsigned long num);
 // PRINT FUNCTIONS
 int					printchar(int fd, char c, t_list **lst);
 int					printstring(int fd, char *str, t_list **lst);
 int					printinteger(int fd, int integer, t_list **lst);
 int					printuinteger(int fd, int uinteger, t_list **lst);
 int					printhex(int fd, unsigned int num, t_list **lst);
-int					printpointer(int fd, ssize_t num, t_list **lst);
+int					printpointer(int fd, unsigned long num, t_list **lst);
 #endif

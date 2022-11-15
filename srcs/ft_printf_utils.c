@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/15 06:44:47 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:49:03 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	printchar(int fd, char c, t_list **lst)
 {
 	int	bsr;
 
-	if (!c)
-		return (0);
 	(*lst)->arg = formatchar(c);
 	bsr = ft_putchar_fd(((t_typechar *)(*lst)->arg)->value, fd);
 	return (bsr);
@@ -53,7 +51,7 @@ int	printuinteger(int fd, int uinteger, t_list **lst)
 	int	bsr;
 
 	bsr = 0;
-	(*lst)->arg = formatint(uinteger);
+	(*lst)->arg = formatuint(uinteger);
 	ft_putnbr_fd(((t_typeint *)(*lst)->arg)->value, fd, &bsr);
 	return (bsr);
 }
@@ -71,7 +69,7 @@ int	printhex(int fd, unsigned int num, t_list **lst)
 	return (bsr);
 }
 
-int printpointer(int fd, ssize_t num, t_list **lst)
+int printpointer(int fd, unsigned long num, t_list **lst)
 {
 	int bsr;
 

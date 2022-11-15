@@ -25,6 +25,7 @@ MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
@@ -50,6 +51,7 @@ MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_one_char_print_the_text_and_the_char_in_the_correct_position)
@@ -76,6 +78,7 @@ MU_TEST_SUITE(passing_a_text_with_one_char_print_the_text_and_the_char_in_the_co
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_one_NULL_char_print_the_text_until_the_position_of_char)
@@ -83,7 +86,7 @@ MU_TEST_SUITE(passing_a_text_with_one_NULL_char_print_the_text_until_the_positio
     //ARRANGE
     char    *file = "./files/null-char";
     char    *expected_result = "The initials of the name Davy Paulino are ";
-    int     expected_bytes = 42;
+    int     expected_bytes = 45;
     char    *result_str;
     int     bytes;
     int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
@@ -101,6 +104,7 @@ MU_TEST_SUITE(passing_a_text_with_one_NULL_char_print_the_text_until_the_positio
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_correct_position)
@@ -128,6 +132,7 @@ MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_one_strings_print_the_text_and_the_string_in_the_correct_position)
@@ -154,6 +159,7 @@ MU_TEST_SUITE(passing_a_text_with_one_strings_print_the_text_and_the_string_in_t
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_one_string_NULL_print_the_text_and_the_NULL_in_the_correct_position)
@@ -180,6 +186,7 @@ MU_TEST_SUITE(passing_a_text_with_one_string_NULL_print_the_text_and_the_NULL_in
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in_the_correct_position)
@@ -207,6 +214,7 @@ MU_TEST_SUITE(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_one_char_and_one_string_print_the_text_with_the_char_and_string_in_the_correct_position)
@@ -234,6 +242,7 @@ MU_TEST_SUITE(passing_a_text_with_one_char_and_one_string_print_the_text_with_th
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_one_int_value_print_the_text_with_the_int_in_the_correct_position)
@@ -260,6 +269,7 @@ MU_TEST_SUITE(passing_a_text_with_one_int_value_print_the_text_with_the_int_in_t
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_one_decimal_value_print_the_text_with_the_decimal_in_the_correct_position)
@@ -286,6 +296,7 @@ MU_TEST_SUITE(passing_a_text_with_one_decimal_value_print_the_text_with_the_deci
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_one_int_with_value_minus_42_shold_be_minus_42)
@@ -312,6 +323,7 @@ MU_TEST_SUITE(passing_a_one_int_with_value_minus_42_shold_be_minus_42)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_one_decimal_with_value_minus_42_shold_be_minus_42)
@@ -338,6 +350,7 @@ MU_TEST_SUITE(passing_a_one_decimal_with_value_minus_42_shold_be_minus_42)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_print_the_text_with_the_flags_in_the_correct_position)
@@ -366,6 +379,7 @@ MU_TEST_SUITE(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_prin
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
@@ -373,8 +387,8 @@ MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
     //ARRANGE
     char    *file = "./files/minus-42-unsigned_int";
     int     number = -42;
-    char    *expected_result = "42";
-    int     expected_bytes = 2;
+    char    *expected_result = "4294967254";
+    int     expected_bytes = 10;
     char    *result_str;
     int     bytes;
     int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
@@ -392,6 +406,7 @@ MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_text_with_three_zeros_in_decimal_unsigned_int_and_int_print_the_text_with_the_zeros_in_the_correct_position)
@@ -417,6 +432,7 @@ MU_TEST_SUITE(passing_a_text_with_three_zeros_in_decimal_unsigned_int_and_int_pr
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_int_with_value_10_shold_be_A_in_hex)
@@ -443,6 +459,7 @@ MU_TEST_SUITE(passing_a_int_with_value_10_shold_be_A_in_hex)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_int_with_value_minus_42_shold_be_FFFFFFD6_in_hex)
@@ -469,6 +486,7 @@ MU_TEST_SUITE(passing_a_int_with_value_minus_42_shold_be_FFFFFFD6_in_hex)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_two_int_with_value_minus_42_and_42_shold_be_ffffffd6_or_2a)
@@ -496,6 +514,7 @@ MU_TEST_SUITE(passing_two_int_with_value_minus_42_and_42_shold_be_ffffffd6_or_2a
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_NULL_from_hex_shold_be_ZERO)
@@ -521,6 +540,7 @@ MU_TEST_SUITE(passing_NULL_from_hex_shold_be_ZERO)
     //ASSERT
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_address_print_the_value_of_the_address_in_hex)
@@ -547,6 +567,33 @@ MU_TEST_SUITE(passing_a_address_print_the_value_of_the_address_in_hex)
     //ASSERT
     mu_assert_string_eq(expected_result, result_str);
     mu_assert_int_eq(expected_bytes, bytes);
+    free(result_str);
+}
+
+MU_TEST_SUITE(passing_the_long_min_max_address_print_the_value_of_the_address_in_hex)
+{
+    //ARRANGE
+    char    *file   = "./files/max-min-long-address";
+    char    *expected_result = "0x8000000000000000 0x7fffffffffffffff";
+    int     expected_bytes = 37;
+    char    *result_str;
+    int     bytes;
+    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    
+    //ACT
+    bytes = ft_printf(fd, "%p %p", LONG_MIN, LONG_MAX);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    result_str = get_next_line(fd);
+    close(fd);
+    remove(file);
+
+    //ASSERT
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_address_null_print_the_word_nil)
@@ -573,6 +620,7 @@ MU_TEST_SUITE(passing_a_address_null_print_the_word_nil)
     //ASSERT
     mu_assert_string_eq(expected_result, result_str);
     mu_assert_int_eq(expected_bytes, bytes);
+    free(result_str);
 }
 
 MU_TEST_SUITE(passing_a_mix_of_flags)
@@ -587,8 +635,8 @@ MU_TEST_SUITE(passing_a_mix_of_flags)
     int     hexL    = 42;
     int     hexU    = 10;
     ssize_t address = 68702702552;
-    char    *expected_result = "Ddapaulin421372aA0xfff000bd8%";
-    int     expected_bytes = 29;
+    char    *expected_result = "Ddapaulin421342949672892aA0xfff000bd8%";
+    int     expected_bytes = 38;
     char    *result_str;
     int     bytes;
     int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
@@ -606,6 +654,7 @@ MU_TEST_SUITE(passing_a_mix_of_flags)
     //ASSERT
     mu_assert_string_eq(expected_result, result_str);
     mu_assert_int_eq(expected_bytes, bytes);
+    free(result_str);
 }
 
 MU_TEST_SUITE(test_suite)
@@ -631,6 +680,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_two_int_with_value_minus_42_and_42_shold_be_ffffffd6_or_2a);
     MU_RUN_TEST(passing_a_address_print_the_value_of_the_address_in_hex);
     MU_RUN_TEST(passing_a_address_null_print_the_word_nil);
+    MU_RUN_TEST(passing_the_long_min_max_address_print_the_value_of_the_address_in_hex);
     MU_RUN_TEST(passing_NULL_from_hex_shold_be_ZERO);
     MU_RUN_TEST(passing_a_mix_of_flags);
 }

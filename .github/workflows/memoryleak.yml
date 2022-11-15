@@ -1,0 +1,17 @@
+name: valgrind test
+
+on: [push]
+jobs:
+  valgrind-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: minunit
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install valgrind
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y valgrind
+      - name: run valgrind
+        run: make valgrind

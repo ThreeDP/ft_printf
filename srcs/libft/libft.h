@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 07:38:11 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/14 20:24:46 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:16:40 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			ft_putchar_fd(char c, int fd); // minilib
 int			ft_putstr_fd(char *s, int fd); // minilib
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(unsigned int nb, int fd, int *ret); // minilib
-void		ft_putnbrhex_fd(ssize_t nb, int fd, int *ret, char *caset);
+void		ft_putnbrhex_fd(unsigned long nb, int fd, int *ret, char *caset);
 // Bonus	==========================================================
 t_list		*ft_lstnew(char type, void *arg);
 void		ft_lstadd_front(t_list **list, t_list *new);
