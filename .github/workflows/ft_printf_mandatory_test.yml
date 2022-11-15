@@ -7,6 +7,6 @@ jobs:
       run:
         working-directory: minunit
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: mandatory Tests
       run: make
