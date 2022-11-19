@@ -6,13 +6,12 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:07:55 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/19 20:28:25 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/19 20:32:18 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "./libft/libft.h"
-#include <stdio.h>
 
 t_typechar	*formatchar(char c)
 {
@@ -23,22 +22,6 @@ t_typechar	*formatchar(char c)
 		return (NULL);
 	format->value = c;
 	return (format);
-}
-
-t_typestring	*new_typestring(char *str)
-{
-	t_typestring *c_format;
-	
-	c_format = (t_typestring *) malloc(sizeof(t_typestring));
-	if (!c_format)
-		return (NULL);
-	c_format->value = str;
-	c_format->minus = FALSE;
-	c_format->bytes = 0;
-	c_format->dot = FALSE;
-	c_format->bytes = 0;
-	c_format->valid_bytes = 0;
-	return (c_format);
 }
 
 t_typestring	*formatstring(char *str, const char *flags)
