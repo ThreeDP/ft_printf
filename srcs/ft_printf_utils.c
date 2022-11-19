@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/15 15:37:55 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/19 19:31:06 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	printstring(int fd, char *str, t_list **lst)
 
 	if (!str)
 		return (ft_putstr_fd("(null)", fd));
-	(*lst)->arg = formatstring(str);
+	(*lst)->arg = formatstring(str, "");
 	bsr = ft_putstr_fd(((t_typestring *)(*lst)->arg)->value, fd);
 	return (bsr);
 }
@@ -81,4 +81,37 @@ int printpointer(int fd, unsigned long num, t_list **lst)
 	bsr += ft_putstr_fd("0x", fd);
 	ft_putnbrhex_fd(((t_typepointer *)(*lst)->arg)->value, fd, &bsr, L_BHEX);
 	return (bsr);
+}
+
+/* Função responsavel por validar se uma sub-string é digit 
+e retornar um valor do tipo inteito */
+int	sub_atoi(const char *strnum, int *size)
+{
+	int		i;
+	char 	*flag;
+	int		num;
+	
+	i = 0;
+	num = 0;
+	while (ft_isdigit(strnum[i]))
+		i++;
+	if (i > 0)
+	{
+		flag = ft_strndup(strnum, i);
+		*size += i;
+		num = ft_atoi(flag);
+		if (!flag)
+			free(flag);
+	}
+	return (num);
+}
+
+/* 
+Valida se o caracter atual coresponde a flag passada
+*/
+t_bool	ft_isflag(char flag, char c, int *i)
+{
+	if (c == flag)
+		return (*i+=1, TRUE);
+	return (FALSE);
 }

@@ -10,7 +10,7 @@ L_GREENB		=			'\033[1;32m'
 ################ CONFIG		##################
 DIR 			= 			../srcs/
 GNL				=			get_next_line.c get_next_line_utils.c
-SRCS_TEST 		= 			ft_printf_mandatory_test.c
+SRCS_TEST 		= 			ft_printf_mandatory_test.c formatstring_test.c
 HEADERS 		= 			minunit.h get_next_line.h
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
@@ -21,6 +21,7 @@ all:		$(SRCS_TEST:.c=.o)
 %.o:	%.c	$(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g $< $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	$(L_YELLOWB)[RUN $<]$(L_WHITE)
 	@./a.out
 
 valgrind: all
@@ -43,3 +44,8 @@ re: fclean all
 c:
 	@rm			-f ./files/*
 
+string: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g formatstring_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	$(L_YELLOWB)[RUN formatstring_test.c]$(L_WHITE)
+	@./a.out
