@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:07:55 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/19 19:31:34 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/19 20:28:25 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ t_typestring	*new_typestring(char *str)
 	if (!c_format)
 		return (NULL);
 	c_format->value = str;
+	c_format->minus = FALSE;
+	c_format->bytes = 0;
 	c_format->dot = FALSE;
+	c_format->bytes = 0;
 	c_format->valid_bytes = 0;
 	return (c_format);
 }
@@ -47,6 +50,9 @@ t_typestring	*formatstring(char *str, const char *flags)
 	format = new_typestring(str);
 	if (!format)
 		return (NULL);
+	format->minus = ft_isflag('-', flags[i], &i);
+	while (flags[i] == '-')
+		i++;
 	format->bytes = sub_atoi(&flags[i], &i);
 	format->dot = ft_isflag('.', flags[i], &i);
 	format->bytes_s = sub_atoi(&flags[i], &i);

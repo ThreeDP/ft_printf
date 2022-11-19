@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/19 19:31:16 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/19 20:12:35 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_typechar
 
 typedef struct s_typestring
 {
+	t_bool	minus;
 	int		bytes;
 	t_bool	dot;
 	int		bytes_s;
