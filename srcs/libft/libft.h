@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 07:38:11 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/15 15:01:04 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/19 16:44:13 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char		*ft_strnstr(const char *big, const char *little, size_t len);
 int			ft_atoi(const char *nptr);
 void		*ft_calloc(size_t nmemb, size_t size);
 char		*ft_strdup(const char *s);
+char		*ft_strndup(const char *s, size_t size);
 
 // Part 02	==========================================================
 char		*ft_substr(char const *s, unsigned int start, size_t len);
