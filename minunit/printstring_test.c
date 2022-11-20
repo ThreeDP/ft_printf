@@ -22,7 +22,7 @@ MU_TEST_SUITE(test)
     int             expected_bsr        = 11;
 
     //ACT
-    bsr = printftring(fd, str, &shape);
+    bsr = printstring(fd, str, &shape);
     close(fd);
     fd = open(file, O_RDONLY);
     str = get_next_line(fd);
