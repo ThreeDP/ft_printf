@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/19 20:12:35 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/19 21:02:09 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ typedef enum e_bool
 	FALSE,
 	TRUE
 }		t_bool;
+
+typedef struct a_format
+{
+	char			type;
+	int				f_pos;
+	void			*arg;
+}	t_format;
 
 typedef struct s_typechar
 {
@@ -62,6 +69,7 @@ typedef struct s_typepointer
 int					ft_printf(int fd, const char *str, ...);
 // CREATE FUNCTIONS
 t_typestring		*new_typestring(char *str);
+t_format			*new_format();
 // FORMAT FUNCTIONS
 t_typechar			*formatchar(char c);
 t_typestring		*formatstring(char *str, const char *flags);
@@ -70,12 +78,12 @@ t_typeint			*formatuint(int uinteger);
 t_typehex			*formathex(unsigned int num);
 t_typepointer		*formatpointer(unsigned long num);
 // PRINT FUNCTIONS
-int					printchar(int fd, char c, t_list **lst);
-int					printstring(int fd, char *str, t_list **lst);
-int					printinteger(int fd, int integer, t_list **lst);
-int					printuinteger(int fd, int uinteger, t_list **lst);
-int					printhex(int fd, unsigned int num, t_list **lst);
-int					printpointer(int fd, unsigned long num, t_list **lst);
+int					printchar(int fd, char c, t_format **shape);
+int					printstring(int fd, char *str, t_format **shape);
+int					printinteger(int fd, int integer, t_format **shape);
+int					printuinteger(int fd, int uinteger, t_format **shape);
+int					printhex(int fd, unsigned int num, t_format **shape);
+int					printpointer(int fd, unsigned long num, t_format **shape);
 // AUX FUNCTIONS
 int					sub_atoi(const char *strnum, int *size);
 t_bool				ft_isflag(char flag, char c, int *i);
