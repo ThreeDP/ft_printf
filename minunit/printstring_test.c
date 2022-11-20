@@ -29,8 +29,8 @@ MU_TEST_SUITE(test)
     remove(file);
 
     //ASSERTS
-    mu_assert_int_eq(expected_bsr, bsr);
     mu_assert_string_eq(expected_result, str);
+    mu_assert_int_eq(expected_bsr, bsr);
     if (shape->flags)
         free(shape->flags);
     if (shape)
