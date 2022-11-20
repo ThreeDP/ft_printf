@@ -30,6 +30,7 @@ typedef struct a_format
 {
 	char			type;
 	int				f_pos;
+	char			*flags;
 	void			*arg;
 }	t_format;
 

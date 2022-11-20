@@ -54,6 +54,7 @@ int	ft_printf(int fd, const char *str, ...)
 		cached_str += (percent - cached_str) + 1;
 		lst_args->f_pos = findflag(cached_str);
 		lst_args->type = cached_str[lst_args->f_pos];
+		lst_args->flags = ft_strndup(cached_str, lst_args->f_pos);
 		if (lst_args->type == 'c')
 			bsr = printchar(fd, va_arg(args_str, int), &lst_args);
 		else if (lst_args->type == 's')
@@ -74,6 +75,11 @@ int	ft_printf(int fd, const char *str, ...)
 		{
 			free(lst_args->arg);
 			lst_args->arg = NULL;
+		}
+		if (lst_args->flags)
+		{
+			free(lst_args->flags);
+			lst_args->flags = NULL;
 		}
 		percent = ft_strchr(cached_str, '%');
 	}

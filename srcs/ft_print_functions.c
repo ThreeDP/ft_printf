@@ -23,14 +23,28 @@ int	printchar(int fd, char c, t_format **shape)
 	return (bsr);
 }
 
+int	printf_formatstring(int fd, t_typestring **format)
+{
+	int bsr;
+
+	bsr = 0;
+	while ((*format)->bytes > 0)
+	{
+		bsr += ft_putchar(' ', fd);
+		(*format)->bytes--;
+	}
+	bsr += ft_putstr_fd((*format)->value, fd);
+}
+
 int	printstring(int fd, char *str, t_format **shape)
 {
 	int	bsr;
 
+	bsr = 0;
 	if (!str)
 		return (ft_putstr_fd("(null)", fd));
-	(*shape)->arg = formatstring(str, "");
-	bsr = ft_putstr_fd(((t_typestring *)(*shape)->arg)->value, fd);
+	(*shape)->arg = formatstring(str, (*shape)->flags);
+	bsr += printf_formatstring(fd, (t_typestring *)(*shape)->arg);
 	return (bsr);
 }
 

@@ -37,6 +37,7 @@ t_format	*new_format()
 	if (!c_format)
 		return (NULL);
 	c_format->arg = NULL;
+	c_format->flags = NULL;
 	c_format->f_pos = 0;
 	c_format->type = '\0';
 	return (c_format);

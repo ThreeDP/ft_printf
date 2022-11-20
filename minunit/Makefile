@@ -10,7 +10,7 @@ L_GREENB		=			'\033[1;32m'
 ################ CONFIG		##################
 DIR 			= 			../srcs/
 GNL				=			get_next_line.c get_next_line_utils.c
-SRCS_TEST 		= 			ft_printf_mandatory_test.c formatstring_test.c
+SRCS_TEST 		= 			ft_printf_mandatory_test.c formatstring_test.c printstring_test.c
 HEADERS 		= 			minunit.h get_next_line.h
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
