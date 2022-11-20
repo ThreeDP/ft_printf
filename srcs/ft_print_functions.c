@@ -30,10 +30,11 @@ int	printf_formatstring(int fd, t_typestring **format)
 	bsr = 0;
 	while ((*format)->bytes > 0)
 	{
-		bsr += ft_putchar(' ', fd);
+		bsr += ft_putchar_fd(' ', fd);
 		(*format)->bytes--;
 	}
 	bsr += ft_putstr_fd((*format)->value, fd);
+	return (bsr);
 }
 
 int	printstring(int fd, char *str, t_format **shape)
@@ -44,7 +45,7 @@ int	printstring(int fd, char *str, t_format **shape)
 	if (!str)
 		return (ft_putstr_fd("(null)", fd));
 	(*shape)->arg = formatstring(str, (*shape)->flags);
-	bsr += printf_formatstring(fd, (t_typestring *)(*shape)->arg);
+	bsr += printf_formatstring(fd, &((t_typestring *)(*shape)->arg));
 	return (bsr);
 }
 
