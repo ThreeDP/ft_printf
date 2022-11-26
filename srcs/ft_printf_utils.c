@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/19 20:37:04 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/26 15:13:07 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "./libft/libft.h"
 
 /* Função responsavel por validar se uma sub-string é digit 
 e retornar um valor do tipo inteito */
@@ -42,6 +41,6 @@ Valida se o caracter atual coresponde a flag passada
 t_bool	ft_isflag(char flag, char c, int *i)
 {
 	if (c == flag)
-		return (*i+=1, TRUE);
-	return (FALSE);
+		return (*i+=1, true);
+	return (false);
 }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_create.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:31:54 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/19 20:58:17 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/26 18:32:45 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "./libft/libft.h"
 
 t_typestring	*new_typestring(char *str)
 {
@@ -21,9 +20,9 @@ t_typestring	*new_typestring(char *str)
 	if (!c_format)
 		return (NULL);
 	c_format->value = str;
-	c_format->minus = FALSE;
+	c_format->minus = false;
 	c_format->bytes = 0;
-	c_format->dot = FALSE;
+	c_format->dot = false;
 	c_format->bytes = 0;
 	c_format->valid_bytes = 0;
 	return (c_format);

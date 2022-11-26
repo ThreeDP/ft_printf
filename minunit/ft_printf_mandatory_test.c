@@ -657,33 +657,6 @@ MU_TEST_SUITE(passing_a_mix_of_flags)
     free(result_str);
 }
 
-MU_TEST_SUITE(passing_a_flag_hashtag_6_times_print_in_the_correct_position_the_char)
-{
-    //ARRANGE
-    char    *file = "./files/initial-hashtag";
-    char    fisrt_letter        = 'D';
-    char    *expected_result = "The initials of the name Davy Paulino are D.P";
-    int     expected_bytes = 45;
-    char    *result_str;
-    int     bytes;
-    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
-    if (!fd)
-        return ;
-    
-    //ACT
-    bytes = ft_printf(fd, "The initials of the name Davy Paulino are %######3c.P", fisrt_letter);
-    close(fd);
-    fd = open(file, O_RDONLY);
-    result_str = get_next_line(fd);
-    close(fd);
-    remove(file);
-
-    //ASSERT
-    mu_assert_string_eq(expected_result, result_str);
-    mu_assert_int_eq(expected_bytes, bytes);
-    free(result_str);
-}
-
 MU_TEST_SUITE(test_suite)
 {	
     MU_RUN_TEST(passing_a_char_D_print_in_the_terminal);
@@ -710,8 +683,6 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_the_long_min_max_address_print_the_value_of_the_address_in_hex);
     MU_RUN_TEST(passing_NULL_from_hex_shold_be_ZERO);
     MU_RUN_TEST(passing_a_mix_of_flags);
-    //BONUS
-    MU_RUN_TEST(passing_a_flag_hashtag_6_times_print_in_the_correct_position_the_char);
 }
 
 int main() {

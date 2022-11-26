@@ -38,7 +38,7 @@ all: 		$(NAME)
 	cc -o 		$@ -c $< -I ./ $(FLAGS)
 
 $(NAME): 	$(SRCS:.c=.o) bonus
-	ar -rcs 		$(NAME) $(SRCS:.c=.o)
+	@ar -rcs 		$(NAME) $(SRCS:.c=.o)
 
 bonus: 		$(NAME)	$(SRCS_BOUNS:.c=.o)
 

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/19 21:02:00 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/26 18:33:27 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "./libft/libft.h"
+#include <stdio.h>
 
 int	printchar(int fd, char c, t_format **shape)
 {
@@ -42,9 +42,11 @@ int	printstring(int fd, char *str, t_format **shape)
 	int	bsr;
 
 	bsr = 0;
+	(*shape)->arg = formatstring(str, (*shape)->flags);
 	if (!str)
 		return (ft_putstr_fd("(null)", fd));
-	(*shape)->arg = formatstring(str, (*shape)->flags);
+	if (!ft_strlen((*shape)->flags))
+		return (ft_putstr_fd(((t_typestring *)(*shape)->arg)->value, fd));
 	bsr += printf_formatstring(fd, (t_typestring **) (*shape)->arg);
 	return (bsr);
 }

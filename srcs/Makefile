@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+         #
+#    By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/11/19 20:35:54 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/11/26 18:34:43 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,14 +35,14 @@ FLAGS 			=			-Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(SRCS:.c=.o) $(LIBFT)
-	ar -rc $(NAME) $(SRCS:.c=.o)
+	@ar -rc $(NAME) $(SRCS:.c=.o)
        
 $(LIBFT):
 	@cd		$(DIR_LIBFT) && $(MAKE) $@
 	@cp		./libft/libft.a ./libftprintf.a
 
 %.o:	%.c	$(HEADERS)
-	cc		-o $@ -c $<  -I ./ $(FLAGS)
+	@cc		-o $@ -c $<  -I ./ $(FLAGS)
 
 norm:
 	@norminette
