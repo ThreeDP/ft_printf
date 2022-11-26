@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/26 18:33:27 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/26 19:00:19 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,18 @@ int	printchar(int fd, char c, t_format **shape)
 	return (bsr);
 }
 
-int	printf_formatstring(int fd, t_typestring **format)
+int	printf_formatstring(int fd, t_typestring *format)
 {
 	int bsr;
 
 	bsr = 0;
-	while ((*format)->bytes > 0)
+	format->bytes -= ft_strlen(format->value);
+	while (format->bytes > 0)
 	{
 		bsr += ft_putchar_fd(' ', fd);
-		(*format)->bytes--;
+		format->bytes--;
 	}
-	bsr += ft_putstr_fd((*format)->value, fd);
+	bsr += ft_putstr_fd(format->value, fd);
 	return (bsr);
 }
 
@@ -47,7 +48,7 @@ int	printstring(int fd, char *str, t_format **shape)
 		return (ft_putstr_fd("(null)", fd));
 	if (!ft_strlen((*shape)->flags))
 		return (ft_putstr_fd(((t_typestring *)(*shape)->arg)->value, fd));
-	bsr += printf_formatstring(fd, (t_typestring **) (*shape)->arg);
+	bsr += printf_formatstring(fd, (*shape)->arg);
 	return (bsr);
 }
 

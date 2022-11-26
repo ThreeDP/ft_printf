@@ -3,7 +3,7 @@
 #include "./get_next_line.h"
 #include "ft_printf_test.h"
 
-MU_TEST_SUITE(test)
+MU_TEST_SUITE(passing_a_11_flag_for_the_string_One_Ring_and_return_three_spaces_One_Ring)
 {
     //CONFIG
     char            *file               = "./files/string/one-ring";
@@ -15,7 +15,7 @@ MU_TEST_SUITE(test)
         return ;
     //ARRANGE
     shape->type                         = 's';
-    shape->flags                        = ft_strdup("%3s");
+    shape->flags                        = ft_strdup("11");
     char            *str                = "One Ring";
     char            *expected_result    = "   One Ring";
     int             bsr;
@@ -39,7 +39,7 @@ MU_TEST_SUITE(test)
 
 MU_TEST_SUITE(test_suite)
 {
-    MU_RUN_TEST(test);
+    MU_RUN_TEST(passing_a_11_flag_for_the_string_One_Ring_and_return_three_spaces_One_Ring);
 }
 
 int main() {
