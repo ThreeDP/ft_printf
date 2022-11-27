@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/26 19:00:19 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:28:31 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,28 @@ int	printchar(int fd, char c, t_format **shape)
 int	printf_formatstring(int fd, t_typestring *format)
 {
 	int bsr;
+	int	size;
 
 	bsr = 0;
-	format->bytes -= ft_strlen(format->value);
+	size = ft_strlen(format->value);
+	if (!format->bytes_s || size <= format->bytes_s)
+		format->bytes -= size;
+	else
+	{
+		format->bytes -= format->bytes_s;
+		size = format->bytes_s;
+	}
+	while (format->bytes > 0 && !format->minus)
+	{
+		bsr += ft_putchar_fd(' ', fd);
+		format->bytes--;
+	}
+	bsr += write(fd, format->value, size);
 	while (format->bytes > 0)
 	{
 		bsr += ft_putchar_fd(' ', fd);
 		format->bytes--;
 	}
-	bsr += ft_putstr_fd(format->value, fd);
 	return (bsr);
 }
 
