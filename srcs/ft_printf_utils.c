@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/28 19:43:51 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:32:00 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	sub_atoi(const char *strnum, int *size)
 		flag = ft_strndup(strnum, i);
 		*size += i;
 		num = ft_atoi(flag);
-		if (!flag)
+		if (flag)
 			free(flag);
 	}
 	return (num);
