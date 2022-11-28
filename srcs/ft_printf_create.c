@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:31:54 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/26 18:32:45 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:22:46 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_typestring	*new_typestring(char *str)
 	if (!c_format)
 		return (NULL);
 	c_format->value = str;
-	c_format->minus = false;
+	c_format->minus = f;
 	c_format->bytes = 0;
-	c_format->dot = false;
+	c_format->dot = f;
 	c_format->bytes = 0;
 	c_format->valid_bytes = 0;
 	return (c_format);

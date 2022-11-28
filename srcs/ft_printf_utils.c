@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/28 18:45:04 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:43:51 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ Valida se o caracter atual coresponde a flag passada
 t_bool	ft_isflag(char flag, char c, int *i)
 {
 	if (c == flag)
-		return (*i+=1, true);
-	return (false);
+		return (*i+=1, t);
+	return (f);
 }
 
 /*

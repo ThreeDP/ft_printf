@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/26 18:21:36 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:49:06 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,59 +32,60 @@ int	findflag(char *str)
 	return (i);
 }
 
-int	ft_printf(int fd, const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list		args_str;
-	t_format	*lst_args;
+	t_format	*shape;
 	int			num_bytes;
 	int			bsr;
 	char		*percent;
 	char		*cached_str;
+	int			fd = 1;
 
 	num_bytes = 0;
 
 	cached_str = (char *)str;
-	lst_args = new_format();
+	shape = new_format();
 	va_start(args_str, str);
 	percent = ft_strchr(cached_str, '%');
 	while (percent)
 	{
 		num_bytes += write(fd, cached_str, (percent - cached_str));
 		cached_str += (percent - cached_str) + 1;
-		lst_args->f_pos = findflag(cached_str);
-		lst_args->type = cached_str[lst_args->f_pos];
-		lst_args->flags = ft_strndup(cached_str, lst_args->f_pos);
-		if (lst_args->type == 'c')
-			bsr = printchar(fd, va_arg(args_str, int), &lst_args);
-		else if (lst_args->type == 's')
-			bsr = printstring(fd, va_arg(args_str, char *), &lst_args);
-		else if (lst_args->type == 'i' || lst_args->type == 'd')
-			bsr = printinteger(fd, va_arg(args_str, int), &lst_args);
-		else if (lst_args->type == 'u')
-			bsr = printuinteger(fd, va_arg(args_str, int), &lst_args);
-		else if (lst_args->type == 'x' || lst_args->type == 'X')
-			bsr = printhex(fd, va_arg(args_str, int), &lst_args);
-		else if (lst_args->type == 'p')
-			bsr = printpointer(fd, va_arg(args_str, unsigned long), &lst_args);
-		else if (lst_args->type == '%')
-			bsr = printchar(fd, '%', &lst_args);
-		cached_str+= lst_args->f_pos + 1;
+		shape->f_pos = findflag(cached_str);
+		shape->type = cached_str[shape->f_pos];
+		shape->flags = ft_strndup(cached_str, shape->f_pos);
+		if (shape->type == 'c')
+			bsr = printchar(fd, va_arg(args_str, int), &shape);
+		else if (shape->type == 's')
+			bsr = printstring(fd, va_arg(args_str, char *), &shape);
+		else if (shape->type == 'i' || shape->type == 'd')
+			bsr = printinteger(fd, va_arg(args_str, int), &shape);
+		else if (shape->type == 'u')
+			bsr = printuinteger(fd, va_arg(args_str, int), &shape);
+		else if (shape->type == 'x' || shape->type == 'X')
+			bsr = printhex(fd, va_arg(args_str, int), &shape);
+		else if (shape->type == 'p')
+			bsr = printpointer(fd, va_arg(args_str, unsigned long), &shape);
+		else if (shape->type == '%')
+			bsr = printchar(fd, '%', &shape);
+		cached_str+= shape->f_pos + 1;
 		num_bytes += bsr;
-		if (lst_args->arg)
+		if (shape->arg)
 		{
-			free(lst_args->arg);
-			lst_args->arg = NULL;
+			free(shape->arg);
+			shape->arg = NULL;
 		}
-		if (lst_args->flags)
+		if (shape->flags)
 		{
-			free(lst_args->flags);
-			lst_args->flags = NULL;
+			free(shape->flags);
+			shape->flags = NULL;
 		}
 		percent = ft_strchr(cached_str, '%');
 	}
 	num_bytes += ft_putstr_fd(cached_str, fd);
-	if (lst_args)
-		free(lst_args);
+	if (shape)
+		free(shape);
 	va_end(args_str);
 	return (num_bytes);
 }

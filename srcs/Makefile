@@ -6,7 +6,7 @@
 #    By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/11/26 18:34:43 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/11/28 19:21:29 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,11 @@ DIR_LIBFT		=			./libft/
 LIBFT			=			libft.a
 DIR 			= 			./
 HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
+H_BONUS 		= 			ft_printf_bonus.h $(addprefix $(DIR_LIBFT), libft.h)
 ################ SOURCES	##################
 SRCS			=			ft_printf.c			ft_printf_utils.c		ft_printf_formats.c \
+							ft_printf_create.c	ft_print_functions.c
+SRCS_BONUS		=			ft_printf_bonus.c	ft_printf_utils.c		ft_printf_formats.c \
 							ft_printf_create.c	ft_print_functions.c
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
@@ -43,6 +46,8 @@ $(LIBFT):
 
 %.o:	%.c	$(HEADERS)
 	@cc		-o $@ -c $<  -I ./ $(FLAGS)
+
+bonus: all
 
 norm:
 	@norminette
