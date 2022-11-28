@@ -274,7 +274,7 @@ MU_TEST_SUITE(passing_a_flag_6_minus_30_dot_20_and_a_string_One_Ring_should_be_3
     if (shape)
         free(shape);
 }
-
+/*
 MU_TEST_SUITE(passing_a_flag_3_minus_t_3_minus_30_dot_20_and_a_string_One_Ring_should_be_3_spaces)
 {
     //CONFIG
@@ -308,7 +308,7 @@ MU_TEST_SUITE(passing_a_flag_3_minus_t_3_minus_30_dot_20_and_a_string_One_Ring_s
     if (shape)
         free(shape);
 }
-
+*/
 MU_TEST_SUITE(test_suite)
 {
     MU_RUN_TEST(passing_a_11_flag_for_the_string_One_Ring_and_return_three_spaces_One_Ring);
@@ -319,7 +319,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_flag_3_dot_0_and_a_string_One_Ring_should_be_3_spaces);
     MU_RUN_TEST(passing_a_flag_minus_30_dot_20_and_a_string_One_Ring_should_be_3_spaces);
     MU_RUN_TEST(passing_a_flag_6_minus_30_dot_20_and_a_string_One_Ring_should_be_3_spaces);
-    MU_RUN_TEST(passing_a_flag_3_minus_t_3_minus_30_dot_20_and_a_string_One_Ring_should_be_3_spaces);
+    //MU_RUN_TEST(passing_a_flag_3_minus_t_3_minus_30_dot_20_and_a_string_One_Ring_should_be_3_spaces);
 }
 
 int main() {
