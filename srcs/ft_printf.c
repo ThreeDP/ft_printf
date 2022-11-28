@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/28 20:13:55 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:22:32 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	ft_printf(int fd, const char *str, ...)
 	int			bsr;
 	char		*percent;
 	char		*cached_str;
-	int			fd = 1;
 
 	num_bytes = 0;
 
