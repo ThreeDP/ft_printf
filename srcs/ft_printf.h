@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/28 19:43:56 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:13:46 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_typepointer
 }	t_typepointer;
 
 // PRINCIPAL FUNCTION 
-int					ft_printf(const char *str, ...);
+int					ft_printf(int fd, const char *str, ...);
 // CREATE FUNCTIONS
 t_typestring		*new_typestring(char *str);
 t_format			*new_format();
