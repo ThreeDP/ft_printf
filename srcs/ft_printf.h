@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/26 15:12:44 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:35:17 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ int					printhex(int fd, unsigned int num, t_format **shape);
 int					printpointer(int fd, unsigned long num, t_format **shape);
 // AUX FUNCTIONS
 int					sub_atoi(const char *strnum, int *size);
+int					print_spaces(int fd, int *bytes);
 t_bool				ft_isflag(char flag, char c, int *i);
 #endif

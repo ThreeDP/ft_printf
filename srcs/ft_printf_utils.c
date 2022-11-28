@@ -6,11 +6,12 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/26 15:13:07 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:45:04 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 /* Função responsavel por validar se uma sub-string é digit 
 e retornar um valor do tipo inteito */
@@ -43,4 +44,20 @@ t_bool	ft_isflag(char flag, char c, int *i)
 	if (c == flag)
 		return (*i+=1, true);
 	return (false);
+}
+
+/*
+Print the spaces set
+*/
+int	print_spaces(int fd, int *bytes)
+{
+	int bsr;
+
+	bsr = 0;
+	while (*bytes > 0)
+	{
+		bsr += ft_putchar_fd(' ', fd);
+		*bytes -= 1;
+	}
+	return (bsr);
 }

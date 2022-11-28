@@ -158,7 +158,6 @@ MU_TEST_SUITE(passing_a_flag_5_dot_2_and_a_string_One_Ring_should_be_On)
     int             expected_bsr        = 5;
 
     //ACT
-    printf("%5.2s", "One Ring");
     bsr = printstring(fd, str, &shape);
     close(fd);
     fd = open(file, O_RDONLY);
@@ -166,8 +165,43 @@ MU_TEST_SUITE(passing_a_flag_5_dot_2_and_a_string_One_Ring_should_be_On)
     remove(file);
 
     //ASSERTS
+    printf("%3.0s", "One Ring");
     mu_assert_string_eq(expected_result, str);
-    printf("\n%s\t%s\n", expected_result, str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->flags)
+        free(shape->flags);
+    if (shape)
+        free(shape);
+}
+
+MU_TEST_SUITE(passing_a_flag_3_dot_0_and_a_string_One_Ring_should_be_3_spaces)
+{
+    //CONFIG
+    char            *file               = "./files/string/3dot0";
+    int             fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!fd)
+        return ;
+    t_format        *shape              = (t_format *) malloc(sizeof(t_format));
+    if (!shape)
+        return ;
+    //ARRANGE
+    shape->type                         = 's';
+    shape->flags                        = ft_strdup("3.0");
+    char            *str                = "One Ring";
+    char            *expected_result    = "   ";
+    int             bsr;
+    int             expected_bsr        = 3;
+
+    //ACT
+    bsr = printstring(fd, str, &shape);
+    close(fd);
+    fd = open(file, O_RDONLY);
+    str = get_next_line(fd);
+    remove(file);
+
+    //ASSERTS
+    printf("%3.0s", "One Ring");
+    mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
     if (shape->flags)
         free(shape->flags);
@@ -182,6 +216,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_flag_11_dot_3_and_a_string_One_Ring_should_be_8_spaces_One);
     MU_RUN_TEST(passing_a_flag_4_dot_5_and_a_string_One_Ring_should_be_One_R);
     MU_RUN_TEST(passing_a_flag_5_dot_2_and_a_string_One_Ring_should_be_On);
+    MU_RUN_TEST(passing_a_flag_3_dot_0_and_a_string_One_Ring_should_be_3_spaces);
 }
 
 int main() {
