@@ -11,7 +11,7 @@ MU_TEST_SUITE(test_passing_55_dot_10_int_the_flags)
     char            *flags      = "55.10";
     char            *str        = "chocolate";
     int             bytes       = 55;
-    t_bool          dot         = TRUE;
+    t_bool          dot         = t;
     int             bytes_s     = 10;
     int             valid_bytes = 5;
 
@@ -33,7 +33,7 @@ MU_TEST_SUITE(test_passing_55_in_the_flags)
     char            *flags      = "55";
     char            *str        = "chocolate";
     int             bytes       = 55;
-    t_bool          dot         = FALSE;
+    t_bool          dot         = f;
     int             bytes_s     = 0;
     int             valid_bytes = 2;
 
@@ -55,7 +55,7 @@ MU_TEST_SUITE(test_passing_dot_5_in_the_flags)
     char            *flags      = ".5";
     char            *str        = "chocolate";
     int             bytes       = 0;
-    t_bool          dot         = TRUE;
+    t_bool          dot         = t;
     int             bytes_s     = 5;
     int             valid_bytes = 2;
 
@@ -77,7 +77,7 @@ MU_TEST_SUITE(test_passing_nothing_int_the_flags)
     char            *flags      = "";
     char            *str        = "chocolate";
     int             bytes       = 0;
-    t_bool          dot         = FALSE;
+    t_bool          dot         = f;
     int             bytes_s     = 0;
     int             valid_bytes = 0;
 
@@ -99,7 +99,7 @@ MU_TEST_SUITE(test_passing_yjkw_int_the_flags)
     char            *flags      = "yjkw";
     char            *str        = "chocolate";
     int             bytes       = 0;
-    t_bool          dot         = FALSE;
+    t_bool          dot         = f;
     int             bytes_s     = 0;
     int             valid_bytes = 0;
 
@@ -120,9 +120,9 @@ MU_TEST_SUITE(test_passing_minus_5_dot_7_int_the_flags)
     t_typestring    *format;
     char            *flags      = "-5.7";
     char            *str        = "chocolate";
-    t_bool          minus       = TRUE;
+    t_bool          minus       = t;
     int             bytes       = 5;
-    t_bool          dot         = TRUE;
+    t_bool          dot         = t;
     int             bytes_s     = 7;
     int             valid_bytes = 4;
 
@@ -144,9 +144,9 @@ MU_TEST_SUITE(test_passing_multiples_minus_5_dot_7_int_the_flags)
     t_typestring    *format;
     char            *flags      = "---5.7";
     char            *str        = "chocolate";
-    t_bool          minus       = TRUE;
+    t_bool          minus       = t;
     int             bytes       = 5;
-    t_bool          dot         = TRUE;
+    t_bool          dot         = t;
     int             bytes_s     = 7;
     int             valid_bytes = 6;
 
