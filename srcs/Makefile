@@ -6,7 +6,7 @@
 #    By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/11/28 19:21:29 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/11/29 09:50:48 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ norm:
 	@norminette
 
 clean:
-	@rm		-f *.o
+	@rm			-f *.o
 	@cd 		$(DIR_LIBFT) && $(MAKE) $@
 
 fclean: 	clean

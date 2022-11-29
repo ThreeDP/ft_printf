@@ -13,38 +13,52 @@ GNL				=			get_next_line.c get_next_line_utils.c
 SRCS_TEST 		= 			ft_printf_mandatory_test.c ft_printf_mandatory_bonus_test.c \
 							formatstring_test.c formatchar_test.c \
 							printstring_test.c
+OUTS			=			./outs/
+SOUTS			= 			$(addprefix $(OUTS), $(SRCS_TEST))
+F				=			
 HEADERS 		= 			minunit.h get_next_line.h
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
 ################ RULES		##################
 
-all:		$(SRCS_TEST:.c=.o)
-       
+all: m test valgrind
+
 %.o:	%.c	$(HEADERS)
 	@cd		$(DIR) && $(MAKE)
-	clang	-g $< $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
-	@echo	$(L_YELLOWB)[RUN $<]$(L_WHITE)
-	@./a.out
+	clang	-g $< $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf -o $(OUTS)$<
 
-valgrind: all
-	valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full ./a.out
+$(SOUTS):
+	$@
+
+test: m $(SOUTS)
+
+m: 			$(SRCS_TEST:.c=.o)
+
+valgrind:	m
+	for X in $(SOUTS) ; do \
+		valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full $$X ; done
+	@echo	$(L_YELLOWB)[END VALGRIND]$(L_WHITE)
 
 norm:
 	@cd 		$(DIR) && $(MAKE) $@	
 
 clean:
-	@rm			find ./files -type f -name "*" -exec rm "{}"
 	@rm			-f *.o
+	@rm			-f $(OUTS)*.c
+	@rm			-rf $(OUTS)*.dSYM
 	@cd 		$(DIR) && $(MAKE) $@
 
 fclean: 	clean
-	@rm 		-f a.out
+	@rm 		-f *.out
+	@rm			-rf *.dSYM
 	@cd 		$(DIR) && $(MAKE) $@
 
 re: fclean all
 
 c:
 	@rm			-f ./files/*
+
+.PHONY: $(SOUTS)
 
 string: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)

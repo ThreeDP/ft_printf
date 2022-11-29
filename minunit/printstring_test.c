@@ -69,6 +69,8 @@ MU_TEST_SUITE(passing_a_minus_11_flag_for_the_string_One_Ring_and_return_One_Rin
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(passing_a_flag_11_dot_3_and_a_string_One_Ring_should_be_8_spaces_One)
@@ -103,6 +105,8 @@ MU_TEST_SUITE(passing_a_flag_11_dot_3_and_a_string_One_Ring_should_be_8_spaces_O
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(passing_a_flag_4_dot_5_and_a_string_One_Ring_should_be_One_R)
@@ -137,6 +141,8 @@ MU_TEST_SUITE(passing_a_flag_4_dot_5_and_a_string_One_Ring_should_be_One_R)
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(passing_a_flag_5_dot_2_and_a_string_One_Ring_should_be_On)
@@ -171,6 +177,8 @@ MU_TEST_SUITE(passing_a_flag_5_dot_2_and_a_string_One_Ring_should_be_On)
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(passing_a_flag_3_dot_0_and_a_string_One_Ring_should_be_3_spaces)
@@ -205,6 +213,8 @@ MU_TEST_SUITE(passing_a_flag_3_dot_0_and_a_string_One_Ring_should_be_3_spaces)
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(passing_a_flag_minus_30_dot_20_and_a_string_One_Ring_should_be_3_spaces)
@@ -239,6 +249,8 @@ MU_TEST_SUITE(passing_a_flag_minus_30_dot_20_and_a_string_One_Ring_should_be_3_s
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(passing_a_flag_6_minus_30_dot_20_and_a_string_One_Ring_should_be_3_spaces)
@@ -273,6 +285,8 @@ MU_TEST_SUITE(passing_a_flag_6_minus_30_dot_20_and_a_string_One_Ring_should_be_3
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(passing_a_flag_1_and_a_empty_string_should_be_space)
