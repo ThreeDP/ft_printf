@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 18:25:52 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:27:52 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,12 @@ typedef struct s_typestring
 typedef struct s_typeint
 {
 	char			signal;
+	t_bool			minus;
+	int				bytes;
+	t_bool			dot;
+	int				bytes_s;
 	unsigned int	value;
+	int				valid_bytes;
 }	t_typeint;
 
 typedef struct s_typehex
@@ -75,10 +80,11 @@ int					ft_printf(int fd, const char *str, ...);
 t_format			*new_format(void);
 t_typechar			*new_typechar(char c);
 t_typestring		*new_typestring(char *str);
+t_typeint			*new_typeint(unsigned int num, char signal);
 // FORMAT FUNCTIONS
 t_typechar			*formatchar(char c, const char *flags);
 t_typestring		*formatstring(char *str, const char *flags);
-t_typeint			*formatint(int integer);
+t_typeint			*formatint(int integer, const char *flags);
 t_typeint			*formatuint(int uinteger);
 t_typehex			*formathex(unsigned int num);
 t_typepointer		*formatpointer(unsigned long num);
@@ -96,4 +102,5 @@ int					printpointer(int fd, unsigned long num, t_format **shape);
 int					sub_atoi(const char *strnum, int *size);
 int					print_spaces(int fd, int *bytes);
 t_bool				ft_isflag(char flag, char c, int *i);
+unsigned int		convert_num(int num, char signal);
 #endif

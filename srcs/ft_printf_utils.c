@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 14:23:44 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:43:27 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ int	print_spaces(int fd, int *bytes)
 		*bytes -= 1;
 	}
 	return (bsr);
+}
+
+unsigned int	convert_num(int num, char signal)
+{
+	if (signal == '-')
+		return (num * -1);
+	return (num * 1);
 }

@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 16:38:00 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:37:59 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	printinteger(int fd, int integer, t_format **shape)
 	int	bsr;
 
 	bsr = 0;
-	(*shape)->arg = formatint(integer);
+	(*shape)->arg = formatint(integer, (*shape)->flags);
 	if (((t_typeint *)(*shape)->arg)->signal == '-')
 		bsr += ft_putchar_fd('-', fd);
 	ft_putnbr_fd(((t_typeint *)(*shape)->arg)->value, fd, &bsr);

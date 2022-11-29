@@ -11,7 +11,7 @@ L_GREENB		=			'\033[1;32m'
 DIR 			= 			../srcs/
 GNL				=			get_next_line.c get_next_line_utils.c
 SRCS_TEST 		= 			ft_printf_mandatory_test.c ft_printf_mandatory_bonus_test.c \
-							formatstring_test.c formatchar_test.c \
+							formatstring_test.c formatchar_test.c formatint_test.c \
 							printstring_test.c printchar_test.c
 OUTS			=			./outs/
 SOUTS			= 			$(addprefix $(OUTS), $(SRCS_TEST))
@@ -77,4 +77,10 @@ pchar: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g printchar_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@echo	$(L_YELLOWB)[RUN printchar_test.c]$(L_WHITE)
+	@./a.out
+
+int: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g formatint_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	$(L_YELLOWB)[RUN formatint_test.c]$(L_WHITE)
 	@./a.out
