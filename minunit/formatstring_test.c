@@ -24,6 +24,8 @@ MU_TEST_SUITE(test_passing_55_dot_10_int_the_flags)
     mu_assert(dot == format->dot, "Dot error!");
     mu_assert_int_eq(bytes_s, format->bytes_s);
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_55_in_the_flags)
@@ -46,6 +48,8 @@ MU_TEST_SUITE(test_passing_55_in_the_flags)
     mu_assert(dot == format->dot, "Dot error!");
     mu_assert_int_eq(bytes_s, format->bytes_s);
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_dot_5_in_the_flags)
@@ -68,6 +72,8 @@ MU_TEST_SUITE(test_passing_dot_5_in_the_flags)
     mu_assert(dot == format->dot, "Dot error!");
     mu_assert_int_eq(bytes_s, format->bytes_s);
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_nothing_int_the_flags)
@@ -90,6 +96,8 @@ MU_TEST_SUITE(test_passing_nothing_int_the_flags)
     mu_assert(dot == format->dot, "Dot error!");
     mu_assert_int_eq(bytes_s, format->bytes_s);
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_yjkw_int_the_flags)
@@ -112,6 +120,8 @@ MU_TEST_SUITE(test_passing_yjkw_int_the_flags)
     mu_assert(dot == format->dot, "Dot error!");
     mu_assert_int_eq(bytes_s, format->bytes_s);
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_minus_5_dot_7_int_the_flags)
@@ -136,6 +146,8 @@ MU_TEST_SUITE(test_passing_minus_5_dot_7_int_the_flags)
     mu_assert(dot == format->dot, "Dot error!");
     mu_assert_int_eq(bytes_s, format->bytes_s);
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_multiples_minus_5_dot_7_int_the_flags)
@@ -160,6 +172,8 @@ MU_TEST_SUITE(test_passing_multiples_minus_5_dot_7_int_the_flags)
     mu_assert(dot == format->dot, "Dot error!");
     mu_assert_int_eq(bytes_s, format->bytes_s);
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_suite)

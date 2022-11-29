@@ -31,10 +31,14 @@ MU_TEST_SUITE(passing_a_11_flag_for_the_string_One_Ring_and_return_three_spaces_
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(passing_a_minus_11_flag_for_the_string_One_Ring_and_return_One_Ring_three_spaces)
@@ -65,6 +69,8 @@ MU_TEST_SUITE(passing_a_minus_11_flag_for_the_string_One_Ring_and_return_One_Rin
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
@@ -101,6 +107,8 @@ MU_TEST_SUITE(passing_a_flag_11_dot_3_and_a_string_One_Ring_should_be_8_spaces_O
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
@@ -137,6 +145,8 @@ MU_TEST_SUITE(passing_a_flag_4_dot_5_and_a_string_One_Ring_should_be_One_R)
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
@@ -173,6 +183,8 @@ MU_TEST_SUITE(passing_a_flag_5_dot_2_and_a_string_One_Ring_should_be_On)
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
@@ -209,6 +221,8 @@ MU_TEST_SUITE(passing_a_flag_3_dot_0_and_a_string_One_Ring_should_be_3_spaces)
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
@@ -245,6 +259,8 @@ MU_TEST_SUITE(passing_a_flag_minus_30_dot_20_and_a_string_One_Ring_should_be_3_s
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
@@ -281,6 +297,8 @@ MU_TEST_SUITE(passing_a_flag_6_minus_30_dot_20_and_a_string_One_Ring_should_be_3
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
@@ -317,10 +335,14 @@ MU_TEST_SUITE(passing_a_flag_1_and_a_empty_string_should_be_space)
     //ASSERTS
     mu_assert_string_eq(expected_result, str);
     mu_assert_int_eq(expected_bsr, bsr);
+    if (shape->arg)
+        free(shape->arg);
     if (shape->flags)
         free(shape->flags);
     if (shape)
         free(shape);
+    if (str)
+        free(str);
 }
 
 MU_TEST_SUITE(test_suite)

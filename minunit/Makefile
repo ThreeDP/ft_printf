@@ -36,8 +36,9 @@ m: 			$(SRCS_TEST:.c=.o)
 
 valgrind:	m
 	for X in $(SOUTS) ; do \
-		valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full $$X ; done
-	@echo	$(L_YELLOWB)[END VALGRIND]$(L_WHITE)
+		echo  $(L_YELLOWB)[TEST $$X]$(L_WHITE) && \
+		valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full $$X &&\
+		echo	$(L_YELLOWB)[END VALGRIND $$X]$(L_WHITE) ; done
 
 norm:
 	@cd 		$(DIR) && $(MAKE) $@	

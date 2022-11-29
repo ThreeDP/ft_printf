@@ -22,6 +22,8 @@ MU_TEST_SUITE(test_passing_the_flag_55_and_the_char_C)
     mu_assert(minus == format->minus, "Minus error!");
     mu_assert_int_eq(bytes, format->bytes);
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_nothing_in_the_flag_and_the_char_D)
@@ -42,6 +44,8 @@ MU_TEST_SUITE(test_passing_nothing_in_the_flag_and_the_char_D)
     mu_assert_int_eq(bytes, format->bytes);
     mu_assert(minus == format->minus, "Minus error!");
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_invalid_flag_yjkw_and_a_char_Y)
@@ -62,6 +66,8 @@ MU_TEST_SUITE(test_passing_invalid_flag_yjkw_and_a_char_Y)
     mu_assert_int_eq(bytes, format->bytes);
     mu_assert(minus == format->minus, "Minus error!");
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_the_flag_minus_7_and_a_char_Z)
@@ -82,6 +88,8 @@ MU_TEST_SUITE(test_passing_the_flag_minus_7_and_a_char_Z)
     mu_assert_int_eq(bytes, format->bytes);
     mu_assert(minus == format->minus, "Minus error!");
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_passing_the_flag_3_minus_7_and_a_char_Z)
@@ -102,6 +110,8 @@ MU_TEST_SUITE(test_passing_the_flag_3_minus_7_and_a_char_Z)
     mu_assert_int_eq(bytes, format->bytes);
     mu_assert(minus == format->minus, "Minus error!");
     mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
 }
 
 MU_TEST_SUITE(test_suite)
