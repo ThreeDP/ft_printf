@@ -9,4 +9,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: mandatory Tests
-      run: make
+      run: make test

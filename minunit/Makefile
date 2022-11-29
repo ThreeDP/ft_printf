@@ -21,18 +21,18 @@ HEADERS 		= 			minunit.h get_next_line.h
 FLAGS 			=			-Wall -Werror -Wextra
 ################ RULES		##################
 
-all: m test valgrind
+all: 		m test valgrind
 
-%.o:	%.c	$(HEADERS)
+%.o:		%.c	$(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g $< $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf -o $(OUTS)$<
+
+m: 			$(SRCS_TEST:.c=.o)
 
 $(SOUTS):
 	$@
 
-test: m $(SOUTS)
-
-m: 			$(SRCS_TEST:.c=.o)
+test: 		m $(SOUTS)
 
 valgrind:	m
 	for X in $(SOUTS) ; do \
