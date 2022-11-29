@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/28 20:32:00 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:23:44 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ e retornar um valor do tipo inteito */
 int	sub_atoi(const char *strnum, int *size)
 {
 	int		i;
-	char 	*flag;
+	char	*flag;
 	int		num;
-	
+
 	i = 0;
 	num = 0;
 	while (ft_isdigit(strnum[i]))
@@ -42,7 +42,7 @@ Valida se o caracter atual coresponde a flag passada
 t_bool	ft_isflag(char flag, char c, int *i)
 {
 	if (c == flag)
-		return (*i+=1, t);
+		return (*i += 1, t);
 	return (f);
 }
 
@@ -51,7 +51,7 @@ Print the spaces set
 */
 int	print_spaces(int fd, int *bytes)
 {
-	int bsr;
+	int	bsr;
 
 	bsr = 0;
 	while (*bytes > 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 08:51:52 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:48:41 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,8 @@ int	printchar(int fd, char c, t_format **shape)
 {
 	int	bsr;
 
-    
 	(*shape)->arg = formatchar(c, (*shape)->flags);
 	bsr = ft_putchar_fd(((t_typechar *)(*shape)->arg)->value, fd);
-	return (bsr);
-}
-
-int	printf_formatstring(int fd, t_typestring *format)
-{
-	int bsr;
-	int	size;
-
-	bsr = 0;
-	size = ft_strlen(format->value);
-	if ((!format->bytes_s && !format->dot) || size <= format->bytes_s)
-		format->bytes -= size;
-	else
-	{
-		format->bytes -= format->bytes_s;
-		size = format->bytes_s;
-	}
-	if (!format->minus)
-		bsr += print_spaces(fd, &format->bytes);
-	bsr += write(fd, format->value, size);
-	
-	bsr += print_spaces(fd, &format->bytes);
 	return (bsr);
 }
 
@@ -94,9 +71,9 @@ int	printhex(int fd, unsigned int num, t_format **shape)
 	return (bsr);
 }
 
-int printpointer(int fd, unsigned long num, t_format **shape)
+int	printpointer(int fd, unsigned long num, t_format **shape)
 {
-	int bsr;
+	int	bsr;
 
 	bsr = 0;
 	if (!num)

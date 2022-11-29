@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_create.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:31:54 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 08:34:30 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:24:51 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_typechar	*new_typechar(char c)
 {
-	t_typechar *c_format;
-	
+	t_typechar	*c_format;
+
 	c_format = (t_typechar *) malloc(sizeof(t_format));
 	if (!c_format)
 		return (NULL);
@@ -28,8 +28,8 @@ t_typechar	*new_typechar(char c)
 
 t_typestring	*new_typestring(char *str)
 {
-	t_typestring *c_format;
-	
+	t_typestring	*c_format;
+
 	c_format = (t_typestring *) malloc(sizeof(t_typestring));
 	if (!c_format)
 		return (NULL);
@@ -42,10 +42,10 @@ t_typestring	*new_typestring(char *str)
 	return (c_format);
 }
 
-t_format	*new_format()
+t_format	*new_format(void)
 {
 	t_format	*c_format;
-	
+
 	c_format = (t_format *) malloc(sizeof(t_format));
 	if (!c_format)
 		return (NULL);

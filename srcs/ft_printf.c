@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 07:05:47 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:51:04 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,40 @@ int	ft_istype(char c)
 
 int	findflag(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (!ft_istype(str[i]))
 		i++;
 	return (i);
+}
+
+int	select_type(va_list *args, t_format **shape, int fd)
+{
+	int	bsr;
+
+	bsr = 0;
+	if ((*shape)->type == 'c')
+		bsr = printchar(fd, va_arg(*args, int), shape);
+	else if ((*shape)->type == 's')
+		bsr = printstring(fd, va_arg(*args, char *), shape);
+	else if ((*shape)->type == 'i' || (*shape)->type == 'd')
+		bsr = printinteger(fd, va_arg(*args, int), shape);
+	else if ((*shape)->type == 'u')
+		bsr = printuinteger(fd, va_arg(*args, int), shape);
+	else if ((*shape)->type == 'x' || (*shape)->type == 'X')
+		bsr = printhex(fd, va_arg(*args, int), shape);
+	else if ((*shape)->type == 'p')
+		bsr = printpointer(fd, va_arg(*args, unsigned long), shape);
+	else if ((*shape)->type == '%')
+		bsr = printchar(fd, '%', shape);
+	if ((*shape)->arg)
+		free((*shape)->arg);
+	(*shape)->arg = NULL;
+	if ((*shape)->flags)
+		free((*shape)->flags);
+	(*shape)->flags = NULL;
+	return (bsr);
 }
 
 int	ft_printf(int fd, const char *str, ...)
@@ -37,12 +65,10 @@ int	ft_printf(int fd, const char *str, ...)
 	va_list		args_str;
 	t_format	*shape;
 	int			num_bytes;
-	int			bsr;
 	char		*percent;
 	char		*cached_str;
 
 	num_bytes = 0;
-
 	cached_str = (char *)str;
 	shape = new_format();
 	va_start(args_str, str);
@@ -54,32 +80,8 @@ int	ft_printf(int fd, const char *str, ...)
 		shape->f_pos = findflag(cached_str);
 		shape->type = cached_str[shape->f_pos];
 		shape->flags = ft_strndup(cached_str, shape->f_pos);
-		if (shape->type == 'c')
-			bsr = printchar(fd, va_arg(args_str, int), &shape);
-		else if (shape->type == 's')
-			bsr = printstring(fd, va_arg(args_str, char *), &shape);
-		else if (shape->type == 'i' || shape->type == 'd')
-			bsr = printinteger(fd, va_arg(args_str, int), &shape);
-		else if (shape->type == 'u')
-			bsr = printuinteger(fd, va_arg(args_str, int), &shape);
-		else if (shape->type == 'x' || shape->type == 'X')
-			bsr = printhex(fd, va_arg(args_str, int), &shape);
-		else if (shape->type == 'p')
-			bsr = printpointer(fd, va_arg(args_str, unsigned long), &shape);
-		else if (shape->type == '%')
-			bsr = printchar(fd, '%', &shape);
-		cached_str+= shape->f_pos + 1;
-		num_bytes += bsr;
-		if (shape->arg)
-		{
-			free(shape->arg);
-			shape->arg = NULL;
-		}
-		if (shape->flags)
-		{
-			free(shape->flags);
-			shape->flags = NULL;
-		}
+		num_bytes += select_type(&args_str, &shape, fd);
+		cached_str += shape->f_pos + 1;
 		percent = ft_strchr(cached_str, '%');
 	}
 	num_bytes += ft_putstr_fd(cached_str, fd);

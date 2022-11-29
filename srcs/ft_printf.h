@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 08:46:46 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:53:21 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ typedef struct s_typepointer
 }	t_typepointer;
 
 // PRINCIPAL FUNCTION 
+int					select_type(va_list *args, t_format **shape, int fd);
 int					ft_printf(int fd, const char *str, ...);
 // CREATE FUNCTIONS
-t_format			*new_format();
+t_format			*new_format(void);
 t_typechar			*new_typechar(char c);
 t_typestring		*new_typestring(char *str);
 // FORMAT FUNCTIONS
