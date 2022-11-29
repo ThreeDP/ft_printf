@@ -6,27 +6,33 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:07:55 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/26 14:54:04 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 09:02:54 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_typechar	*formatchar(char c)
+t_typechar	*formatchar(char c, const char *flags)
 {
+	int			i;
 	t_typechar	*format;
 
-	format = (t_typechar *) malloc(sizeof(t_typechar));
+	i = 0;
+	format = new_typechar(c);
 	if (!format)
 		return (NULL);
-	format->value = c;
+	format->minus = ft_isflag('-', flags[i], &i);
+	while (flags[i] == '-')
+		i++;
+	format->bytes = sub_atoi(&flags[i], &i);
+	format->valid_bytes = i;
 	return (format);
 }
 
 t_typestring	*formatstring(char *str, const char *flags)
 {
-	t_typestring	*format;
 	int				i;
+	t_typestring	*format;
 
 	i = 0;
 	format = new_typestring(str);

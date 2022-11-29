@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/28 20:13:46 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 08:46:46 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ typedef struct a_format
 
 typedef struct s_typechar
 {
+	t_bool	minus;
 	int		bytes;
 	char	value;
+	int		valid_bytes;
 }	t_typechar;
 
 typedef struct s_typestring
@@ -69,10 +71,11 @@ typedef struct s_typepointer
 // PRINCIPAL FUNCTION 
 int					ft_printf(int fd, const char *str, ...);
 // CREATE FUNCTIONS
-t_typestring		*new_typestring(char *str);
 t_format			*new_format();
+t_typechar			*new_typechar(char c);
+t_typestring		*new_typestring(char *str);
 // FORMAT FUNCTIONS
-t_typechar			*formatchar(char c);
+t_typechar			*formatchar(char c, const char *flags);
 t_typestring		*formatstring(char *str, const char *flags);
 t_typeint			*formatint(int integer);
 t_typeint			*formatuint(int uinteger);

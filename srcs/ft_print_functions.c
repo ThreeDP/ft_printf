@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/28 19:39:09 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 08:51:52 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	printchar(int fd, char c, t_format **shape)
 	int	bsr;
 
     
-	(*shape)->arg = formatchar(c);
+	(*shape)->arg = formatchar(c, (*shape)->flags);
 	bsr = ft_putchar_fd(((t_typechar *)(*shape)->arg)->value, fd);
 	return (bsr);
 }
