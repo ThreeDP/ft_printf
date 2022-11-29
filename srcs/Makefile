@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/11/29 09:50:48 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/11/29 16:29:55 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,7 @@ HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
 H_BONUS 		= 			ft_printf_bonus.h $(addprefix $(DIR_LIBFT), libft.h)
 ################ SOURCES	##################
 SRCS			=			ft_printf.c			ft_printf_utils.c		ft_printf_formats.c \
-							ft_printf_create.c	ft_print_functions.c
-SRCS_BONUS		=			ft_printf_bonus.c	ft_printf_utils.c		ft_printf_formats.c \
-							ft_printf_create.c	ft_print_functions.c
+							ft_printf_create.c	ft_print_functions.c	ft_print_flags.c
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
 ################ RULES		##################

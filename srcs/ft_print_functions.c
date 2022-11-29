@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 14:48:41 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:38:00 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,20 @@
 
 int	printchar(int fd, char c, t_format **shape)
 {
-	int	bsr;
-
 	(*shape)->arg = formatchar(c, (*shape)->flags);
-	bsr = ft_putchar_fd(((t_typechar *)(*shape)->arg)->value, fd);
-	return (bsr);
+	if (!ft_strlen((*shape)->flags))
+		return (ft_putchar_fd(((t_typechar *)(*shape)->arg)->value, fd));
+	return (printf_formatchar(fd, (*shape)->arg));
 }
 
 int	printstring(int fd, char *str, t_format **shape)
 {
-	int	bsr;
-
-	bsr = 0;
 	(*shape)->arg = formatstring(str, (*shape)->flags);
 	if (!str)
 		return (ft_putstr_fd("(null)", fd));
 	if (!ft_strlen((*shape)->flags))
 		return (ft_putstr_fd(((t_typestring *)(*shape)->arg)->value, fd));
-	bsr += printf_formatstring(fd, (*shape)->arg);
-	return (bsr);
+	return (printf_formatstring(fd, (*shape)->arg));
 }
 
 int	printinteger(int fd, int integer, t_format **shape)

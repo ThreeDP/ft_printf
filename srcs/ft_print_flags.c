@@ -6,12 +6,25 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 14:48:30 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:08:22 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+int	printf_formatchar(int fd, t_typechar *format)
+{
+	int	bsr;
+
+	bsr = 0;
+	format->bytes--;
+	if (!format->minus)
+		bsr += print_spaces(fd, &format->bytes);
+	bsr += ft_putchar_fd(format->value, fd);
+	bsr += print_spaces(fd, &format->bytes);
+	return (bsr);
+}
 
 int	printf_formatstring(int fd, t_typestring *format)
 {

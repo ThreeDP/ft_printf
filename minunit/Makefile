@@ -12,7 +12,7 @@ DIR 			= 			../srcs/
 GNL				=			get_next_line.c get_next_line_utils.c
 SRCS_TEST 		= 			ft_printf_mandatory_test.c ft_printf_mandatory_bonus_test.c \
 							formatstring_test.c formatchar_test.c \
-							printstring_test.c
+							printstring_test.c printchar_test.c
 OUTS			=			./outs/
 SOUTS			= 			$(addprefix $(OUTS), $(SRCS_TEST))
 F				=			
@@ -37,7 +37,7 @@ test: 		m $(SOUTS)
 valgrind:	m
 	for X in $(SOUTS) ; do \
 		echo  $(L_YELLOWB)[TEST $$X]$(L_WHITE) && \
-		valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full $$X &&\
+		valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full $$X && \
 		echo	$(L_YELLOWB)[END VALGRIND $$X]$(L_WHITE) ; done
 
 norm:
@@ -71,4 +71,10 @@ char: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g formatchar_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@echo	$(L_YELLOWB)[RUN formatchar_test.c]$(L_WHITE)
+	@./a.out
+
+pchar: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g printchar_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	$(L_YELLOWB)[RUN printchar_test.c]$(L_WHITE)
 	@./a.out

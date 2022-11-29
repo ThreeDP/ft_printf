@@ -3,3 +3,6 @@
 *.dSYM
 *.out
 *.a
+.vscode
+srcs/printfTester
+minunit/outs/*
