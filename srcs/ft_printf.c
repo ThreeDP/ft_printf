@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 18:25:58 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 05:45:37 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	select_type(va_list *args, t_format **shape, int fd)
 	else if ((*shape)->type == 's')
 		bsr = printstring(fd, va_arg(*args, char *), shape);
 	else if ((*shape)->type == 'i' || (*shape)->type == 'd')
-		bsr = printinteger(fd, va_arg(*args, int), shape);
+		bsr = printint(fd, va_arg(*args, int), shape);
 	else if ((*shape)->type == 'u')
 		bsr = printuinteger(fd, va_arg(*args, int), shape);
 	else if ((*shape)->type == 'x' || (*shape)->type == 'X')

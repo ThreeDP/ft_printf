@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 03:09:12 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 05:45:23 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,11 @@ t_typepointer	*formatpointer(unsigned long num);
 // PRINTF FLAGS
 int				printf_formatchar(int fd, t_typechar *format);
 int				printf_formatstring(int fd, t_typestring *format);
+int 			printf_formatint(int fd, t_typeint *format);
 // PRINT FUNCTIONS
 int				printchar(int fd, char c, t_format **shape);
 int				printstring(int fd, char *str, t_format **shape);
-int				printinteger(int fd, int integer, t_format **shape);
+int				printint(int fd, int integer, t_format **shape);
 int				printuinteger(int fd, int uinteger, t_format **shape);
 int				printhex(int fd, unsigned int num, t_format **shape);
 int				printpointer(int fd, unsigned long num, t_format **shape);

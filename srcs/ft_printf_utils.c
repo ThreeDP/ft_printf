@@ -6,12 +6,11 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 03:09:35 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 04:02:42 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 /* Função responsavel por validar se uma sub-string é digit 
 e retornar um valor do tipo inteito */

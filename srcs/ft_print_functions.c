@@ -6,12 +6,11 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 19:37:59 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 05:44:45 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	printchar(int fd, char c, t_format **shape)
 {
@@ -31,15 +30,20 @@ int	printstring(int fd, char *str, t_format **shape)
 	return (printf_formatstring(fd, (*shape)->arg));
 }
 
-int	printinteger(int fd, int integer, t_format **shape)
+int	printint(int fd, int integer, t_format **shape)
 {
-	int	bsr;
+	int bsr;
 
 	bsr = 0;
 	(*shape)->arg = formatint(integer, (*shape)->flags);
-	if (((t_typeint *)(*shape)->arg)->signal == '-')
-		bsr += ft_putchar_fd('-', fd);
-	ft_putnbr_fd(((t_typeint *)(*shape)->arg)->value, fd, &bsr);
+	if (!ft_strlen((*shape)->flags))
+	{
+		if (((t_typeint *)(*shape)->arg)->signal == '-')
+			bsr += ft_putchar_fd('-', fd);
+		ft_putnbr_fd(((t_typeint *)(*shape)->arg)->value, fd, &bsr);
+		return (bsr);
+	}
+	bsr = printf_formatint(fd, (*shape)->arg);
 	return (bsr);
 }
 

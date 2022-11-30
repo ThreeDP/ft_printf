@@ -310,6 +310,17 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(test_passing_a_flag_3_plus_3_minus_10_with_the_number_256_for_the_formatint);
     MU_RUN_TEST(test_passing_a_flag_3_plus_3_zeros_10_dot_5_with_the_number_256_for_the_formatint);
     MU_RUN_TEST(test_passing_a_flag_3_spaces_3_zeros_10_dot_5_with_the_number_minus_256_for_the_formatint);
+    /*
+    printf("\n%-+-+-+-10i\n", 10);
+    printf("\n%- - - -10.5i\n", 10);
+    printf("\n%-+-+-+-10.10i\n", 10);
+    printf("\n%- - - -10.5i\n", -10);
+    printf("\n%0+0+0+010i\n", 10);
+    printf("\n%0 0 0 010.5i\n", 10);
+    printf("\n%0+0+0+010.10i\n", 10);
+    printf("\n%0 0 0         0000010.5i\n", -10);
+    printf("\n%11i\n", 256);*/
+    //printf("\n%-+ 10.5i\n", -10);
 }
 
 int main() {
@@ -317,7 +328,6 @@ int main() {
 	MU_REPORT();
 	return MU_EXIT_CODE;
 }
-
 
 /*
 Categorias:
