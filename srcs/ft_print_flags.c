@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 16:46:49 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:39:25 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,19 @@ int	printf_formatstring(int fd, t_typestring *format)
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
 	bsr += write(fd, format->value, size);
+	bsr += print_spaces(fd, &format->bytes, ' ');
+	return (bsr);
+}
+
+int	printf_formathex(int fd, t_typehex *format)
+{
+	int	bsr;
+	int	size;
+
+	bsr = 0;
+	size = 10;
+	if (!format->minus)
+		bsr += print_spaces(fd, &format->bytes, ' ');
 	bsr += print_spaces(fd, &format->bytes, ' ');
 	return (bsr);
 }
