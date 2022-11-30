@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:07:55 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 19:55:10 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 03:09:28 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,8 @@ t_typeint	*formatint(int integer, const char *flags)
 	format = new_typeint(convert_num(integer, signal), signal);
 	if (!format)
 		return (NULL);
-	format->minus = ft_isflag('-', flags[i], &i);
-	while (flags[i] == '-')
-		i++;
+	i += match_iflags((char *)&flags[i], &format->fzero, &format, '0');
+	i += match_iflags((char *)&flags[i], &format->minus, &format, '-');
 	format->bytes = sub_atoi(&flags[i], &i);
 	format->dot = ft_isflag('.', flags[i], &i);
 	format->bytes_s = sub_atoi(&flags[i], &i);

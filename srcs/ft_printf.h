@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 19:27:52 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 03:09:12 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct s_typestring
 typedef struct s_typeint
 {
 	char			signal;
+	t_bool			space;
+	t_bool			plus;
+	t_bool			fzero;
 	t_bool			minus;
 	int				bytes;
 	t_bool			dot;
@@ -74,33 +77,34 @@ typedef struct s_typepointer
 }	t_typepointer;
 
 // PRINCIPAL FUNCTION 
-int					select_type(va_list *args, t_format **shape, int fd);
-int					ft_printf(int fd, const char *str, ...);
+int				select_type(va_list *args, t_format **shape, int fd);
+int				ft_printf(int fd, const char *str, ...);
 // CREATE FUNCTIONS
-t_format			*new_format(void);
-t_typechar			*new_typechar(char c);
-t_typestring		*new_typestring(char *str);
-t_typeint			*new_typeint(unsigned int num, char signal);
+t_format		*new_format(void);
+t_typechar		*new_typechar(char c);
+t_typestring	*new_typestring(char *str);
+t_typeint		*new_typeint(unsigned int num, char signal);
 // FORMAT FUNCTIONS
-t_typechar			*formatchar(char c, const char *flags);
-t_typestring		*formatstring(char *str, const char *flags);
-t_typeint			*formatint(int integer, const char *flags);
-t_typeint			*formatuint(int uinteger);
-t_typehex			*formathex(unsigned int num);
-t_typepointer		*formatpointer(unsigned long num);
+t_typechar		*formatchar(char c, const char *flags);
+t_typestring	*formatstring(char *str, const char *flags);
+t_typeint		*formatint(int integer, const char *flags);
+t_typeint		*formatuint(int uinteger);
+t_typehex		*formathex(unsigned int num);
+t_typepointer	*formatpointer(unsigned long num);
 // PRINTF FLAGS
-int					printf_formatchar(int fd, t_typechar *format);
-int					printf_formatstring(int fd, t_typestring *format);
+int				printf_formatchar(int fd, t_typechar *format);
+int				printf_formatstring(int fd, t_typestring *format);
 // PRINT FUNCTIONS
-int					printchar(int fd, char c, t_format **shape);
-int					printstring(int fd, char *str, t_format **shape);
-int					printinteger(int fd, int integer, t_format **shape);
-int					printuinteger(int fd, int uinteger, t_format **shape);
-int					printhex(int fd, unsigned int num, t_format **shape);
-int					printpointer(int fd, unsigned long num, t_format **shape);
+int				printchar(int fd, char c, t_format **shape);
+int				printstring(int fd, char *str, t_format **shape);
+int				printinteger(int fd, int integer, t_format **shape);
+int				printuinteger(int fd, int uinteger, t_format **shape);
+int				printhex(int fd, unsigned int num, t_format **shape);
+int				printpointer(int fd, unsigned long num, t_format **shape);
 // AUX FUNCTIONS
-int					sub_atoi(const char *strnum, int *size);
-int					print_spaces(int fd, int *bytes);
-t_bool				ft_isflag(char flag, char c, int *i);
-unsigned int		convert_num(int num, char signal);
+int				sub_atoi(const char *strnum, int *size);
+int				print_spaces(int fd, int *bytes);
+t_bool			ft_isflag(char flag, char c, int *i);
+unsigned int	convert_num(int num, char signal);
+int				match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag);
 #endif

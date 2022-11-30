@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:31:54 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 18:38:26 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/29 22:32:56 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ t_typeint	*new_typeint(unsigned int num, char signal)
 	c_format = (t_typeint *) malloc(sizeof(t_typeint));
 	if (!c_format)
 		return (NULL);
+	c_format->fzero = f;
+	c_format->space = f;
+	c_format->plus = f;
 	c_format->signal = signal;
 	c_format->value = num;
 	c_format->minus = f;

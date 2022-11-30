@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 18:43:27 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 03:09:35 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,27 @@ unsigned int	convert_num(int num, char signal)
 	if (signal == '-')
 		return (num * -1);
 	return (num * 1);
+}
+
+/*
+Valida multiplas flags pra a formatação
+do tipo inteiro
+*/
+int	match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag)
+{
+	int	i;
+
+	i = 0;
+	while (flags[i] == flag || flags[i] == ' ' || flags[i] == '+')
+	{
+		if (!*f1 && flags[i] == flag)
+			*f1 = ft_isflag(flag, flags[i], &i);
+		else if (!(*format)->space && flags[i] == ' ')
+			(*format)->space = ft_isflag(' ', flags[i], &i);
+		else if (!(*format)->plus && flags[i] == '+')
+			(*format)->plus = ft_isflag('+', flags[i], &i);
+		else 
+			i++;
+	}
+	return (i);
 }
