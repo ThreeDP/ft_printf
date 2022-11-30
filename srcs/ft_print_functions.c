@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 05:44:45 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:32:28 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	printhex(int fd, unsigned int num, t_format **shape)
 	int	bsr;
 
 	bsr = 0;
-	(*shape)->arg = formathex(num);
+	(*shape)->arg = formathex(num, (*shape)->flags);
 	if ((*shape)->type == 'x')
 		ft_putnbrhex_fd(((t_typehex *)(*shape)->arg)->value, fd, &bsr, L_BHEX);
 	else if ((*shape)->type == 'X')

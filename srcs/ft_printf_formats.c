@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:07:55 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 03:09:28 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:50:00 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,21 @@ t_typeint	*formatuint(int uinteger)
 	return (format);
 }
 
-t_typehex	*formathex(unsigned int num)
+t_typehex	*formathex(unsigned int num, const char *flags)
 {
+	int			i;
 	t_typehex	*format;
 
-	format = (t_typehex *) malloc(sizeof(t_typehex));
+	i = 0;
+	format = new_typehex(num);
 	if (!format)
 		return (NULL);
-	format->value = num;
+	i += match_xflags((char *)&flags[i], &format->fzero, &format->hash, '0');
+	i += match_xflags((char *)&flags[i], &format->minus, &format->hash, '-');
+	format->bytes = sub_atoi(&flags[i], &i);
+	format->dot = ft_isflag('.', flags[i], &i);
+	format->bytes_s = sub_atoi(&flags[i], &i);
+	format->valid_bytes = i;
 	return (format);
 }
 

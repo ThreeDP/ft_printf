@@ -61,16 +61,22 @@ c:
 
 .PHONY: $(SOUTS)
 
+char: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g formatchar_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	$(L_YELLOWB)[RUN formatchar_test.c]$(L_WHITE)
+	@./a.out
+
 string: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g formatstring_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@echo	$(L_YELLOWB)[RUN formatstring_test.c]$(L_WHITE)
 	@./a.out
 
-char: $(HEADERS)
+pstring: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
-	clang	-g formatchar_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
-	@echo	$(L_YELLOWB)[RUN formatchar_test.c]$(L_WHITE)
+	clang	-g printstring_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	$(L_YELLOWB)[RUN printstring_test.c]$(L_WHITE)
 	@./a.out
 
 pchar: $(HEADERS)
@@ -89,4 +95,10 @@ pint: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g printint_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@echo	$(L_YELLOWB)[RUN printint_test.c]$(L_WHITE)
+	@./a.out
+
+hex: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g formathex_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	$(L_YELLOWB)[RUN formathex_test.c]$(L_WHITE)
 	@./a.out

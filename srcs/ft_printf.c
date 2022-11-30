@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 05:45:37 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:58:58 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,14 @@ int	select_type(va_list *args, t_format **shape, int fd)
 	return (bsr);
 }
 
-int	ft_printf(int fd, const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list		args_str;
 	t_format	*shape;
 	int			num_bytes;
 	char		*percent;
 	char		*cached_str;
+	int fd = 1;
 
 	num_bytes = 0;
 	cached_str = (char *)str;

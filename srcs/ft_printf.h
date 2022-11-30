@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 05:45:23 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:50:38 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ typedef struct s_typeint
 
 typedef struct s_typehex
 {
+	t_bool			minus;
+	t_bool			hash;
+	t_bool			fzero;
+	int				bytes;
+	t_bool			dot;
+	int				bytes_s;
+	int				valid_bytes;
 	unsigned int	value;
 }	t_typehex;
 
@@ -78,18 +85,19 @@ typedef struct s_typepointer
 
 // PRINCIPAL FUNCTION 
 int				select_type(va_list *args, t_format **shape, int fd);
-int				ft_printf(int fd, const char *str, ...);
+int				ft_printf(const char *str, ...);
 // CREATE FUNCTIONS
 t_format		*new_format(void);
 t_typechar		*new_typechar(char c);
 t_typestring	*new_typestring(char *str);
+t_typehex		*new_typehex(unsigned int num);
 t_typeint		*new_typeint(unsigned int num, char signal);
 // FORMAT FUNCTIONS
 t_typechar		*formatchar(char c, const char *flags);
 t_typestring	*formatstring(char *str, const char *flags);
 t_typeint		*formatint(int integer, const char *flags);
 t_typeint		*formatuint(int uinteger);
-t_typehex		*formathex(unsigned int num);
+t_typehex		*formathex(unsigned int num, const char *flags);
 t_typepointer	*formatpointer(unsigned long num);
 // PRINTF FLAGS
 int				printf_formatchar(int fd, t_typechar *format);
@@ -104,8 +112,9 @@ int				printhex(int fd, unsigned int num, t_format **shape);
 int				printpointer(int fd, unsigned long num, t_format **shape);
 // AUX FUNCTIONS
 int				sub_atoi(const char *strnum, int *size);
-int				print_spaces(int fd, int *bytes);
+int				print_spaces(int fd, int *bytes, char symbol);
 t_bool			ft_isflag(char flag, char c, int *i);
 unsigned int	convert_num(int num, char signal);
 int				match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag);
+int				match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag);
 #endif

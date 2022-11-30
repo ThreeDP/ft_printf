@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:31:54 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/29 22:32:56 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:06:50 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,26 @@ t_typeint	*new_typeint(unsigned int num, char signal)
 	c_format->minus = f;
 	c_format->bytes = 0;
 	c_format->dot = f;
-	c_format->bytes = 0;
+	c_format->bytes_s = 0;
 	c_format->valid_bytes = 0;
 	return (c_format);
 	
+}
+
+t_typehex	*new_typehex(unsigned int num)
+{
+	t_typehex	*c_format;
+
+	c_format = (t_typehex *) malloc(sizeof(t_typehex));
+	if (!c_format)
+		return (NULL);
+	c_format->minus = f;
+	c_format->hash = f;
+	c_format->fzero = f;
+	c_format->bytes = 0;
+	c_format->dot = f;
+	c_format->bytes_s = f;
+	c_format->valid_bytes = 0;
+	c_format->value = num;
+	return (c_format);
 }

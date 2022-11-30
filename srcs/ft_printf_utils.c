@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 04:02:42 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:50:57 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ t_bool	ft_isflag(char flag, char c, int *i)
 /*
 Print the spaces set
 */
-int	print_spaces(int fd, int *bytes)
+int	print_spaces(int fd, int *bytes, char c)
 {
 	int	bsr;
 
 	bsr = 0;
 	while (*bytes > 0)
 	{
-		bsr += ft_putchar_fd(' ', fd);
+		bsr += ft_putchar_fd(c, fd);
 		*bytes -= 1;
 	}
 	return (bsr);
@@ -85,6 +85,24 @@ int	match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag)
 			(*format)->space = ft_isflag(' ', flags[i], &i);
 		else if (!(*format)->plus && flags[i] == '+')
 			(*format)->plus = ft_isflag('+', flags[i], &i);
+		else 
+			i++;
+	}
+	return (i);
+}
+
+
+int	match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag)
+{
+	int	i;
+
+	i = 0;
+	while (flags[i] == flag || flags[i] == '#')
+	{
+		if (!*f1 && flags[i] == flag)
+			*f1 = ft_isflag(flag, flags[i], &i);
+		else if (!*f2 && flags[i] == '#')
+			*f2 = ft_isflag('#', flags[i], &i);
 		else 
 			i++;
 	}
