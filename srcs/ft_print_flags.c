@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 18:39:25 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:43:05 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ int	printf_formatstring(int fd, t_typestring *format)
 int	printf_formathex(int fd, t_typehex *format)
 {
 	int	bsr;
-	int	size;
 
 	bsr = 0;
-	size = 10;
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
 	bsr += print_spaces(fd, &format->bytes, ' ');
