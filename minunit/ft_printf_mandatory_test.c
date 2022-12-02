@@ -9,7 +9,7 @@ int setup(char *file, int *fd)
     
     *fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
     if (!*fd)
-        return ;
+        return (0);
     bkp = dup(1);
     dup2(*fd, 1);
     return (bkp);
@@ -22,7 +22,7 @@ char *unset(int fd, char *file, int *bkp)
     close(fd);
     fd = open(file, O_RDONLY);
     text = get_next_line(fd);
-    dup2(bkp, 1);
+    dup2(*bkp, 1);
     remove(file);
 }
 
