@@ -3,29 +3,45 @@
 #include "./get_next_line.h"
 #include "ft_printf_test.h"
 
+int setup(char *file, int *fd)
+{
+    int     bkp;
+    
+    *fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    if (!*fd)
+        return ;
+    bkp = dup(1);
+    dup2(*fd, 1);
+    return (bkp);
+}
+
+char *unset(int fd, char *file, int *bkp)
+{
+    char *text;
+
+    close(fd);
+    fd = open(file, O_RDONLY);
+    text = get_next_line(fd);
+    dup2(bkp, 1);
+    remove(file);
+}
+
 MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
 {
     //ARRANGE
-    char    *file = "./files/D";
-    char    *expected_result = "D";
-    int     expected_bytes = 1;
+    int     fd;
     char    *result_str;
     int     bytes;
-    int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
-    int     bkp = dup(1);
-    if (!fd)
-        return ;
-    
+    char    *file               = "./files/D";
+    int     bkp                 = setup(file, &fd);
+    char    *expected_result    = "D";
+    int     expected_bytes      = 1;
+
     //ACT
-    dup2(fd, 1);
     bytes = ft_printf("D");
-    close(fd);
-    fd = open(file, O_RDONLY);
-    result_str = get_next_line(fd);
-    dup2(bkp, 1);
-    remove(file);
 
     //ASSERT
+    result_str = unset(fd, file, &bkp);
     mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
     free(result_str);
