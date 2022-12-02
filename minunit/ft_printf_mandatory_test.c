@@ -24,6 +24,7 @@ char *unset(int fd, char *file, int *bkp)
     text = get_next_line(fd);
     dup2(*bkp, 1);
     remove(file);
+    return (text);
 }
 
 MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
