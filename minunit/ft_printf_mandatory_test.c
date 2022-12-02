@@ -12,14 +12,17 @@ MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
     char    *result_str;
     int     bytes;
     int     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    int     bkp = dup(1);
     if (!fd)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "D");
+    dup2(fd, 1);
+    bytes = ft_printf("D");
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
+    dup2(bkp, 1);
     remove(file);
 
     //ASSERT
@@ -27,7 +30,7 @@ MU_TEST_SUITE(passing_a_char_D_print_in_the_terminal)
     mu_assert_string_eq(expected_result, result_str);
     free(result_str);
 }
-
+/*
 MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
 {
     //ARRANGE
@@ -41,7 +44,7 @@ MU_TEST_SUITE(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "One Ring to rule them all, One Ring to find them, One Ring to bring them all, and in the darkness bind them, In the Land of Mordor where the Shadows lie.");
+    bytes = ft_printf("One Ring to rule them all, One Ring to find them, One Ring to bring them all, and in the darkness bind them, In the Land of Mordor where the Shadows lie.");
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -68,7 +71,7 @@ MU_TEST_SUITE(passing_a_text_with_one_char_print_the_text_and_the_char_in_the_co
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "The initials of the name Davy Paulino are %c.P", fisrt_letter);
+    bytes = ft_printf("The initials of the name Davy Paulino are %c.P", fisrt_letter);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -94,7 +97,7 @@ MU_TEST_SUITE(passing_a_text_with_one_NULL_char_print_the_text_until_the_positio
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "The initials of the name Davy Paulino are %c.P", NULL);
+    bytes = ft_printf("The initials of the name Davy Paulino are %c.P", NULL);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -122,7 +125,7 @@ MU_TEST_SUITE(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "The initials of the name Davy Paulino are %c.%c", fisrt_letter, second_letter);
+    bytes = ft_printf("The initials of the name Davy Paulino are %c.%c", fisrt_letter, second_letter);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -149,7 +152,7 @@ MU_TEST_SUITE(passing_a_text_with_one_strings_print_the_text_and_the_string_in_t
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.", first_string);
+    bytes = ft_printf("%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.", first_string);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -176,7 +179,7 @@ MU_TEST_SUITE(passing_a_text_with_one_string_NULL_print_the_text_and_the_NULL_in
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.", first_string);
+    bytes = ft_printf("%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, Flame of Udun! Go back to the shadow.", first_string);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -204,7 +207,7 @@ MU_TEST_SUITE(passing_a_text_with_two_strings_print_the_text_and_the_stringss_in
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, %s Go back to the shadow.", first_string, second_string);
+    bytes = ft_printf("%s I am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, %s Go back to the shadow.", first_string, second_string);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -232,7 +235,7 @@ MU_TEST_SUITE(passing_a_text_with_one_char_and_one_string_print_the_text_with_th
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "You Cannot Pass! %c am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, %s Go back to the shadow.", first_string, second_string);
+    bytes = ft_printf("You Cannot Pass! %c am a servant of the Secret Fire, wielder of the Flame of Anor. The dark fire will not avail you, %s Go back to the shadow.", first_string, second_string);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -259,7 +262,7 @@ MU_TEST_SUITE(passing_a_text_with_one_int_value_print_the_text_with_the_int_in_t
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "The Ultimate Answer to Life, The Universe and Everything is...%i", number);
+    bytes = ft_printf("The Ultimate Answer to Life, The Universe and Everything is...%i", number);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -286,7 +289,7 @@ MU_TEST_SUITE(passing_a_text_with_one_decimal_value_print_the_text_with_the_deci
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "The Ultimate Answer to Life, The Universe and Everything is...%d", number);
+    bytes = ft_printf("The Ultimate Answer to Life, The Universe and Everything is...%d", number);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -313,7 +316,7 @@ MU_TEST_SUITE(passing_a_one_int_with_value_minus_42_shold_be_minus_42)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%i", number);
+    bytes = ft_printf("%i", number);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -340,7 +343,7 @@ MU_TEST_SUITE(passing_a_one_decimal_with_value_minus_42_shold_be_minus_42)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%d", number);
+    bytes = ft_printf("%d", number);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -369,7 +372,7 @@ MU_TEST_SUITE(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_prin
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "The Ultimate %cnswer to Life, The Universe and %s is...%i, yes %d.", letter, string, number, number);
+    bytes = ft_printf("The Ultimate %cnswer to Life, The Universe and %s is...%i, yes %d.", letter, string, number, number);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -396,7 +399,7 @@ MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%u", number);
+    bytes = ft_printf("%u", number);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -422,7 +425,7 @@ MU_TEST_SUITE(passing_a_text_with_three_zeros_in_decimal_unsigned_int_and_int_pr
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%u, %i or %d", NULL, NULL, NULL);
+    bytes = ft_printf("%u, %i or %d", NULL, NULL, NULL);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -449,7 +452,7 @@ MU_TEST_SUITE(passing_a_int_with_value_10_shold_be_A_in_hex)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%X", number);
+    bytes = ft_printf("%X", number);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -476,7 +479,7 @@ MU_TEST_SUITE(passing_a_int_with_value_minus_42_shold_be_FFFFFFD6_in_hex)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%X", number);
+    bytes = ft_printf("%X", number);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -504,7 +507,7 @@ MU_TEST_SUITE(passing_two_int_with_value_minus_42_and_42_shold_be_ffffffd6_or_2a
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%x or %x", number1, number2);
+    bytes = ft_printf("%x or %x", number1, number2);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -530,7 +533,7 @@ MU_TEST_SUITE(passing_NULL_from_hex_shold_be_ZERO)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%x or %X", NULL, NULL);
+    bytes = ft_printf("%x or %X", NULL, NULL);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -557,7 +560,7 @@ MU_TEST_SUITE(passing_a_address_print_the_value_of_the_address_in_hex)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%p", address);
+    bytes = ft_printf("%p", address);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -583,7 +586,7 @@ MU_TEST_SUITE(passing_the_long_min_max_address_print_the_value_of_the_address_in
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%p %p", LONG_MIN, LONG_MAX);
+    bytes = ft_printf("%p %p", LONG_MIN, LONG_MAX);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -610,7 +613,7 @@ MU_TEST_SUITE(passing_a_address_null_print_the_word_nil)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%p", address);
+    bytes = ft_printf("%p", address);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -644,7 +647,7 @@ MU_TEST_SUITE(passing_a_mix_of_flags)
         return ;
     
     //ACT
-    bytes = ft_printf(fd, "%c%s%i%d%u%x%X%p%%", letter, string, intT, intD,  intU, hexL, hexU, address);
+    bytes = ft_printf("%c%s%i%d%u%x%X%p%%", letter, string, intT, intD,  intU, hexL, hexU, address);
     close(fd);
     fd = open(file, O_RDONLY);
     result_str = get_next_line(fd);
@@ -656,11 +659,11 @@ MU_TEST_SUITE(passing_a_mix_of_flags)
     mu_assert_int_eq(expected_bytes, bytes);
     free(result_str);
 }
-
+*/
 MU_TEST_SUITE(test_suite)
 {	
     MU_RUN_TEST(passing_a_char_D_print_in_the_terminal);
-    MU_RUN_TEST(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal);
+  /*  MU_RUN_TEST(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal);
     MU_RUN_TEST(passing_a_text_with_one_char_print_the_text_and_the_char_in_the_correct_position);
     MU_RUN_TEST(passing_a_text_with_one_NULL_char_print_the_text_until_the_position_of_char);
     MU_RUN_TEST(passing_a_text_with_two_chars_print_the_text_and_the_chars_in_the_correct_position);
@@ -682,7 +685,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_address_null_print_the_word_nil);
     MU_RUN_TEST(passing_the_long_min_max_address_print_the_value_of_the_address_in_hex);
     MU_RUN_TEST(passing_NULL_from_hex_shold_be_ZERO);
-    MU_RUN_TEST(passing_a_mix_of_flags);
+    MU_RUN_TEST(passing_a_mix_of_flags);*/
 }
 
 int main() {

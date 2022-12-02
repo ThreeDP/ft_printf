@@ -85,7 +85,7 @@ typedef struct s_typepointer
 
 // PRINCIPAL FUNCTION 
 int				select_type(va_list *args, t_format **shape, int fd);
-int				ft_printf(int fd, const char *str, ...);
+int				ft_printf(const char *str, ...);
 // CREATE FUNCTIONS
 t_format		*new_format(void);
 t_typechar		*new_typechar(char c);
