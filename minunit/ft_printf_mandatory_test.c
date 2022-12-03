@@ -541,8 +541,30 @@ MU_TEST_SUITE(passing_a_mix_of_flags)
     free(result_str);
 }
 
+MU_TEST_SUITE(passing_str_NULL_should_be_minus_1)
+{
+    //ARRANGE
+    int     fd;
+    int     bytes;
+    char    *result_str;
+    char    *file               = "./files/mix-flags";
+    int     bkp                 = setup(file, &fd);
+    char    *expected_result    = NULL;
+    int     expected_bytes      = -1;
+
+    //ACT
+    bytes = ft_printf(0);
+    
+    //ASSERT
+    result_str = unset(fd, file, &bkp);
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
+    free(result_str);
+}
+
 MU_TEST_SUITE(test_suite)
 {	
+    MU_RUN_TEST(passing_str_NULL_should_be_minus_1);
     MU_RUN_TEST(passing_a_char_D_print_in_the_terminal);
     MU_RUN_TEST(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal);
     MU_RUN_TEST(passing_a_text_with_one_char_print_the_text_and_the_char_in_the_correct_position);
