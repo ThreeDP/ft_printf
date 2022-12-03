@@ -10,7 +10,7 @@ L_GREENB		=			'\033[1;32m'
 ################ CONFIG		##################
 DIR 			= 			../srcs/
 GNL				=			get_next_line.c get_next_line_utils.c
-SRCS_TEST 		= 			ft_printf_mandatory_test.c \
+SRCS_TEST 		= 			ft_printf_mandatory_test.c ft_printf_bonus_test.c \
 							formatstring_test.c formatchar_test.c formatint_test.c formathex_test.c \
 							printstring_test.c printchar_test.c printint_test.c
 OUTS			=			./outs/
