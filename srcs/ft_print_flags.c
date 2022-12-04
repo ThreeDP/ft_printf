@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapaulin <dapaulin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/01 19:43:05 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/04 14:47:05 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,20 @@ int printf_formatint(int fd, t_typeint *format)
 	}
 	if (!format->minus && (format->fzero || format->dot))
 	{
+printf("este aqui 1");
 		if (format->bytes)
+		{
+			printf("este aqui 3");
 			format->bytes -= format->bytes_s;
+		}
 		if (format->bytes_s)
 			bsr += print_spaces(fd, &format->bytes, ' ');
 		else if (format->dot && format->bytes_s)
+		{
+			printf("este aqui 2");
+			format->bytes_s -= size;
 			bsr += print_spaces(fd, &format->bytes_s, '0');
+		}
 		else
 			bsr += print_spaces(fd, &format->bytes, '0');
 		bsr += print_spaces(fd, &format->bytes_s, '0');
