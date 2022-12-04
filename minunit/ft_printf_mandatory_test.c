@@ -564,7 +564,6 @@ MU_TEST_SUITE(passing_str_NULL_should_be_minus_1)
 
 MU_TEST_SUITE(test_suite)
 {	
-    MU_RUN_TEST(passing_str_NULL_should_be_minus_1);
     MU_RUN_TEST(passing_a_char_D_print_in_the_terminal);
     MU_RUN_TEST(passing_a_text_of_lord_of_rings_printf_the_text_in_the_terminal);
     MU_RUN_TEST(passing_a_text_with_one_char_print_the_text_and_the_char_in_the_correct_position);
@@ -588,6 +587,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_the_long_min_max_address_print_the_value_of_the_address_in_hex);
     MU_RUN_TEST(passing_NULL_from_hex_shold_be_ZERO);
     MU_RUN_TEST(passing_a_mix_of_flags);
+    MU_RUN_TEST(passing_str_NULL_should_be_minus_1);
 }
 
 int main() {
