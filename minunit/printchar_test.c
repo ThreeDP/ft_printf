@@ -128,7 +128,7 @@ MU_TEST_SUITE(passing_a_7_flag_for_the_char_null_and_return_6_spaces)
     int             bsr;
     char            *ret_str;
     char            character           = '\0';
-    char            *expected_result    = "       ";
+    char            *expected_result    = "      ";
     int             expected_bsr        = 0;
     shape->type                         = 'c';
     shape->flags                        = ft_strdup("7");
