@@ -70,12 +70,18 @@ int printf_formatint(int fd, t_typeint *format)
 	str_num = ft_itoa(format->value);
 	size = ft_strlen(str_num);
 	if (format->fzero && !format->minus && !format->dot)
+	{
+		if (format->plus || format->signal == '-')
+			bsr += write(fd, &format->signal, 1);
 		space = '0';
+	}
 	if (format->dot && format->bytes_s > size)
 		size = format->bytes_s;
 	format->bytes -= size;
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, space);
+	if (space == '0')
+		bsr += write(fd, &format->signal, 1);
 	bsr += write(fd, str_num, size);
 	bsr += print_spaces(fd, &format->bytes, ' ');
 	if (str_num)
