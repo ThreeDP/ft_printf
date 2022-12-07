@@ -299,7 +299,57 @@ MU_TEST_SUITE(passing_the_flag_dot_1_from_the_number_99_should_be_99)
     free_shape(&shape, result_str);
 }
 
+MU_TEST_SUITE(passing_the_flag_space_0_dot_3_from_the_number_minus_99_should_be_space_minus_099)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/dot2_99";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = -99;
+    char            *expected_result    = "-099";
+    int             expected_bsr        = 4;
+    shape->type                         = 'i';
+    shape->flags                        = ft_strdup(" 0.3");
 
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
+MU_TEST_SUITE(passing_the_flag_space_dot_2_from_the_number_0_should_be_space_00)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/dot2_99";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = 0;
+    char            *expected_result    = " 00";
+    int             expected_bsr        = 3;
+    shape->type                         = 'i';
+    shape->flags                        = ft_strdup(" .2");
+
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
 
 MU_TEST_SUITE(test_suite)
 {
@@ -313,6 +363,8 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_the_flag_dot_2_from_the_number_minus_1_should_be_minus_01);
     MU_RUN_TEST(passing_the_flag_dot_1_from_the_number_0_should_be_0);
     MU_RUN_TEST(passing_the_flag_dot_1_from_the_number_99_should_be_99);
+    MU_RUN_TEST(passing_the_flag_space_0_dot_3_from_the_number_minus_99_should_be_space_minus_099);
+    MU_RUN_TEST(passing_the_flag_space_dot_2_from_the_number_0_should_be_space_00);
 }
 
 int main() {
