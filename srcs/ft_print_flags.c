@@ -69,9 +69,10 @@ int printf_formatint(int fd, t_typeint *format)
 	size = ft_strlen(str_num);
 	if (format->plus || format->signal == '-')
 		format->bytes -= 1;
-	if (format->dot && format->bytes_s >= size)
+	if (format->dot)
 		format->bytes_s -= size;
-	format->bytes -= size;
+	else
+		format->bytes -= size;
 	if (format->fzero && !format->minus && !format->dot)
 		format->bytes_s = format->bytes;
 	format->bytes -= format->bytes_s;
