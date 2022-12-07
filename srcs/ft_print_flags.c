@@ -63,7 +63,6 @@ int printf_formatint(int fd, t_typeint *format)
 	int 	bsr;
 	int 	size;
 	char	space;
-	int		signal;
 	char	*str_num;
 
 	bsr = 0;
