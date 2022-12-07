@@ -71,16 +71,6 @@ int	printhex(int fd, unsigned int num, t_format **shape)
 	return (printf_formathex(fd, (*shape)->arg));
 }
 
-int	printuinteger(int fd, int uinteger, t_format **shape)
-{
-	int	bsr;
-
-	bsr = 0;
-	(*shape)->arg = formatuint(uinteger);
-	ft_putnbr_fd(((t_typeint *)(*shape)->arg)->value, fd, &bsr);
-	return (bsr);
-}
-
 int	printpointer(int fd, unsigned long num, t_format **shape)
 {
 	int	bsr;

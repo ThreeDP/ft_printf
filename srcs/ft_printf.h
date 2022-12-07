@@ -96,7 +96,6 @@ t_typeint		*new_typeint(unsigned int num, char signal);
 t_typechar		*formatchar(char c, const char *flags);
 t_typestring	*formatstring(char *str, const char *flags);
 t_typeint		*formatint(int integer, const char *flags, char type);
-t_typeint		*formatuint(int uinteger);
 t_typehex		*formathex(unsigned int num, const char *flags);
 t_typepointer	*formatpointer(unsigned long num);
 // PRINTF FLAGS
@@ -108,7 +107,6 @@ int				printf_formathex(int fd, t_typehex *format);
 int				printchar(int fd, char c, t_format **shape);
 int				printstring(int fd, char *str, t_format **shape);
 int				printint(int fd, int integer, t_format **shape);
-int				printuinteger(int fd, int uinteger, t_format **shape);
 int				printhex(int fd, unsigned int num, t_format **shape);
 int				printpointer(int fd, unsigned long num, t_format **shape);
 // AUX FUNCTIONS

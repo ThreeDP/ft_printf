@@ -74,21 +74,6 @@ t_typeint	*formatint(int integer, const char *flags, char type)
 	return (format);
 }
 
-t_typeint	*formatuint(int uinteger)
-{
-	t_typeint	*format;
-
-	format = (t_typeint *) malloc(sizeof(t_typeint));
-	if (!format)
-		return (NULL);
-	if (uinteger < 0)
-		format->signal = '-';
-	else
-		format->signal = '+';
-	format->value = uinteger * 1;
-	return (format);
-}
-
 t_typehex	*formathex(unsigned int num, const char *flags)
 {
 	int			i;
