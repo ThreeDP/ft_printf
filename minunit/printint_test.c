@@ -377,7 +377,7 @@ MU_TEST_SUITE(passing_the_flag_dot_5_from_the_number_157_should_be_00157)
     free_shape(&shape, result_str);
 }
 
-MU_TEST_SUITE(passing_the_flag_minus_10_dot_5_from_the_number_minus_4294967139_should_be_00157_5_spaces)
+MU_TEST_SUITE(passing_the_flag_minus_17_dot_12_from_the_number_minus_157_should_be_004294967139_5_spaces)
 {
     //CONFIG
     int             fd;
@@ -387,11 +387,11 @@ MU_TEST_SUITE(passing_the_flag_minus_10_dot_5_from_the_number_minus_4294967139_s
     //ARRANGE
     int             bsr;
     char            *result_str;
-    int             num                 = -4294967139;
-    char            *expected_result    = "00157     ";
-    int             expected_bsr        = 10;
+    int             num                 = -157;
+    char            *expected_result    = "004294967139     ";
+    int             expected_bsr        = 17;
     shape->type                         = 'u';
-    shape->flags                        = ft_strdup("-10.5");
+    shape->flags                        = ft_strdup("-17.12");
 
     //ACT
     bsr = printint(fd, num, &shape);
@@ -403,7 +403,7 @@ MU_TEST_SUITE(passing_the_flag_minus_10_dot_5_from_the_number_minus_4294967139_s
     free_shape(&shape, result_str);
 }
 
-MU_TEST_SUITE(passing_the_flag_0_10_from_the_number_minus_4294967139_should_be_0000000157)
+MU_TEST_SUITE(passing_the_flag_0_10_from_the_number_minus_157_should_be_004294967139)
 {
     //CONFIG
     int             fd;
@@ -413,9 +413,9 @@ MU_TEST_SUITE(passing_the_flag_0_10_from_the_number_minus_4294967139_should_be_0
     //ARRANGE
     int             bsr;
     char            *result_str;
-    int             num                 = -4294967139;
-    char            *expected_result    = "0000000157";
-    int             expected_bsr        = 10;
+    int             num                 = -157;
+    char            *expected_result    = "004294967139";
+    int             expected_bsr        = 12;
     shape->type                         = 'u';
     shape->flags                        = ft_strdup("010");
 
@@ -429,7 +429,7 @@ MU_TEST_SUITE(passing_the_flag_0_10_from_the_number_minus_4294967139_should_be_0
     free_shape(&shape, result_str);
 }
 
-MU_TEST_SUITE(passing_the_flag_minus_0_10_from_the_number_minus_4294967139_should_be_157_7_spaces)
+MU_TEST_SUITE(passing_the_flag_minus_0_10_from_the_number_minus_157_should_be_4294967139_2_spaces)
 {
     //CONFIG
     int             fd;
@@ -439,9 +439,9 @@ MU_TEST_SUITE(passing_the_flag_minus_0_10_from_the_number_minus_4294967139_shoul
     //ARRANGE
     int             bsr;
     char            *result_str;
-    int             num                 = -4294967139;
-    char            *expected_result    = "157       ";
-    int             expected_bsr        = 10;
+    int             num                 = -157;
+    char            *expected_result    = "4294967139  ";
+    int             expected_bsr        = 12;
     shape->type                         = 'u';
     shape->flags                        = ft_strdup("-010");
 
@@ -470,8 +470,9 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_the_flag_space_0_dot_3_from_the_number_minus_99_should_be_space_minus_099);
     MU_RUN_TEST(passing_the_flag_space_dot_2_from_the_number_0_should_be_space_00);
     MU_RUN_TEST(passing_the_flag_dot_5_from_the_number_157_should_be_00157);
-    MU_RUN_TEST(passing_the_flag_minus_10_dot_5_from_the_number_minus_4294967139_should_be_00157_5_spaces);
-    MU_RUN_TEST(passing_the_flag_minus_0_10_from_the_number_minus_4294967139_should_be_157_7_spaces);
+    MU_RUN_TEST(passing_the_flag_minus_17_dot_12_from_the_number_minus_157_should_be_004294967139_5_spaces);
+    MU_RUN_TEST(passing_the_flag_0_10_from_the_number_minus_157_should_be_004294967139);
+    MU_RUN_TEST(passing_the_flag_minus_0_10_from_the_number_minus_157_should_be_4294967139_2_spaces);
 }
 
 int main() {
