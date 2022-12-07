@@ -69,11 +69,15 @@ int printf_formatint(int fd, t_typeint *format)
 	size = ft_strlen(str_num);
 	if ((format->plus || format->signal == '-') && format->bytes > 0)
 		format->bytes -= 1;
+	else if (format->space)
+		format->bytes -= 1;
 	format_dot(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
 	if (format->plus || format->signal == '-')
 		bsr += write(fd, &format->signal, 1);
+	else if (format->space)
+		bsr += ft_putchar_fd(' ', fd);
 	bsr += print_spaces(fd, &format->bytes_s, '0');
 	bsr += write(fd, str_num, size);
 	bsr += print_spaces(fd, &format->bytes, ' ');
