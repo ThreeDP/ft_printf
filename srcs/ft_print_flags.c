@@ -69,6 +69,8 @@ int printf_formatint(int fd, t_typeint *format)
 	space = ' ';
 	str_num = ft_itoa(format->value);
 	size = ft_strlen(str_num);
+	if (format->plus || format->signal == '-')
+		format->bytes -= 1;
 	if (format->fzero && !format->minus && !format->dot)
 	{
 		if (format->plus || format->signal == '-')
