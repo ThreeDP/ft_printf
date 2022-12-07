@@ -77,7 +77,7 @@ int printf_formatint(int fd, t_typeint *format)
 	format->bytes -= format->bytes_s;
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
-	if (space != '0' && (format->plus || format->minus == '-'))
+	if (format->plus || format->minus == '-')
 		bsr += write(fd, &format->signal, 1);
 	bsr += print_spaces(fd, &format->bytes_s, '0');
 	bsr += write(fd, str_num, size);
