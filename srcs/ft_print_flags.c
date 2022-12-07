@@ -62,7 +62,6 @@ int printf_formatint(int fd, t_typeint *format)
 {
 	int 	bsr;
 	int 	size;
-	char	space;
 	char	*str_num;
 
 	bsr = 0;
@@ -71,21 +70,17 @@ int printf_formatint(int fd, t_typeint *format)
 	size = ft_strlen(str_num);
 	if (format->plus || format->signal == '-')
 		format->bytes -= 1;
-	if (format->fzero && !format->minus && !format->dot)
-	{
-		if (format->plus || format->signal == '-')
-			bsr += write(fd, &format->signal, 1);
-		space = '0';
-	}
 	if (format->dot && format->bytes_s >= size)
 		format->bytes_s -= size;
+	if (format->fzero && !format->minus && !format->dot)
+		format->bytes_s = format->bytes;
 	format->bytes -= size;
 	format->bytes -= format->bytes_s;
 	if (!format->minus)
-		bsr += print_spaces(fd, &format->bytes, space);
-	bsr += print_spaces(fd, &format->bytes_s, '0');
+		bsr += print_spaces(fd, &format->bytes, ' ');
 	if (space != '0' && (format->plus || format->minus == '-'))
 		bsr += write(fd, &format->signal, 1);
+	bsr += print_spaces(fd, &format->bytes_s, '0');
 	bsr += write(fd, str_num, size);
 	bsr += print_spaces(fd, &format->bytes, ' ');
 	if (str_num)
