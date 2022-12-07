@@ -116,7 +116,5 @@ int				sub_atoi(const char *strnum, int *size);
 int				print_spaces(int fd, int *bytes, char symbol);
 t_bool			ft_isflag(char flag, char c, int *i);
 unsigned int	convert_num(int num, char signal);
-int				match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag);
-int				match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag);
-void			format_dot(t_typeint **format, int size);
+void			format_iflags(t_typeint **format, int size);
 #endif

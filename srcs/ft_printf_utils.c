@@ -68,30 +68,6 @@ unsigned int	convert_num(int num, char signal)
 	return (num * 1);
 }
 
-/*
-Valida multiplas flags pra a formatação
-do tipo inteiro
-*/
-int	match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag)
-{
-	int	i;
-
-	i = 0;
-	while (flags[i] == flag || flags[i] == ' ' || flags[i] == '+')
-	{
-		if (!*f1 && flags[i] == flag)
-			*f1 = ft_isflag(flag, flags[i], &i);
-		else if (!(*format)->space && flags[i] == ' ')
-			(*format)->space = ft_isflag(' ', flags[i], &i);
-		else if (!(*format)->plus && flags[i] == '+')
-			(*format)->plus = ft_isflag('+', flags[i], &i);
-		else 
-			i++;
-	}
-	return (i);
-}
-
-
 int	match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag)
 {
 	int	i;
@@ -109,8 +85,12 @@ int	match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag)
 	return (i);
 }
 
-void	format_dot(t_typeint **format, int size)
+void	format_iflags(t_typeint **format, int size)
 {
+	if (((*format)->plus || (*format)->signal == '-') && (*format)->bytes > 0)
+		(*format)->bytes -= 1;
+	else if ((*format)->space)
+		(*format)->bytes -= 1;
 	if ((*format)->fzero && !(*format)->minus && !(*format)->dot)
 		(*format)->bytes_s = (*format)->bytes - size;
 	if ((*format)->dot)
