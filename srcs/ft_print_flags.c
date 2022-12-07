@@ -71,9 +71,9 @@ int printf_formatint(int fd, t_typeint *format)
 		format->bytes -= 1;
 	if (format->dot && format->bytes_s >= size)
 		format->bytes_s -= size;
+	format->bytes -= size;
 	if (format->fzero && !format->minus && !format->dot)
 		format->bytes_s = format->bytes;
-	format->bytes -= size;
 	format->bytes -= format->bytes_s;
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
