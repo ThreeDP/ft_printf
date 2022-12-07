@@ -48,18 +48,21 @@ t_typestring	*formatstring(char *str, const char *flags)
 	return (format);
 }
 
-t_typeint	*formatint(int integer, const char *flags)
+t_typeint	*formatint(int integer, const char *flags, char type)
 {
-	int			i;
-	char		signal;
-	t_typeint	*format;
+	int				i;
+	char			signal;
+	t_typeint		*format;
 
 	i = 0;
 	if (integer < 0)
 		signal = '-';
 	else
 		signal = '+';
-	format = new_typeint(convert_num(integer, signal), signal);
+	if (type == 'u')
+		format = new_typeint(integer, 0);
+	else
+		format = new_typeint(convert_num(integer, signal), signal);
 	if (!format)
 		return (NULL);
 	i += match_iflags((char *)&flags[i], &format->fzero, &format, '0');

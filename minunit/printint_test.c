@@ -351,6 +351,110 @@ MU_TEST_SUITE(passing_the_flag_space_dot_2_from_the_number_0_should_be_space_00)
     free_shape(&shape, result_str);
 }
 
+MU_TEST_SUITE(passing_the_flag_dot_5_from_the_number_157_should_be_00157)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/00157";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = 157;
+    char            *expected_result    = "00157";
+    int             expected_bsr        = 5;
+    shape->type                         = 'u';
+    shape->flags                        = ft_strdup(".5");
+
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
+MU_TEST_SUITE(passing_the_flag_minus_10_dot_5_from_the_number_minus_4294967139_should_be_00157_5_spaces)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/001575spaces";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = -4294967139;
+    char            *expected_result    = "00157     ";
+    int             expected_bsr        = 10;
+    shape->type                         = 'u';
+    shape->flags                        = ft_strdup("-10.5");
+
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
+MU_TEST_SUITE(passing_the_flag_0_10_from_the_number_minus_4294967139_should_be_0000000157)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/001575spaces";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = -4294967139;
+    char            *expected_result    = "0000000157";
+    int             expected_bsr        = 10;
+    shape->type                         = 'u';
+    shape->flags                        = ft_strdup("010");
+
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
+MU_TEST_SUITE(passing_the_flag_minus_0_10_from_the_number_minus_4294967139_should_be_157_7_spaces)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/001575spaces";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = -4294967139;
+    char            *expected_result    = "157       ";
+    int             expected_bsr        = 10;
+    shape->type                         = 'u';
+    shape->flags                        = ft_strdup("-010");
+
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
 MU_TEST_SUITE(test_suite)
 {
     MU_RUN_TEST(passing_the_flag_11_from_the_number_256_should_be_8_spaces_256);
@@ -365,6 +469,9 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_the_flag_dot_1_from_the_number_99_should_be_99);
     MU_RUN_TEST(passing_the_flag_space_0_dot_3_from_the_number_minus_99_should_be_space_minus_099);
     MU_RUN_TEST(passing_the_flag_space_dot_2_from_the_number_0_should_be_space_00);
+    MU_RUN_TEST(passing_the_flag_dot_5_from_the_number_157_should_be_00157);
+    MU_RUN_TEST(passing_the_flag_minus_10_dot_5_from_the_number_minus_4294967139_should_be_00157_5_spaces);
+    MU_RUN_TEST(passing_the_flag_minus_0_10_from_the_number_minus_4294967139_should_be_157_7_spaces);
 }
 
 int main() {

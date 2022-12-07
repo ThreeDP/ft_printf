@@ -95,7 +95,7 @@ t_typeint		*new_typeint(unsigned int num, char signal);
 // FORMAT FUNCTIONS
 t_typechar		*formatchar(char c, const char *flags);
 t_typestring	*formatstring(char *str, const char *flags);
-t_typeint		*formatint(int integer, const char *flags);
+t_typeint		*formatint(int integer, const char *flags, char type);
 t_typeint		*formatuint(int uinteger);
 t_typehex		*formathex(unsigned int num, const char *flags);
 t_typepointer	*formatpointer(unsigned long num);
@@ -116,5 +116,7 @@ int				sub_atoi(const char *strnum, int *size);
 int				print_spaces(int fd, int *bytes, char symbol);
 t_bool			ft_isflag(char flag, char c, int *i);
 unsigned int	convert_num(int num, char signal);
+int				match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag);
+int				match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag);
 void			format_iflags(t_typeint **format, int size);
 #endif

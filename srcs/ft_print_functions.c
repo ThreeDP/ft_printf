@@ -39,12 +39,12 @@ int	printint(int fd, int integer, t_format **shape)
 	int bsr;
 
 	bsr = 0;
-	(*shape)->arg = formatint(integer, (*shape)->flags);
+	(*shape)->arg = formatint(integer, (*shape)->flags, (*shape)->type);
 	if (!(*shape)->arg)
 		return (0);
 	if (!ft_strlen((*shape)->flags))
 	{
-		if (((t_typeint *)(*shape)->arg)->signal == '-')
+		if (((t_typeint *)(*shape)->arg)->signal == '-' && (*shape)->type != 'u')
 			bsr += ft_putchar_fd('-', fd);
 		ft_putnbr_fd(((t_typeint *)(*shape)->arg)->value, fd, &bsr);
 		return (bsr);

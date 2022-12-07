@@ -44,7 +44,7 @@ int	select_type(va_list *args, t_format **shape, int fd)
 	else if ((*shape)->type == 'i' || (*shape)->type == 'd')
 		bsr = printint(fd, va_arg(*args, int), shape);
 	else if ((*shape)->type == 'u')
-		bsr = printuinteger(fd, va_arg(*args, int), shape);
+		bsr = printint(fd, va_arg(*args, int), shape);
 	else if ((*shape)->type == 'x' || (*shape)->type == 'X')
 		bsr = printhex(fd, va_arg(*args, int), shape);
 	else if ((*shape)->type == 'p')
