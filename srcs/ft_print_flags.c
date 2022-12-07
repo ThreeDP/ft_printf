@@ -62,17 +62,19 @@ int printf_formatint(int fd, t_typeint *format)
 {
 	int 	bsr;
 	int 	size;
+	int		signal;
 	char	*str_num;
 
 	bsr = 0;
+	signal = 0;
 	str_num = ft_itoa(format->value);
 	size = ft_strlen(str_num);
 	if (format->plus || format->signal == '-')
-		format->bytes -= 1;
+		signal = 1;
 	if (format->dot)
-		format->bytes_s -= size;
+		format->bytes_s -= (size + signal);
 	else
-		format->bytes -= size;
+		format->bytes -= (size + signal);
 	if (format->fzero && !format->minus && !format->dot)
 		format->bytes_s = format->bytes;
 	format->bytes -= format->bytes_s;
