@@ -8,6 +8,7 @@ MU_TEST_SUITE(test_passing_a_flag_55_with_the_number_7_for_the_formatint)
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'i';
     char            *flags      = "55";
     char            signal      = '+';
     int             num         = 7;
@@ -18,7 +19,7 @@ MU_TEST_SUITE(test_passing_a_flag_55_with_the_number_7_for_the_formatint)
     int             valid_bytes = 2;
 
     //ACT
-    format = formatint(num, flags);
+    format = formatint(num, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -36,6 +37,7 @@ MU_TEST_SUITE(test_passing_a_flag_minus_55_dot_10_with_the_number_256_for_the_fo
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'd';
     char            *flags      = "-55.10";
     //COMPARE VARS
     int             num         = 256;
@@ -47,7 +49,7 @@ MU_TEST_SUITE(test_passing_a_flag_minus_55_dot_10_with_the_number_256_for_the_fo
     int             valid_bytes = 6;
 
     //ACT
-    format = formatint(num, flags);
+    format = formatint(num, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -65,6 +67,7 @@ MU_TEST_SUITE(test_passing_a_flag_minus_55_dot_10_with_the_number_minus_256_for_
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'd';
     char            *flags      = "-55.10";
     int             sendnum     =   -256;
     //COMPARE VARS
@@ -77,7 +80,7 @@ MU_TEST_SUITE(test_passing_a_flag_minus_55_dot_10_with_the_number_minus_256_for_
     int             valid_bytes = 6;
 
     //ACT
-    format = formatint(sendnum, flags);
+    format = formatint(sendnum, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -95,6 +98,7 @@ MU_TEST_SUITE(test_passing_a_flag_0_10_with_the_number_256_for_the_formatint)
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'i';
     char            *flags      = "010";
     int             sendnum     = 256;
     //COMPARE VARS
@@ -108,7 +112,7 @@ MU_TEST_SUITE(test_passing_a_flag_0_10_with_the_number_256_for_the_formatint)
     int             valid_bytes = 3;
 
     //ACT
-    format = formatint(sendnum, flags);
+    format = formatint(sendnum, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -127,6 +131,7 @@ MU_TEST_SUITE(test_passing_a_flag_minus_space_10_with_the_number_256_for_the_for
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'd';
     char            *flags      = "- 10";
     int             sendnum     = 256;
     //COMPARE VARS
@@ -141,7 +146,7 @@ MU_TEST_SUITE(test_passing_a_flag_minus_space_10_with_the_number_256_for_the_for
     int             valid_bytes = 4;
 
     //ACT
-    format = formatint(sendnum, flags);
+    format = formatint(sendnum, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -161,6 +166,7 @@ MU_TEST_SUITE(test_passing_a_flag_3_space_3_minus_10_with_the_number_256_for_the
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'i';
     char            *flags      = " - - -10";
     int             sendnum     = 256;
     //COMPARE VARS
@@ -175,7 +181,7 @@ MU_TEST_SUITE(test_passing_a_flag_3_space_3_minus_10_with_the_number_256_for_the
     int             valid_bytes = 8;
 
     //ACT
-    format = formatint(sendnum, flags);
+    format = formatint(sendnum, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -195,6 +201,7 @@ MU_TEST_SUITE(test_passing_a_flag_3_plus_3_minus_10_with_the_number_256_for_the_
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'd';
     char            *flags      = "-+-+-+10";
     int             sendnum     = 256;
     //COMPARE VARS
@@ -210,7 +217,7 @@ MU_TEST_SUITE(test_passing_a_flag_3_plus_3_minus_10_with_the_number_256_for_the_
     int             valid_bytes = 8;
 
     //ACT
-    format = formatint(sendnum, flags);
+    format = formatint(sendnum, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -231,6 +238,7 @@ MU_TEST_SUITE(test_passing_a_flag_3_plus_3_zeros_10_dot_5_with_the_number_256_fo
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'i';
     char            *flags      = "0+0+0+10.5";
     int             sendnum     = 256;
     //COMPARE VARS
@@ -246,7 +254,7 @@ MU_TEST_SUITE(test_passing_a_flag_3_plus_3_zeros_10_dot_5_with_the_number_256_fo
     int             valid_bytes = 10;
 
     //ACT
-    format = formatint(sendnum, flags);
+    format = formatint(sendnum, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -268,6 +276,7 @@ MU_TEST_SUITE(test_passing_a_flag_3_spaces_3_zeros_10_dot_5_with_the_number_minu
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'd';
     char            *flags      = "0 0 0 10.5";
     int             sendnum     = -256;
     //COMPARE VARS
@@ -283,7 +292,7 @@ MU_TEST_SUITE(test_passing_a_flag_3_spaces_3_zeros_10_dot_5_with_the_number_minu
     int             valid_bytes = 10;
 
     //ACT
-    format = formatint(sendnum, flags);
+    format = formatint(sendnum, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -304,6 +313,7 @@ MU_TEST_SUITE(test_passing_a_flag_dot_2_with_the_number_minus_1_for_the_formatin
 {
     //ARRANGE
     t_typeint      *format;
+    char            type        = 'd';
     char            *flags      = ".2";
     int             sendnum     = -1;
     //COMPARE VARS
@@ -319,7 +329,7 @@ MU_TEST_SUITE(test_passing_a_flag_dot_2_with_the_number_minus_1_for_the_formatin
     int             valid_bytes = 2;
 
     //ACT
-    format = formatint(sendnum, flags);
+    format = formatint(sendnum, flags, type);
 
     //ASSERTS
     mu_assert_int_eq(num, format->value);
@@ -348,6 +358,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(test_passing_a_flag_3_plus_3_zeros_10_dot_5_with_the_number_256_for_the_formatint);
     MU_RUN_TEST(test_passing_a_flag_3_spaces_3_zeros_10_dot_5_with_the_number_minus_256_for_the_formatint);
     MU_RUN_TEST(test_passing_a_flag_dot_2_with_the_number_minus_1_for_the_formatint);
+    
 }
 
 int main() {
