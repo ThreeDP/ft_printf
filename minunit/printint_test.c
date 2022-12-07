@@ -285,7 +285,7 @@ MU_TEST_SUITE(passing_the_flag_dot_1_from_the_number_99_should_be_99)
     char            *result_str;
     int             num                 = 99;
     char            *expected_result    = "99";
-    int             expected_bsr        = 1;
+    int             expected_bsr        = 2;
     shape->type                         = 'i';
     shape->flags                        = ft_strdup(".1");
 
