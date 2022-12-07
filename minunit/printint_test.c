@@ -273,6 +273,33 @@ MU_TEST_SUITE(passing_the_flag_dot_1_from_the_number_0_should_be_0)
     free_shape(&shape, result_str);
 }
 
+MU_TEST_SUITE(passing_the_flag_dot_1_from_the_number_99_should_be_99)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/dot2_99";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = 99;
+    char            *expected_result    = "99";
+    int             expected_bsr        = 1;
+    shape->type                         = 'i';
+    shape->flags                        = ft_strdup(".1");
+
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
+
 
 MU_TEST_SUITE(test_suite)
 {
@@ -285,6 +312,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_the_flag_0_4_dot_2_from_the_number_9_should_be_2_spaces_09);
     MU_RUN_TEST(passing_the_flag_dot_2_from_the_number_minus_1_should_be_minus_01);
     MU_RUN_TEST(passing_the_flag_dot_1_from_the_number_0_should_be_0);
+    MU_RUN_TEST(passing_the_flag_dot_1_from_the_number_99_should_be_99);
 }
 
 int main() {
