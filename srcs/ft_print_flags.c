@@ -69,18 +69,7 @@ int printf_formatint(int fd, t_typeint *format)
 	size = ft_strlen(str_num);
 	if ((format->plus || format->signal == '-') && format->bytes > 0)
 		format->bytes -= 1;
-	if (format->fzero && !format->minus && !format->dot)
-		format->bytes_s = format->bytes - size;
-	if (format->dot)
-	{
-		format->bytes_s -= size;
-		format->bytes -= (format->bytes_s + size); 
-	}
-	else
-	{
-		format->bytes -= size;
-		format->bytes -= format->bytes_s;
-	}
+	format_dot(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
 	if (format->plus || format->signal == '-')

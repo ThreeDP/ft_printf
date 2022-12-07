@@ -108,3 +108,17 @@ int	match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag)
 	}
 	return (i);
 }
+
+void	format_dot(t_typeint **format, int size)
+{
+	if ((*format)->fzero && !(*format)->minus && !(*format)->dot)
+		(*format)->bytes_s = (*format)->bytes - size;
+	if ((*format)->dot)
+	{
+		(*format)->bytes_s -= size;
+		(*format)->bytes -= ((*format)->bytes_s + size);
+		return ;
+	}
+	(*format)->bytes -= size;
+	(*format)->bytes -= (*format)->bytes_s;
+}
