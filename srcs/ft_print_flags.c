@@ -60,58 +60,23 @@ int	printf_formathex(int fd, t_typehex *format)
 
 int printf_formatint(int fd, t_typeint *format)
 {
-	int 	i;
 	int 	bsr;
 	int 	size;
+	char	space;
 	int		signal;
 	char	*str_num;
-	int		test = 1;
 
-	i = 0;
 	bsr = 0;
-	signal = 0;
+	space = ' ';
 	str_num = ft_itoa(format->value);
 	size = ft_strlen(str_num);
-	if (format->bytes_s > size)
-		format->bytes_s -= size;
-	if (format->signal == '-' || format->plus)
-		signal = 1;
-	if ((!format->bytes_s && !format->dot) || size <= format->bytes_s)
-		format->bytes -= (size + signal);
-	if ((format->signal == '-' || format->plus) && (format->fzero || format->dot))
-	{
-		test = 0;
-		bsr += ft_putchar_fd(format->signal, fd);
-	}
-	if (!format->minus && (format->fzero || format->dot))
-	{
-printf("este aqui 1");
-		if (format->bytes)
-		{
-			printf("este aqui 3");
-			format->bytes -= format->bytes_s;
-		}
-		if (format->bytes_s)
-			bsr += print_spaces(fd, &format->bytes, ' ');
-		else if (format->dot && format->bytes_s)
-		{
-			printf("este aqui 2");
-			format->bytes_s -= size;
-			bsr += print_spaces(fd, &format->bytes_s, '0');
-		}
-		else
-			bsr += print_spaces(fd, &format->bytes, '0');
-		bsr += print_spaces(fd, &format->bytes_s, '0');
-	}
-	else if (format->minus && format->bytes_s)
-	{
-		bsr += print_spaces(fd, &format->bytes_s, '0');
-	}
-	else if (!format->minus) {
-		bsr += print_spaces(fd, &format->bytes, ' ');
-	}
-	if ((format->signal == '-' || format->plus) && !format->fzero && test)
-		bsr += ft_putchar_fd(format->signal, fd);
+	if (format->fzero && !format->minus && !format->dot)
+		space = '0';
+	if (format->dot && format->bytes_s > size)
+		size = format->bytes_s;
+	format->bytes -= size;
+	if (!format->minus)
+		bsr += print_spaces(fd, &format->bytes, space);
 	bsr += write(fd, &str_num[i], size);
 	bsr += print_spaces(fd, &format->bytes, ' ');
 	if (str_num)
