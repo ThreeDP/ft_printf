@@ -8,5 +8,9 @@ jobs:
         working-directory: minunit
     steps:
     - uses: actions/checkout@v2
+    - name: Install Git
+      uses: actions/setup-git@v2
+      with:
+        git-version: 2.37
     - name: mandatory Tests
       run: make t

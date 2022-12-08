@@ -65,7 +65,7 @@ int printf_formatint(int fd, t_typeint *format)
 	char	*str_num;
 
 	bsr = 0;
-	str_num = ft_itoa(format->value);
+	str_num = ft_uitoa(format->value);
 	size = ft_strlen(str_num);
 	format_iflags(&format, size);
 	if (!format->minus)
