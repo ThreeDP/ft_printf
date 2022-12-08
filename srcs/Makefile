@@ -40,7 +40,7 @@ $(NAME): $(SRCS:.c=.o)
 $(LIBFT):
 	@git	clone git@github.com:ThreeDP/Libft.git libft
 	@cd		$(DIR_LIBFT) && $(MAKE) $@
-	@cp		./libft/libft.a ./libftprintf.a
+	@cp		./libft/srcs/libft.a ./libftprintf.a
 
 %.o:	%.c	$(HEADERS)
 	@cc		-o $@ -c $<  -I ./ $(FLAGS)
@@ -57,6 +57,7 @@ clean:
 fclean: 	clean
 	@rm 		-f $(NAME)
 	@cd 		$(DIR_LIBFT) && $(MAKE) $@
+	@rm 		-rf ./libft
 
 re: fclean all
 

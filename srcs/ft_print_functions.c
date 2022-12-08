@@ -46,7 +46,7 @@ int	printint(int fd, int integer, t_format **shape)
 	{
 		if (((t_typeint *)(*shape)->arg)->signal == '-' && (*shape)->type != 'u')
 			bsr += ft_putchar_fd('-', fd);
-		ft_putnbr_fd(((t_typeint *)(*shape)->arg)->value, fd, &bsr);
+		bsr += ft_putnbr_fd(((t_typeint *)(*shape)->arg)->value, fd);
 		return (bsr);
 	}
 	return (printf_formatint(fd, (*shape)->arg));
@@ -63,9 +63,9 @@ int	printhex(int fd, unsigned int num, t_format **shape)
 	if (!ft_strlen((*shape)->flags))
 	{
 		if ((*shape)->type == 'x')
-			ft_putnbrhex_fd(((t_typehex *)(*shape)->arg)->value, fd, &bsr, L_BHEX);
+			bsr += ft_puthex_fd(((t_typehex *)(*shape)->arg)->value, fd, L_BHEX);
 		else if ((*shape)->type == 'X')
-			ft_putnbrhex_fd(((t_typehex *)(*shape)->arg)->value, fd, &bsr, U_BHEX);
+			bsr += ft_puthex_fd(((t_typehex *)(*shape)->arg)->value, fd, U_BHEX);
 		return (bsr);
 	}
 	return (printf_formathex(fd, (*shape)->arg));
@@ -80,6 +80,6 @@ int	printpointer(int fd, unsigned long num, t_format **shape)
 		return (ft_putstr_fd("(nil)", fd));
 	(*shape)->arg = formatpointer(num);
 	bsr += ft_putstr_fd("0x", fd);
-	ft_putnbrhex_fd(((t_typepointer *)(*shape)->arg)->value, fd, &bsr, L_BHEX);
+	bsr += ft_puthex_fd(((t_typepointer *)(*shape)->arg)->value, fd, L_BHEX);
 	return (bsr);
 }

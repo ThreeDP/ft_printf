@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include "./libft/libft.h"
+# include "./libft/srcs/libft.h"
 
 # define U_BHEX "0123456789ABCDEF"
 # define L_BHEX "0123456789abcdef"
