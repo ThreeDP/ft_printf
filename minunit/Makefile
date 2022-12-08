@@ -23,8 +23,10 @@ FLAGS 			=			-Wall -Werror -Wextra
 all: 		t v
 
 %.o:		%.c	$(HEADERS)
-	@cd		$(DIR) && $(MAKE)
 	@clang	-g $< $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf -o $(OUTS)$<
+
+libft:
+	@cd		$(DIR) && $(MAKE)
 
 compile: 			$(SRCS_TEST:.c=.o)
 
@@ -35,10 +37,10 @@ $(SOUTS):
 	@echo  "$(L_WHITEB)"*******************************************************************"$(L_WHITEB)"
 
 ### TESTING CODE
-t: 			compile $(SOUTS)
+t: 			libft compile $(SOUTS)
 
 ### VALGRIND
-v:			compile
+v:			libft compile
 	@for X in $(SOUTS) ; do \
 		echo  "$(L_YELLOWB)[TEST $$X]$(L_WHITE)" && \
 		valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full $$X && \

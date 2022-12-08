@@ -11,21 +11,20 @@
 # **************************************************************************** #
 
 ################  COLORS	##################
-L_RED			=			'\033[0;31m'
-L_REDB			=			'\033[1;31m'
-L_WHITE			=			'\033[0;37m'
-L_WHITEB		=			'\033[1;37m'
-L_YELLOW		=			'\033[0;33m'
-L_YELLOWB		=			'\033[1;33m'
-L_GREEN			=			'\033[0;32m'
-L_GREENB		=			'\033[1;32m'
+L_RED			=			\033[0;31m
+L_REDB			=			\033[1;31m
+L_WHITE			=			\033[0;37m
+L_WHITEB		=			\033[1;37m
+L_YELLOW		=			\033[0;33m
+L_YELLOWB		=			\033[1;33m
+L_GREEN			=			\033[0;32m
+L_GREENB		=			\033[1;32m
 ################ CONFIG		##################
 NAME			=			libftprintf.a
 DIR_LIBFT		=			./libft/srcs/
 LIBFT			=			libft.a
 DIR 			= 			./
 HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
-H_BONUS 		= 			ft_printf_bonus.h $(addprefix $(DIR_LIBFT), libft.h)
 ################ SOURCES	##################
 SRCS			=			ft_printf.c			ft_printf_utils.c		ft_printf_formats.c \
 							ft_printf_create.c	ft_print_functions.c	ft_print_flags.c
@@ -33,13 +32,13 @@ SRCS			=			ft_printf.c			ft_printf_utils.c		ft_printf_formats.c \
 FLAGS 			=			-Wall -Werror -Wextra
 ################ RULES		##################
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
 
-$(NAME): $(SRCS:.c=.o) $(LIBFT)
+$(NAME): $(SRCS:.c=.o)
 	@ar -rc $(NAME) $(SRCS:.c=.o)
        
 $(LIBFT):
-	@git		clone git@github.com:ThreeDP/Libft.git libft
+	@git	clone git@github.com:ThreeDP/Libft.git libft
 	@cd		$(DIR_LIBFT) && $(MAKE) $@
 	@cp		./libft/libft.a ./libftprintf.a
 
