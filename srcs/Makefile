@@ -21,7 +21,7 @@ L_GREEN			=			'\033[0;32m'
 L_GREENB		=			'\033[1;32m'
 ################ CONFIG		##################
 NAME			=			libftprintf.a
-DIR_LIBFT		=			./libft/
+DIR_LIBFT		=			./libft/srcs/
 LIBFT			=			libft.a
 DIR 			= 			./
 HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
@@ -39,6 +39,7 @@ $(NAME): $(SRCS:.c=.o) $(LIBFT)
 	@ar -rc $(NAME) $(SRCS:.c=.o)
        
 $(LIBFT):
+	@git		clone git@github.com:ThreeDP/Libft.git libft
 	@cd		$(DIR_LIBFT) && $(MAKE) $@
 	@cp		./libft/libft.a ./libftprintf.a
 
