@@ -6,7 +6,7 @@
 #    By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/12/09 21:26:11 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/12/09 21:27:29 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(NAME): $(SRCS:.c=.o)
 	@ar -rc $(NAME) $(SRCS:.c=.o)
        
 $(LIBFT):
-	@git	clone git@github.com:ThreeDP/Libft.git libft
+#	@git	clone git@github.com:ThreeDP/Libft.git libft
 	@cd		$(DIR_LIBFT) && $(MAKE) $@
 	@cp		./libft/srcs/libft.a ./libftprintf.a
 
@@ -57,7 +57,7 @@ clean:
 fclean: 	clean
 	@rm 		-f $(NAME)
 	@cd 		$(DIR_LIBFT) && $(MAKE) $@
-	@rm 		-rf ./libft
+#	@rm 		-rf ./libft
 
 re: fclean all
 
