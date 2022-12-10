@@ -6,7 +6,7 @@
 #    By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/11/29 16:29:55 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/12/09 21:26:11 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DIR 			= 			./
 HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
 ################ SOURCES	##################
 SRCS			=			ft_printf.c			ft_printf_utils.c		ft_printf_formats.c \
-							ft_printf_create.c	ft_print_functions.c	ft_print_flags.c
+							ft_printf_create.c	ft_print_functions.c	ft_print_flags.c	 flag_adm.c
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
 ################ RULES		##################

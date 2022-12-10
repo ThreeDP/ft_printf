@@ -6,12 +6,11 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/04 14:47:05 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/09 20:38:57 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	printf_formatchar(int fd, t_typechar *format)
 {
@@ -47,17 +46,6 @@ int	printf_formatstring(int fd, t_typestring *format)
 	return (bsr);
 }
 
-int	printf_formathex(int fd, t_typehex *format)
-{
-	int	bsr;
-
-	bsr = 0;
-	if (!format->minus)
-		bsr += print_spaces(fd, &format->bytes, ' ');
-	bsr += print_spaces(fd, &format->bytes, ' ');
-	return (bsr);
-}
-
 int printf_formatint(int fd, t_typeint *format)
 {
 	int 	bsr;
@@ -65,7 +53,7 @@ int printf_formatint(int fd, t_typeint *format)
 	char	*str_num;
 
 	bsr = 0;
-	str_num = ft_uitoa(format->value);
+	str_num = ft_itoa_base(format->value, 10);
 	size = ft_strlen(str_num);
 	format_iflags(&format, size);
 	if (!format->minus)
@@ -74,6 +62,34 @@ int printf_formatint(int fd, t_typeint *format)
 		bsr += write(fd, &format->signal, 1);
 	else if (format->space)
 		bsr += ft_putchar_fd(' ', fd);
+	bsr += print_spaces(fd, &format->bytes_s, '0');
+	bsr += write(fd, str_num, size);
+	bsr += print_spaces(fd, &format->bytes, ' ');
+	if (str_num)
+		free(str_num);
+	return (bsr);
+}
+
+int	printf_formathex(int fd, t_typehex *format)
+{
+	int		bsr;
+	int 	size;
+	char	*str_num;
+
+	bsr = 0;
+	str_num = ft_itoa_base(format->value, 16);
+	if (format->caset == 'X')
+		size = ft_strlen_upper(str_num);
+	else
+		size = ft_strlen(str_num);
+	format_xflags(&format, size);
+	if (!format->minus)
+		bsr += print_spaces(fd, &format->bytes, ' ');
+	if (format->hash && format->value)
+	{
+		bsr += ft_putchar_fd('0', fd);
+		bsr += ft_putchar_fd(format->caset, fd);
+	}
 	bsr += print_spaces(fd, &format->bytes_s, '0');
 	bsr += write(fd, str_num, size);
 	bsr += print_spaces(fd, &format->bytes, ' ');

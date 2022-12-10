@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:07:55 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 17:50:00 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:06:02 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_typestring	*formatstring(char *str, const char *flags)
 	format = new_typestring(str);
 	if (!format)
 		return (NULL);
+	format->space = ft_isflag(' ', flags[i], &i);
 	format->minus = ft_isflag('-', flags[i], &i);
 	while (flags[i] == '-')
 		i++;
@@ -74,13 +75,13 @@ t_typeint	*formatint(int integer, const char *flags, char type)
 	return (format);
 }
 
-t_typehex	*formathex(unsigned int num, const char *flags)
+t_typehex	*formathex(unsigned long num, const char *flags, char caset)
 {
 	int			i;
 	t_typehex	*format;
 
 	i = 0;
-	format = new_typehex(num);
+	format = new_typehex(num, caset);
 	if (!format)
 		return (NULL);
 	i += match_xflags((char *)&flags[i], &format->fzero, &format->hash, '0');
@@ -89,16 +90,5 @@ t_typehex	*formathex(unsigned int num, const char *flags)
 	format->dot = ft_isflag('.', flags[i], &i);
 	format->bytes_s = sub_atoi(&flags[i], &i);
 	format->valid_bytes = i;
-	return (format);
-}
-
-t_typepointer	*formatpointer(unsigned long num)
-{
-	t_typepointer	*format;
-
-	format = (t_typepointer *) malloc(sizeof(t_typepointer));
-	if (!format)
-		return (NULL);
-	format->value = num;
 	return (format);
 }

@@ -6,12 +6,11 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/03 19:50:26 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/09 20:11:52 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_istype(char c)
 {
@@ -46,9 +45,9 @@ int	select_type(va_list *args, t_format **shape, int fd)
 	else if ((*shape)->type == 'u')
 		bsr = printint(fd, va_arg(*args, int), shape);
 	else if ((*shape)->type == 'x' || (*shape)->type == 'X')
-		bsr = printhex(fd, va_arg(*args, int), shape);
+		bsr = printhex(fd, va_arg(*args, unsigned int), shape);
 	else if ((*shape)->type == 'p')
-		bsr = printpointer(fd, va_arg(*args, unsigned long), shape);
+		bsr = printhex(fd, va_arg(*args, unsigned long), shape);
 	else if ((*shape)->type == '%')
 		bsr = printchar(fd, '%', shape);
 	if ((*shape)->arg)

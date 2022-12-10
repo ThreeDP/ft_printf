@@ -12,7 +12,7 @@ DIR 			= 			../srcs/
 GNL				=			get_next_line.c				get_next_line_utils.c
 SRCS_TEST 		= 			ft_printf_mandatory_test.c	ft_printf_bonus_test.c \
 							formatstring_test.c 		formatchar_test.c				formatint_test.c			formathex_test.c \
-							printstring_test.c			printchar_test.c				printint_test.c
+							printstring_test.c			printchar_test.c				printint_test.c				printhex_test.c
 OUTS			=			./outs/
 SOUTS			= 			$(addprefix $(OUTS), $(SRCS_TEST))
 HEADERS 		= 			minunit.h get_next_line.h
@@ -80,8 +80,8 @@ pint: $(HEADERS)
 	@echo	"$(L_YELLOWB)[RUN printint_test.c]$(L_WHITE)"
 	@./a.out
 
-hex: $(HEADERS)
+phex: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
-	clang	-g formathex_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
-	@echo	"$(L_YELLOWB)[RUN formathex_test.c]$(L_WHITE)"
+	clang	-g printhex_test.c $(GNL) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	"$(L_YELLOWB)[RUN printhex_test.c]$(L_WHITE)"
 	@./a.out

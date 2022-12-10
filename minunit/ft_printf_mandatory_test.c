@@ -315,7 +315,7 @@ MU_TEST_SUITE(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_prin
     free(result_str);
 }
 
-MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
+MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_4294967254)
 {
     //ARRANGE
     int     fd;
@@ -332,8 +332,8 @@ MU_TEST_SUITE(passing_a_unsigned_int_with_value_minus_42_shold_be_42)
 
     //ASSERT
     result_str = unset(fd, file, &bkp);
-    mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
     free(result_str);
 }
 
@@ -398,8 +398,8 @@ MU_TEST_SUITE(passing_a_int_with_value_minus_42_shold_be_FFFFFFD6_in_hex)
 
     //ASSERT
     result_str = unset(fd, file, &bkp);
-    mu_assert_int_eq(expected_bytes, bytes);
     mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bytes, bytes);
     free(result_str);
 }
 
@@ -577,7 +577,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_text_with_one_decimal_value_print_the_text_with_the_decimal_in_the_correct_position);
     MU_RUN_TEST(passing_a_one_int_with_value_minus_42_shold_be_minus_42);
     MU_RUN_TEST(passing_a_text_with_a_char_a_string_a_int_and_a_decimal_value_print_the_text_with_the_flags_in_the_correct_position);
-    MU_RUN_TEST(passing_a_unsigned_int_with_value_minus_42_shold_be_42);
+    MU_RUN_TEST(passing_a_unsigned_int_with_value_minus_42_shold_be_4294967254);
     MU_RUN_TEST(passing_a_text_with_three_zeros_in_decimal_unsigned_int_and_int_print_the_text_with_the_zeros_in_the_correct_position);
     MU_RUN_TEST(passing_a_int_with_value_10_shold_be_A_in_hex);
     MU_RUN_TEST(passing_a_int_with_value_minus_42_shold_be_FFFFFFD6_in_hex);

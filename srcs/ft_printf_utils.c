@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 17:50:57 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:33:16 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ int	sub_atoi(const char *strnum, int *size)
 	return (num);
 }
 
-/* 
-Valida se o caracter atual coresponde a flag passada
-*/
+/* Valida se o caracter atual coresponde a flag passada */
 t_bool	ft_isflag(char flag, char c, int *i)
 {
 	if (c == flag)
@@ -45,9 +43,7 @@ t_bool	ft_isflag(char flag, char c, int *i)
 	return (f);
 }
 
-/*
-Print the spaces set
-*/
+/* Print the spaces set */
 int	print_spaces(int fd, int *bytes, char c)
 {
 	int	bsr;
@@ -68,61 +64,16 @@ unsigned int	convert_num(int num, char signal)
 	return (num * 1);
 }
 
-/*
-Valida multiplas flags pra a formatação
-do tipo inteiro
-*/
-int	match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag)
+size_t	ft_strlen_upper(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (flags[i] == flag || flags[i] == ' ' || flags[i] == '+')
+	int	size;
+	
+	size = 0;
+	while (str[size])
 	{
-		if (!*f1 && flags[i] == flag)
-			*f1 = ft_isflag(flag, flags[i], &i);
-		else if (!(*format)->space && flags[i] == ' ')
-			(*format)->space = ft_isflag(' ', flags[i], &i);
-		else if (!(*format)->plus && flags[i] == '+')
-			(*format)->plus = ft_isflag('+', flags[i], &i);
-		else 
-			i++;
+		if (ft_islower(str[size]))
+			str[size] -= 32;
+		size++;
 	}
-	return (i);
-}
-
-
-int	match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag)
-{
-	int	i;
-
-	i = 0;
-	while (flags[i] == flag || flags[i] == '#')
-	{
-		if (!*f1 && flags[i] == flag)
-			*f1 = ft_isflag(flag, flags[i], &i);
-		else if (!*f2 && flags[i] == '#')
-			*f2 = ft_isflag('#', flags[i], &i);
-		else 
-			i++;
-	}
-	return (i);
-}
-
-void	format_iflags(t_typeint **format, int size)
-{
-	if (((*format)->plus || (*format)->signal == '-') && (*format)->bytes > 0)
-		(*format)->bytes -= 1;
-	else if ((*format)->space)
-		(*format)->bytes -= 1;
-	if ((*format)->fzero && !(*format)->minus && !(*format)->dot)
-		(*format)->bytes_s = (*format)->bytes - size;
-	if ((*format)->dot)
-	{
-		(*format)->bytes_s -= size;
-		(*format)->bytes -= ((*format)->bytes_s + size);
-		return ;
-	}
-	(*format)->bytes -= size;
-	(*format)->bytes -= (*format)->bytes_s;
+	return (size);
 }

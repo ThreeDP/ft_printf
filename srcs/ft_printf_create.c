@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:31:54 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/11/30 17:06:50 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:08:18 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_typestring	*new_typestring(char *str)
 	c_format = (t_typestring *) malloc(sizeof(t_typestring));
 	if (!c_format)
 		return (NULL);
+	c_format->space = f;
 	c_format->value = str;
 	c_format->minus = f;
 	c_format->bytes = 0;
@@ -77,7 +78,7 @@ t_typeint	*new_typeint(unsigned int num, char signal)
 	
 }
 
-t_typehex	*new_typehex(unsigned int num)
+t_typehex	*new_typehex(unsigned long num, char caset)
 {
 	t_typehex	*c_format;
 
@@ -85,12 +86,20 @@ t_typehex	*new_typehex(unsigned int num)
 	if (!c_format)
 		return (NULL);
 	c_format->minus = f;
-	c_format->hash = f;
 	c_format->fzero = f;
 	c_format->bytes = 0;
 	c_format->dot = f;
 	c_format->bytes_s = f;
 	c_format->valid_bytes = 0;
-	c_format->value = num;
+	if (caset == 'p')
+	{
+		c_format->value = num;
+		c_format->hash = t;
+		c_format->caset = 'x';
+		return (c_format);
+	}
+	c_format->value = (unsigned int)num;
+	c_format->hash = f;
+	c_format->caset = caset;
 	return (c_format);
 }

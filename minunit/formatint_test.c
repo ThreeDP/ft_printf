@@ -358,7 +358,6 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(test_passing_a_flag_3_plus_3_zeros_10_dot_5_with_the_number_256_for_the_formatint);
     MU_RUN_TEST(test_passing_a_flag_3_spaces_3_zeros_10_dot_5_with_the_number_minus_256_for_the_formatint);
     MU_RUN_TEST(test_passing_a_flag_dot_2_with_the_number_minus_1_for_the_formatint);
-    
 }
 
 int main() {
