@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/09 19:50:44 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:33:29 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ int	printint(int fd, int integer, t_format **shape)
 
 int	printhex(int fd, unsigned long num, t_format **shape)
 {
-	int	bsr;
-
-	bsr = 0;
 	if (!num && (*shape)->type == 'p')
 		return (ft_putstr_fd("(nil)", fd));
 	(*shape)->arg = formathex(num, (*shape)->flags, (*shape)->type);
