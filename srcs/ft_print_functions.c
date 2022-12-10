@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/09 21:33:29 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/09 22:05:11 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	printchar(int fd, char c, t_format **shape)
 
 int	printstring(int fd, char *str, t_format **shape)
 {
+	if (!str)
+		(*shape)->arg = formatstring("null", (*shape)->flags);
 	(*shape)->arg = formatstring(str, (*shape)->flags);
 	if (!(*shape)->arg)
 		return (0);
-	if (!str)
-		return (ft_putstr_fd("(null)", fd));
 	return (printf_formatstring(fd, (*shape)->arg));
 }
 

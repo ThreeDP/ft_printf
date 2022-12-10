@@ -6,7 +6,7 @@
 #    By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 16:31:13 by dapaulin          #+#    #+#              #
-#    Updated: 2022/12/09 21:27:29 by dapaulin         ###   ########.fr        #
+#    Updated: 2022/12/09 21:55:15 by dapaulin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ L_GREENB		=			\033[1;32m
 ################ CONFIG		##################
 NAME			=			libftprintf.a
 DIR_LIBFT		=			./libft/srcs/
-LIBFT			=			libft.a
+LIBFT			=			./libft/srcs/libft.a
 DIR 			= 			./
 HEADERS 		= 			ft_printf.h $(addprefix $(DIR_LIBFT), libft.h)
 ################ SOURCES	##################
@@ -38,8 +38,7 @@ $(NAME): $(SRCS:.c=.o)
 	@ar -rc $(NAME) $(SRCS:.c=.o)
        
 $(LIBFT):
-#	@git	clone git@github.com:ThreeDP/Libft.git libft
-	@cd		$(DIR_LIBFT) && $(MAKE) $@
+	@make 	-C $(DIR_LIBFT)
 	@cp		./libft/srcs/libft.a ./libftprintf.a
 
 %.o:	%.c	$(HEADERS)

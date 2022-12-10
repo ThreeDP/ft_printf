@@ -6,7 +6,7 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/09 20:11:52 by dapaulin         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:37:57 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_printf(const char *str, ...)
 	cached_str = (char *)str;
 	shape = new_format();
 	if (!str)
-		return (-1);
+		return (free(shape), -1);
 	va_start(args_str, str);
 	percent = ft_strchr(cached_str, '%');
 	while (percent)

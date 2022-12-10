@@ -325,6 +325,32 @@ MU_TEST_SUITE(passing_a_flag_dot_2_and_a_string_gol_should_be_print_go)
     free_shape(&shape, result_str);
 }
 
+MU_TEST_SUITE(passing_a_flag_10_and_a_NULL_should_be_4_spaces_null)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/one";
+    t_format        *shape              = setup(file, &fd);
+
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    char            *str                = "(null)";
+    char            *expected_result    = "    (null)";
+    int             expected_bsr        = 10;
+    shape->type                         = 's';
+    shape->flags                        = ft_strdup("10");
+
+    //ACT
+    bsr = printstring(fd, str, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
 MU_TEST_SUITE(test_suite)
 {
     MU_RUN_TEST(passing_a_11_flag_for_the_string_One_Ring_and_return_three_spaces_One_Ring);
@@ -338,6 +364,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_a_flag_1_and_a_empty_string_should_be_space);
     MU_RUN_TEST(passing_a_flag_1_and_a_NULL_string_should_be_printf_null);
     MU_RUN_TEST(passing_a_flag_dot_2_and_a_string_gol_should_be_print_go);
+    MU_RUN_TEST(passing_a_flag_10_and_a_NULL_should_be_4_spaces_null);
 }
 
 int main() {
