@@ -39,7 +39,6 @@ $(NAME): $(SRCS:.c=.o)
        
 $(LIBFT):
 	@make 	-C $(DIR_LIBFT)
-	@cp		./libft/srcs/libft.a ./libftprintf.a
 
 %.o:	%.c	$(HEADERS)
 	@cc		-o $@ -c $<  -I ./ $(FLAGS)

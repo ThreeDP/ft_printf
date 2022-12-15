@@ -8,7 +8,7 @@ L_YELLOWB		=			'\033[1;33m'
 L_GREEN			=			'\033[0;32m'
 L_GREENB		=			'\033[1;32m'
 ################ LIBRARY	##################
-NAME 			= 			libft.a
+NAME 			= 			../../libft.a
 BONUS			=			libft.a
 ################ MANDATORY	##################
 SRCS 			=			ft_isalpha.c 		ft_isdigit.c 		ft_isalnum.c	\

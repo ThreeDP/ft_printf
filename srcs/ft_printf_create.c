@@ -48,12 +48,12 @@ t_typestring	*new_typestring(char *str)
 	if (!c_format)
 		return (NULL);
 	c_format->space = f;
-	c_format->value = str;
 	c_format->minus = f;
 	c_format->bytes = 0;
 	c_format->dot = f;
 	c_format->bytes_s = 0;
 	c_format->valid_bytes = 0;
+	c_format->value = str;
 	return (c_format);
 }
 

@@ -22,12 +22,23 @@ int	printchar(int fd, char c, t_format **shape)
 
 int	printstring(int fd, char *str, t_format **shape)
 {
-	if (!str)
-		(*shape)->arg = formatstring("null", (*shape)->flags);
-	(*shape)->arg = formatstring(str, (*shape)->flags);
+	int		bsr;
+	char	*pnull;
+
+	pnull = NULL;
+	if  (!str)
+	{
+		pnull = ft_strdup("(null)");
+		(*shape)->arg = formatstring(pnull, (*shape)->flags);
+	}
+	else
+		(*shape)->arg = formatstring(str, (*shape)->flags);
 	if (!(*shape)->arg)
 		return (0);
-	return (printf_formatstring(fd, (*shape)->arg));
+	bsr = printf_formatstring(fd, (*shape)->arg);
+	if (pnull)
+		free(pnull);
+	return (bsr);
 }
 
 int	printint(int fd, int integer, t_format **shape)
