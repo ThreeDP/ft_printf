@@ -2,6 +2,7 @@
 #include "../srcs/ft_printf.h"
 #include "./get_next_line.h"
 #include "ft_printf_test.h"
+#include <stdio.h>
 
 t_format *setup(char *file, int  *fd)
 {
@@ -509,6 +510,32 @@ MU_TEST_SUITE(passing_the_flag_dot_0_from_the_num_420000_should_be_420000)
     free_shape(&shape, result_str);
 }
 
+MU_TEST_SUITE(passing_the_flag_minus_10_dot_5_from_the_num_2147483647_should_be_2147483647)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/dotflag";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = 2147483647;
+    char            *expected_result    = "2147483647";
+    int             expected_bsr        = 10;
+    shape->type                         = 'd';
+    shape->flags                        = ft_strdup("-10.5");
+
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
 MU_TEST_SUITE(test_suite)
 {
     MU_RUN_TEST(passing_the_flag_11_from_the_number_256_should_be_8_spaces_256);
@@ -529,6 +556,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_the_flag_minus_0_12_from_the_number_minus_157_should_be_4294967139_2_spaces);
     MU_RUN_TEST(passing_the_flag_dot_0_from_the_num_0_should_be_nothing);
     MU_RUN_TEST(passing_the_flag_dot_0_from_the_num_420000_should_be_420000);
+    MU_RUN_TEST(passing_the_flag_minus_10_dot_5_from_the_num_2147483647_should_be_2147483647);
 }
 
 int main() {

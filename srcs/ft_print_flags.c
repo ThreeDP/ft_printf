@@ -62,6 +62,11 @@ int printf_formatint(int fd, t_typeint *format)
 		size = 0;
 	else
 		size = ft_strlen(str_num);
+	if (format->dot && format->bytes > format->bytes_s && format->bytes_s < size)
+	{
+		format->bytes = 0;
+		format->bytes_s = 0;
+	} 
 	format_iflags(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
