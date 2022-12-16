@@ -40,7 +40,9 @@ int	printf_formatstring(int fd, t_typestring *format)
 		size = format->bytes_s;
 	}
 	if (!format->minus)
+	{
 		bsr += print_spaces(fd, &format->bytes, ' ');
+	}
 	bsr += write(fd, format->value, size);
 	bsr += print_spaces(fd, &format->bytes, ' ');
 	return (bsr);

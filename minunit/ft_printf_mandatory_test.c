@@ -562,7 +562,7 @@ MU_TEST_SUITE(passing_str_NULL_should_be_minus_1)
     free(result_str);
 }
 
-MU_TEST_SUITE(passing_a_address_null_with_flag_3_should_be_the_word_3_spaces_nil)
+MU_TEST_SUITE(passing_a_address_null_with_flag_10_should_be_the_word_5_spaces_nil)
 {
     //ARRANGE
     int     fd;
@@ -571,11 +571,11 @@ MU_TEST_SUITE(passing_a_address_null_with_flag_3_should_be_the_word_3_spaces_nil
     char    *file               = "./files/3-spaces-null-pointer";
     ssize_t address             = 0;
     int     bkp                 = setup(file, &fd);
-    char    *expected_result    = "(nil)   ";
-    int     expected_bytes      = 8;
+    char    *expected_result    = "     (nil)";
+    int     expected_bytes      = 10;
 
     //ACT
-    bytes = ft_printf("%3p", address);
+    bytes = ft_printf("%10p", address);
 
     //ASSERT
     result_str = unset(fd, file, &bkp);
@@ -610,7 +610,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_NULL_from_hex_shold_be_ZERO);
     MU_RUN_TEST(passing_a_mix_of_flags);
     MU_RUN_TEST(passing_str_NULL_should_be_minus_1);
-    MU_RUN_TEST(passing_a_address_null_with_flag_3_should_be_the_word_3_spaces_nil);
+    MU_RUN_TEST(passing_a_address_null_with_flag_10_should_be_the_word_5_spaces_nil);
 }
 
 int main() {

@@ -176,6 +176,32 @@ MU_TEST_SUITE(test_passing_multiples_minus_5_dot_7_int_the_flags)
         free(format);
 }
 
+MU_TEST_SUITE(test_passing_flag_3)
+{
+    //ARRANGE
+    t_typestring    *format;
+    char            *flags      = "3";
+    char            *str        = "(nil)";
+    t_bool          minus       = f;
+    int             bytes       = 3;
+    t_bool          dot         = f;
+    int             bytes_s     = 0;
+    int             valid_bytes = 1;
+
+    //ACT
+    format = formatstring(str, flags);
+
+    //ASSERTS
+    mu_assert_string_eq(str, format->value);
+    mu_assert(minus == format->minus, "Minus error!");
+    mu_assert_int_eq(bytes, format->bytes);
+    mu_assert(dot == format->dot, "Dot error!");
+    mu_assert_int_eq(bytes_s, format->bytes_s);
+    mu_assert_int_eq(valid_bytes, format->valid_bytes);
+    if (format)
+        free(format);
+}
+
 MU_TEST_SUITE(test_suite)
 {
     MU_RUN_TEST(test_passing_55_dot_10_int_the_flags);
@@ -185,6 +211,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(test_passing_yjkw_int_the_flags);
     MU_RUN_TEST(test_passing_minus_5_dot_7_int_the_flags);
     MU_RUN_TEST(test_passing_multiples_minus_5_dot_7_int_the_flags);
+    MU_RUN_TEST(test_passing_flag_3);
 }
 
 int main() {

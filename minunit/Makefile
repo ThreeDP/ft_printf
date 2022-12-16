@@ -68,6 +68,12 @@ c:
 
 .PHONY: $(SOUTS)
 
+string: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g formatstring_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	"$(L_YELLOWB)[RUN formatstring_test.c]$(L_WHITE)"
+	@./a.out
+
 int: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g formatint_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf

@@ -119,12 +119,38 @@ MU_TEST_SUITE(test2)
     free_shape(&shape, result_str);
 }
 
+MU_TEST_SUITE(test3)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/04d";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    long             num                 = 0;
+    char            *expected_result    = "(nil)     ";
+    int             expected_bsr        = 10;
+    shape->type                         = 'p';
+    shape->flags                        = ft_strdup("-10");
+
+    //ACT
+    bsr = printhex(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
 
 MU_TEST_SUITE(test_suite)
 {
     MU_RUN_TEST(passing_the_flag_0_4_from_the_number_9_should_be_0009);
     MU_RUN_TEST(test);
     MU_RUN_TEST(test2);
+    MU_RUN_TEST(test3);
 }
 
 int main() {
