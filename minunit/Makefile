@@ -74,6 +74,12 @@ string: $(HEADERS)
 	@echo	"$(L_YELLOWB)[RUN formatstring_test.c]$(L_WHITE)"
 	@./a.out
 
+ps: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g printstring_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	"$(L_YELLOWB)[RUN printstring_test.c]$(L_WHITE)"
+	@./a.out
+
 int: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g formatint_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf

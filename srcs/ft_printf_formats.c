@@ -35,7 +35,7 @@ t_typestring	*formatstring(char *str, const char *flags)
 	t_typestring	*format;
 
 	i = 0;
-	format = new_typestring(str);
+	format = new_typestring();
 	if (!format)
 		return (NULL);
 	format->space = ft_isflag(' ', flags[i], &i);
@@ -46,6 +46,12 @@ t_typestring	*formatstring(char *str, const char *flags)
 	format->dot = ft_isflag('.', flags[i], &i);
 	format->bytes_s = sub_atoi(&flags[i], &i);
 	format->valid_bytes = i;
+	if (!str && (format->bytes_s < 6 && format->bytes_s > 0))
+		format->value = ft_strdup("");
+	else if (!str)
+		format->value = ft_strdup("(null)");
+	else
+		format->value = ft_strdup(str);
 	return (format);
 }
 

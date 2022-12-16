@@ -40,7 +40,7 @@ t_typechar	*new_typechar(char c)
 	return (c_format);
 }
 
-t_typestring	*new_typestring(char *str)
+t_typestring	*new_typestring(void)
 {
 	t_typestring	*c_format;
 
@@ -53,7 +53,7 @@ t_typestring	*new_typestring(char *str)
 	c_format->dot = f;
 	c_format->bytes_s = 0;
 	c_format->valid_bytes = 0;
-	c_format->value = str;
+	c_format->value = NULL;
 	return (c_format);
 }
 

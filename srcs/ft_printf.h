@@ -83,7 +83,7 @@ int				ft_printf(const char *str, ...);
 // CREATE FUNCTIONS
 t_format		*new_format(void);
 t_typechar		*new_typechar(char c);
-t_typestring	*new_typestring(char *str);
+t_typestring	*new_typestring(void);
 t_typehex		*new_typehex(unsigned long num, char caset);
 t_typeint		*new_typeint(unsigned int num, char signal);
 // FORMAT FUNCTIONS
