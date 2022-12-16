@@ -96,6 +96,11 @@ int	printf_formathex(int fd, t_typehex *format)
 		size = ft_strlen_upper(str_num);
 	else
 		size = ft_strlen(str_num);
+	if (format->dot && format->bytes > format->bytes_s && format->bytes_s < size)
+	{
+		format->bytes = 0;
+		format->bytes_s = 0;
+	} 
 	format_xflags(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
