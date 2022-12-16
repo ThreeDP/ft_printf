@@ -43,7 +43,7 @@ t: 			libft compile $(SOUTS)
 v:			libft compile
 	@for X in $(SOUTS) ; do \
 		echo  "$(L_YELLOWB)[TEST $$X]$(L_WHITE)" && \
-		valgrind -s --track-origins=yes --error-exitcode=42 --leak-check=full $$X && \
+		valgrind --track-origins=yes --error-exitcode=42 --leak-check=full $$X && \
 		echo "$(L_WHITEB)"*******************************************************************"$(L_WHITE)" ; done
 
 ### NORMINETTE

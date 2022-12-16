@@ -45,6 +45,8 @@ int	printf_formatstring(int fd, t_typestring *format)
 	}
 	bsr += write(fd, format->value, size);
 	bsr += print_spaces(fd, &format->bytes, ' ');
+	if (format->value)
+		free(format->value);
 	return (bsr);
 }
 
