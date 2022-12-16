@@ -23,6 +23,8 @@ char *unset(int fd, char *file)
     close(fd);
     fd = open(file, O_RDONLY);
     text = get_next_line(fd);
+    if (!text)
+        text = ft_strdup("");
     remove(file);
     return (text);
 }
@@ -455,6 +457,32 @@ MU_TEST_SUITE(passing_the_flag_minus_0_12_from_the_number_minus_157_should_be_42
     free_shape(&shape, result_str);
 }
 
+MU_TEST_SUITE(passing_the_flag_dot_0_from_the_num_0_should_be_nothing)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/dotflag";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    int             num                 = 0;
+    char            *expected_result    = "";
+    int             expected_bsr        = 0;
+    shape->type                         = 'd';
+    shape->flags                        = ft_strdup(".0");
+
+    //ACT
+    bsr = printint(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
 MU_TEST_SUITE(test_suite)
 {
     MU_RUN_TEST(passing_the_flag_11_from_the_number_256_should_be_8_spaces_256);
@@ -473,6 +501,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(passing_the_flag_minus_17_dot_12_from_the_number_minus_157_should_be_004294967139_5_spaces);
     MU_RUN_TEST(passing_the_flag_0_12_from_the_number_minus_157_should_be_004294967139);
     MU_RUN_TEST(passing_the_flag_minus_0_12_from_the_number_minus_157_should_be_4294967139_2_spaces);
+    MU_RUN_TEST(passing_the_flag_dot_0_from_the_num_0_should_be_nothing);
 }
 
 int main() {

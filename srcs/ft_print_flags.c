@@ -58,7 +58,10 @@ int printf_formatint(int fd, t_typeint *format)
 
 	bsr = 0;
 	str_num = ft_itoa_base(format->value, 10);
-	size = ft_strlen(str_num);
+	if (format->dot && !format->bytes_s)
+		size = 0;
+	else
+		size = ft_strlen(str_num);
 	format_iflags(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
