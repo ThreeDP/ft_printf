@@ -58,7 +58,7 @@ int printf_formatint(int fd, t_typeint *format)
 
 	bsr = 0;
 	str_num = ft_itoa_base(format->value, 10);
-	if (format->dot && !format->bytes_s)
+	if (format->dot && !format->bytes_s && !format->value)
 		size = 0;
 	else
 		size = ft_strlen(str_num);
