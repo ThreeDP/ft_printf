@@ -85,7 +85,7 @@ int	printf_formathex(int fd, t_typehex *format)
 
 	bsr = 0;
 	str_num = ft_itoa_base(format->value, 16);
-	if (format->dot && !format->bytes_s)
+	if (format->dot && !format->bytes_s && !format->value)
 		size = 0;
 	else if (format->caset == 'X')
 		size = ft_strlen_upper(str_num);
