@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	printchar(int fd, char c, t_format **shape)
 {
@@ -52,8 +53,9 @@ int	printint(int fd, int integer, t_format **shape)
 int	printhex(int fd, unsigned long num, t_format **shape)
 {
 	if (!num && (*shape)->type == 'p')
-		return (ft_putstr_fd("(nil)", fd));
-	(*shape)->arg = formathex(num, (*shape)->flags, (*shape)->type);
+		return (printstring(fd, "(nil)", shape));
+	else
+		(*shape)->arg = formathex(num, (*shape)->flags, (*shape)->type);
 	if (!(*shape)->arg)
 		return (0);
 	return (printf_formathex(fd, (*shape)->arg));
