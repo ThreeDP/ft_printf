@@ -1,5 +1,4 @@
 name: valgrind test
-
 on: [push]
 jobs:
   valgrind-test:

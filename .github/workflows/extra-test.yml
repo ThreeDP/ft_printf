@@ -1,0 +1,28 @@
+name: extra functions
+on: [push]
+jobs:
+  extra-functions:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: minunit
+    steps:
+    - uses: actions/checkout@v2
+    - name: compile
+      run: compile
+    - name: format char
+      run: make c
+    - name: format string
+      run: make s
+    - name: format int
+      run: make i
+    - name: format hex
+      run: make h
+    - name: print char
+      run: make pc
+    - name: print string
+      run: make ps
+    - name: print int
+      run: make pi
+    - name: print hex
+      run: make ph

@@ -50,14 +50,14 @@ int	printf_formatstring(int fd, t_typestring *format)
 	return (bsr);
 }
 
-int printf_formatint(int fd, t_typeint *format)
+int	printf_formatint(int fd, t_typeint *format)
 {
-	int 	bsr;
-	int 	size;
+	int		bsr;
+	int		size;
 	char	*str_num;
 
 	bsr = 0;
-	str_num = ft_itoa_base(format->value, 10);
+	str_num = ft_itoa_base(format->value, BASED);
 	if (format->dot && !format->bytes_s && !format->value)
 		size = 0;
 	else
@@ -66,7 +66,7 @@ int printf_formatint(int fd, t_typeint *format)
 	{
 		format->bytes = 0;
 		format->bytes_s = 0;
-	} 
+	}
 	format_iflags(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
@@ -85,11 +85,11 @@ int printf_formatint(int fd, t_typeint *format)
 int	printf_formathex(int fd, t_typehex *format)
 {
 	int		bsr;
-	int 	size;
+	int		size;
 	char	*str_num;
 
 	bsr = 0;
-	str_num = ft_itoa_base(format->value, 16);
+	str_num = ft_itoa_base(format->value, BASEH);
 	if (format->dot && !format->bytes_s && !format->value)
 		size = 0;
 	else if (format->caset == 'X')
@@ -100,7 +100,7 @@ int	printf_formathex(int fd, t_typehex *format)
 	{
 		format->bytes = 0;
 		format->bytes_s = 0;
-	} 
+	}
 	format_xflags(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');

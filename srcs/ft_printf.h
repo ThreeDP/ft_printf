@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include "./libft/srcs/libft.h"
 
+# define BASED 10
+# define BASEH 16
+
 typedef enum e_bool
 {
 	f,
@@ -94,7 +97,7 @@ t_typehex		*formathex(unsigned long num, const char *flags, char caset);
 // PRINTF FLAGS
 int				printf_formatchar(int fd, t_typechar *format);
 int				printf_formatstring(int fd, t_typestring *format);
-int 			printf_formatint(int fd, t_typeint *format);
+int				printf_formatint(int fd, t_typeint *format);
 int				printf_formathex(int fd, t_typehex *format);
 // PRINT FUNCTIONS
 int				printchar(int fd, char c, t_format **shape);

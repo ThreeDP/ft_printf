@@ -10,11 +10,11 @@ L_GREENB		=			\033[1;32m
 ################ CONFIG		##################
 DIR 			= 			../srcs/
 GNL				=			get_next_line.c				get_next_line_utils.c
-SRCS_TEST 		= 			ft_printf_mandatory_test.c	ft_printf_bonus_test.c \
-							formatstring_test.c 		formatchar_test.c				formatint_test.c			formathex_test.c \
+PSRCS_TEST 		= 			ft_printf_mandatory_test.c	ft_printf_bonus_test.c 
+ESRCS_TEST		=			formatstring_test.c 		formatchar_test.c				formatint_test.c			formathex_test.c \
 							printstring_test.c			printchar_test.c				printint_test.c				printhex_test.c
 OUTS			=			./outs/
-SOUTS			= 			$(addprefix $(OUTS), $(SRCS_TEST))
+SOUTS			= 			$(addprefix $(OUTS), $(PSRCS_TEST)) $(addprefix $(OUTS), $(ESRCS_TEST))
 HEADERS 		= 			minunit.h get_next_line.h
 ################ OTHERs		##################
 FLAGS 			=			-Wall -Werror -Wextra
@@ -28,7 +28,7 @@ all: 		t v
 libft:
 	@cd		$(DIR) && $(MAKE)
 
-compile: 			$(SRCS_TEST:.c=.o)
+compile: 			libft $(PSRCS_TEST:.c=.o) $(ESRCS_TEST:.c=.o)
 
 $(SOUTS):
 	@echo  
@@ -37,10 +37,10 @@ $(SOUTS):
 	@echo  "$(L_WHITEB)"*******************************************************************"$(L_WHITEB)"
 
 ### TESTING CODE
-t: 			libft compile $(SOUTS)
+t: 			compile $(SOUTS)
 
 ### VALGRIND
-v:			libft compile
+v:			compile
 	@for X in $(SOUTS) ; do \
 		echo  "$(L_YELLOWB)[TEST $$X]$(L_WHITE)" && \
 		valgrind --track-origins=yes --error-exitcode=42 --leak-check=full $$X && \
@@ -63,12 +63,33 @@ fclean: 	clean
 
 re: fclean all
 
-c:
-	@rm			-f ./files/*
+extra: compile c pc s ps i pi h ph
 
-.PHONY: $(SOUTS)
+m: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g ft_printf_mandatory_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	"$(L_YELLOWB)[RUN ft_printf_mandatory_test.c]$(L_WHITE)"
+	@./a.out
 
-string: $(HEADERS)
+b: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g ft_printf_bonus_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	"$(L_YELLOWB)[RUN ft_printf_bonus_test.c]$(L_WHITE)"
+	@./a.out
+
+c: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g formatchar_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	"$(L_YELLOWB)[RUN formatchar_test.c]$(L_WHITE)"
+	@./a.out
+
+pc: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g printchar_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	"$(L_YELLOWB)[RUN printchar_test.c]$(L_WHITE)"
+	@./a.out
+
+s: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g formatstring_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@echo	"$(L_YELLOWB)[RUN formatstring_test.c]$(L_WHITE)"
@@ -80,20 +101,28 @@ ps: $(HEADERS)
 	@echo	"$(L_YELLOWB)[RUN printstring_test.c]$(L_WHITE)"
 	@./a.out
 
-int: $(HEADERS)
+i: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g formatint_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@echo	"$(L_YELLOWB)[RUN formatint_test.c]$(L_WHITE)"
 	@./a.out
 
-pint: $(HEADERS)
+pi: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g printint_test.c $(GNL) $(FLAGS) -I $(DIR) -L $(DIR) -lftprintf
 	@echo	"$(L_YELLOWB)[RUN printint_test.c]$(L_WHITE)"
 	@./a.out
 
-phex: $(HEADERS)
+h: $(HEADERS)
+	@cd		$(DIR) && $(MAKE)
+	clang	-g formathex_test.c $(GNL) -I $(DIR) -L $(DIR) -lftprintf
+	@echo	"$(L_YELLOWB)[RUN formathex_test.c]$(L_WHITE)"
+	@./a.out
+
+ph: $(HEADERS)
 	@cd		$(DIR) && $(MAKE)
 	clang	-g printhex_test.c $(GNL) -I $(DIR) -L $(DIR) -lftprintf
 	@echo	"$(L_YELLOWB)[RUN printhex_test.c]$(L_WHITE)"
 	@./a.out
+
+.PHONY: $(SOUTS)

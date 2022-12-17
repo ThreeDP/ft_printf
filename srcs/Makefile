@@ -46,7 +46,7 @@ $(LIBFT):
 
 bonus: all
 
-norm:
+n:
 	@norminette
 
 clean:
@@ -56,7 +56,6 @@ clean:
 fclean: 	clean
 	@rm 		-f $(NAME)
 	@cd 		$(DIR_LIBFT) && $(MAKE) $@
-#	@rm 		-rf ./libft
 
 re: fclean all
 

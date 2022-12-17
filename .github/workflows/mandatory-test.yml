@@ -1,12 +1,14 @@
-name: mandatory tests
+name: mandatory part
 on: [push]
 jobs:
-  test-functions:
+  mandatory-part:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: minunit
     steps:
     - uses: actions/checkout@v2
-    - name: mandatory Tests
-      run: make t
+    - name: compile
+      run: compile
+    - name: mandatory test
+      run: make m

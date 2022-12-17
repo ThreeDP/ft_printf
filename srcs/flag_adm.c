@@ -25,7 +25,7 @@ int	match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag)
 			(*format)->space = ft_isflag(' ', flags[i], &i);
 		else if (!(*format)->plus && flags[i] == '+')
 			(*format)->plus = ft_isflag('+', flags[i], &i);
-		else 
+		else
 			i++;
 	}
 	return (i);
@@ -42,7 +42,7 @@ int	match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag)
 			*f1 = ft_isflag(flag, flags[i], &i);
 		else if (!*f2 && flags[i] == '#')
 			*f2 = ft_isflag('#', flags[i], &i);
-		else 
+		else
 			i++;
 	}
 	return (i);
@@ -72,7 +72,7 @@ void	format_iflags(t_typeint **format, int size)
 		(*format)->bytes -= 1;
 	if ((*format)->fzero && !(*format)->minus && !(*format)->dot)
 		(*format)->bytes_s = (*format)->bytes - size;
-	if ((*format)->dot)
+	if ((*format)->dot && (*format)->bytes_s > size)
 	{
 		(*format)->bytes_s -= size;
 		(*format)->bytes -= ((*format)->bytes_s + size);

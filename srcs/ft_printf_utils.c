@@ -67,7 +67,7 @@ unsigned int	convert_num(int num, char signal)
 size_t	ft_strlen_upper(char *str)
 {
 	int	size;
-	
+
 	size = 0;
 	while (str[size])
 	{

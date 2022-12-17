@@ -75,7 +75,6 @@ t_typeint	*new_typeint(unsigned int num, char signal)
 	c_format->bytes_s = 0;
 	c_format->valid_bytes = 0;
 	return (c_format);
-	
 }
 
 t_typehex	*new_typehex(unsigned long num, char caset)

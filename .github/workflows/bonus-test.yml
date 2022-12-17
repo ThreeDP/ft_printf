@@ -1,0 +1,14 @@
+name: bonus part
+on: [push]
+jobs:
+  bonus-part:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: minunit
+    steps:
+    - uses: actions/checkout@v2
+    - name: compile
+      run: compile
+    - name: bonus test
+      run: make b
