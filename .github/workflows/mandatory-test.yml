@@ -9,6 +9,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: compile
-      run: compile
+      run: make compile
     - name: mandatory test
       run: make m

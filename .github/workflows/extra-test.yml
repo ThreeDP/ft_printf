@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: compile
-      run: compile
+      run: make compile
     - name: format char
       run: make c
     - name: format string
