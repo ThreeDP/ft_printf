@@ -1,5 +1,5 @@
 #include "minunit.h"
-#include "../srcs/ft_printf.h"
+#include "../srcs/mandatory/ft_printf.h"
 #include "./get_next_line.h"
 #include "ft_printf_test.h"
 #include <stdio.h>
