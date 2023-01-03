@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:51:37 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/09 21:06:24 by dapaulin         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:50:16 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include "./libft/srcs/libft.h"
+# include "../libft/libft.h"
 
 # define BASED 10
 # define BASEH 16
@@ -81,7 +81,10 @@ typedef struct s_typehex
 }	t_typehex;
 
 // PRINCIPAL FUNCTION 
+int				ft_istype(char c);
+int				findflag(char *str);
 int				select_type(va_list *args, t_format **shape, int fd);
+int				find_next(char *p, char **s, va_list *args, t_format **shape);
 int				ft_printf(const char *str, ...);
 // CREATE FUNCTIONS
 t_format		*new_format(void);
@@ -111,7 +114,7 @@ t_bool			ft_isflag(char flag, char c, int *i);
 unsigned int	convert_num(int num, char signal);
 size_t			ft_strlen_upper(char *str);
 // FLAG ADM
-int				match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag);
+int				match_iflags(char *flags, t_bool *f1, t_typeint **f, char c);
 int				match_xflags(char *flags, t_bool *f1, t_bool *f2, char flag);
 void			format_iflags(t_typeint **format, int size);
 void			format_xflags(t_typehex **format, int size);

@@ -547,7 +547,7 @@ MU_TEST_SUITE(test)
     char            *result_str;
     int             num                 = 42000;
     char            *expected_result    = "                                     42000";
-    int             expected_bsr        = 10;
+    int             expected_bsr        = 42;
     shape->type                         = 'd';
     shape->flags                        = ft_strdup("042.2");
 

@@ -6,25 +6,25 @@
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 18:28:44 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/09 20:56:39 by dapaulin         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:15:23 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	match_iflags(char *flags, t_bool *f1, t_typeint **format, char flag)
+int	match_iflags(char *f, t_bool *f1, t_typeint **format, char c)
 {
 	int	i;
 
 	i = 0;
-	while (flags[i] == flag || flags[i] == ' ' || flags[i] == '+')
+	while (f[i] == c || f[i] == ' ' || f[i] == '+')
 	{
-		if (!*f1 && flags[i] == flag)
-			*f1 = ft_isflag(flag, flags[i], &i);
-		else if (!(*format)->space && flags[i] == ' ')
-			(*format)->space = ft_isflag(' ', flags[i], &i);
-		else if (!(*format)->plus && flags[i] == '+')
-			(*format)->plus = ft_isflag('+', flags[i], &i);
+		if (!*f1 && f[i] == c)
+			*f1 = ft_isflag(c, f[i], &i);
+		else if (!(*format)->space && f[i] == ' ')
+			(*format)->space = ft_isflag(' ', f[i], &i);
+		else if (!(*format)->plus && f[i] == '+')
+			(*format)->plus = ft_isflag('+', f[i], &i);
 		else
 			i++;
 	}
@@ -56,7 +56,10 @@ void	format_xflags(t_typehex **format, int size)
 		(*format)->bytes_s = (*format)->bytes - size;
 	if ((*format)->dot)
 	{
-		(*format)->bytes_s -= size;
+		if ((*format)->bytes_s > size)
+			(*format)->bytes_s -= size;
+		else
+			(*format)->bytes_s = 0;
 		(*format)->bytes -= ((*format)->bytes_s + size);
 		return ;
 	}
@@ -72,9 +75,12 @@ void	format_iflags(t_typeint **format, int size)
 		(*format)->bytes -= 1;
 	if ((*format)->fzero && !(*format)->minus && !(*format)->dot)
 		(*format)->bytes_s = (*format)->bytes - size;
-	if ((*format)->dot && (*format)->bytes_s > size)
+	if ((*format)->dot)
 	{
-		(*format)->bytes_s -= size;
+		if ((*format)->bytes_s > size)
+			(*format)->bytes_s -= size;
+		else
+			(*format)->bytes_s = 0;
 		(*format)->bytes -= ((*format)->bytes_s + size);
 		return ;
 	}

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_flags.c                                   :+:      :+:    :+:   */
+/*   ft_print_flags_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:36:21 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/09 20:38:57 by dapaulin         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:15:38 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	printf_formatchar(int fd, t_typechar *format)
 {
@@ -62,11 +62,6 @@ int	printf_formatint(int fd, t_typeint *format)
 		size = 0;
 	else
 		size = ft_strlen(str_num);
-	if (format->dot && format->bytes > format->bytes_s && format->bytes_s < size)
-	{
-		format->bytes = 0;
-		format->bytes_s = 0;
-	}
 	format_iflags(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
@@ -96,19 +91,11 @@ int	printf_formathex(int fd, t_typehex *format)
 		size = ft_strlen_upper(str_num);
 	else
 		size = ft_strlen(str_num);
-	if (format->dot && format->bytes > format->bytes_s && format->bytes_s < size)
-	{
-		format->bytes = 0;
-		format->bytes_s = 0;
-	}
 	format_xflags(&format, size);
 	if (!format->minus)
 		bsr += print_spaces(fd, &format->bytes, ' ');
 	if (format->hash && format->value)
-	{
-		bsr += ft_putchar_fd('0', fd);
-		bsr += ft_putchar_fd(format->caset, fd);
-	}
+		bsr += ft_putchar_fd('0', fd) + ft_putchar_fd(format->caset, fd);
 	bsr += print_spaces(fd, &format->bytes_s, '0');
 	bsr += write(fd, str_num, size);
 	bsr += print_spaces(fd, &format->bytes, ' ');

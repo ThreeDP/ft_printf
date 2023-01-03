@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:32:29 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/09 18:33:16 by dapaulin         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:16:45 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-/* Função responsavel por validar se uma sub-string é digit 
-e retornar um valor do tipo inteito */
 int	sub_atoi(const char *strnum, int *size)
 {
 	int		i;
@@ -35,7 +33,6 @@ int	sub_atoi(const char *strnum, int *size)
 	return (num);
 }
 
-/* Valida se o caracter atual coresponde a flag passada */
 t_bool	ft_isflag(char flag, char c, int *i)
 {
 	if (c == flag)
@@ -43,7 +40,6 @@ t_bool	ft_isflag(char flag, char c, int *i)
 	return (f);
 }
 
-/* Print the spaces set */
 int	print_spaces(int fd, int *bytes, char c)
 {
 	int	bsr;

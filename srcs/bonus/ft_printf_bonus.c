@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapaulin <dapaulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:36:22 by dapaulin          #+#    #+#             */
-/*   Updated: 2022/12/09 21:37:57 by dapaulin         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:50:26 by dapaulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	ft_istype(char c)
 {
@@ -59,35 +59,41 @@ int	select_type(va_list *args, t_format **shape, int fd)
 	return (bsr);
 }
 
-int	ft_printf(const char *str, ...)
+int	find_next(char *percent, char **s, va_list *args, t_format **shape)
 {
-	va_list		args_str;
-	t_format	*shape;
-	int			num_bytes;
-	char		*percent;
-	char		*cached_str;
+	int	num_bytes;
 
 	num_bytes = 0;
-	cached_str = (char *)str;
+	while (percent)
+	{
+		num_bytes += write(1, (*s), (percent - (*s)));
+		(*s) += (percent - (*s)) + 1;
+		(*shape)->f_pos = findflag((*s));
+		(*shape)->type = (*s)[(*shape)->f_pos];
+		(*shape)->flags = ft_strndup((*s), (*shape)->f_pos);
+		num_bytes += select_type(args, shape, 1);
+		(*s) += (*shape)->f_pos + 1;
+		percent = ft_strchr((*s), '%');
+	}
+	return (num_bytes);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	t_format	*shape;
+	va_list		args;
+	char		*c_str;
+	int			num_bytes;
+
+	num_bytes = 0;
+	c_str = (char *)str;
 	shape = new_format();
 	if (!str)
 		return (free(shape), -1);
-	va_start(args_str, str);
-	percent = ft_strchr(cached_str, '%');
-	while (percent)
-	{
-		num_bytes += write(1, cached_str, (percent - cached_str));
-		cached_str += (percent - cached_str) + 1;
-		shape->f_pos = findflag(cached_str);
-		shape->type = cached_str[shape->f_pos];
-		shape->flags = ft_strndup(cached_str, shape->f_pos);
-		num_bytes += select_type(&args_str, &shape, 1);
-		cached_str += shape->f_pos + 1;
-		percent = ft_strchr(cached_str, '%');
-	}
-	num_bytes += ft_putstr_fd(cached_str, 1);
+	va_start(args, str);
+	num_bytes += find_next(ft_strchr(str, '%'), &c_str, &args, &shape);
 	if (shape)
 		free(shape);
-	va_end(args_str);
-	return (num_bytes);
+	va_end(args);
+	return (num_bytes + ft_putstr_fd(c_str, 1));
 }

@@ -199,6 +199,32 @@ MU_TEST_SUITE(test5)
     free_shape(&shape, result_str);
 }
 
+MU_TEST_SUITE(passing_the_flag_minus_10_dot_2_X_for_the_number_minus_10_should_be_fffffff6_2_spaces)
+{
+    //CONFIG
+    int             fd;
+    char            *file               = "./files/string/04d";
+    t_format        *shape              = setup(file, &fd);
+    
+    //ARRANGE
+    int             bsr;
+    char            *result_str;
+    long             num                 = -10;
+    char            *expected_result    = "FFFFFFF6  ";
+    int             expected_bsr        = 10;
+    shape->type                         = 'X';
+    shape->flags                        = ft_strdup("-10.02");
+
+    //ACT
+    bsr = printhex(fd, num, &shape);
+    result_str = unset(fd, file);
+
+    //ASSERTS
+    mu_assert_string_eq(expected_result, result_str);
+    mu_assert_int_eq(expected_bsr, bsr);
+    free_shape(&shape, result_str);
+}
+
 MU_TEST_SUITE(test_suite)
 {
     MU_RUN_TEST(passing_the_flag_0_4_from_the_number_9_should_be_0009);
@@ -207,6 +233,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(test3);
     MU_RUN_TEST(test4);
     MU_RUN_TEST(test5);
+    MU_RUN_TEST(passing_the_flag_minus_10_dot_2_X_for_the_number_minus_10_should_be_fffffff6_2_spaces);
 }
 
 int main() {
