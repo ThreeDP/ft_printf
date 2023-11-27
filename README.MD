@@ -1,5 +1,5 @@
 # FT_PRINTF
-🍇 This project is about printing a sentence with parameters processed in the indicated positions.
+🍇 Esse projeto tem como objetivo recriar a função Printf da linguagem C utilizando sobre funções bases da linguagem, esse projeto apresenta o conceito de args, envio de argumentos de tipos variáveis para funções, e já introduz a importância de  um código bem estruturado.
 
 [![norminette](https://github.com/ThreeDP/ft_printf/actions/workflows/norminette.yml/badge.svg)](https://github.com/ThreeDP/ft_printf/actions/workflows/norminette.yml)
 [![mandatory](https://github.com/ThreeDP/ft_printf/actions/workflows/mandatory-test.yml/badge.svg)](https://github.com/ThreeDP/ft_printf/actions/workflows/mandatory-test.yml)
